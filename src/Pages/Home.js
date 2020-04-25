@@ -1,8 +1,5 @@
 import React from 'react'
-import Header from '../component/Header'
-import SideMenu from '../component/SideMenu'
-import Content from '../component/Content'
-import Footer from '../component/Footer'
+
 
 export default function Home() {
     return (
@@ -16,7 +13,7 @@ export default function Home() {
                     <hr className="sidebar-divider my-0" />
                     {/* Nav Item - Dashboard */}
                     <li className="nav-item active">
-                        <a className="nav-link" href="index.html">
+                        <a className="nav-link" href="/">
                             <i className="fas fa-fw fa-tachometer-alt" />
                             <span>Dashboard</span></a>
                     </li>
@@ -35,8 +32,8 @@ export default function Home() {
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">Custom Components:</h6>
-                                <a className="collapse-item" href="buttons.html">Buttons</a>
-                                <a className="collapse-item" href="cards.html">Cards</a>
+                                <a className="collapse-item" href="/NewCase">Buttons</a>
+                                <a className="collapse-item" href="/">Cards</a>
                             </div>
                         </div>
                     </li>
