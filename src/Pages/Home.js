@@ -10,7 +10,7 @@ export default function Home() {
 
         <Fragment>
             {/* Page Wrapper */}
-            
+
 {/* **************** Sidebar ******************** */}
             {/* Sidebar */}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
@@ -19,7 +19,7 @@ export default function Home() {
                 {/* Sidebar - Brand */}
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     <div class="sidebar-brand-icon rotate-n-15">
-                    <i className="fas fa-fw fa-tachometer-alt" />
+                        <i className="fas fa-fw fa-tachometer-alt" />
                     </div>
                     <div class="sidebar-brand-text mx-3">Home</div>
                 </a>
@@ -237,11 +237,10 @@ export default function Home() {
                 <footer className="sticky-footer bg-white">
                     <div className="container my-auto">
                         <div className="copyright text-center my-auto">
-                            <span>Copyright © Shit Company 2019</span>
+                            <span>Copyright © Shit Website 2077</span>
                         </div>
                     </div>
                 </footer>
-                {/* End of Footer */}
             </div>
         </Fragment>
 

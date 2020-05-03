@@ -8,8 +8,8 @@ function App() {
     <div id="wrapper">
     <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/NewCase" component={NewCase} />
+          <Route exact path="/NewCase" component={Home} />
+          <Route exact path="/" component={NewCase} />
         </Switch>
       </Router>
      
