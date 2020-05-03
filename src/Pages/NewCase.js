@@ -10,7 +10,7 @@ export default function NewCase() {
                 {/* Sidebar */}
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-{/* **************** Big Home ******************** */}
+    {/* **************** Big Home ******************** */}
                     {/* Sidebar - Brand */}
                     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                         <div class="sidebar-brand-icon rotate-n-15">
@@ -19,7 +19,7 @@ export default function NewCase() {
                         <div class="sidebar-brand-text mx-3">Home</div>
                     </a>
 
-{/* **************** Small Home ******************** */}
+    {/* **************** Small Home ******************** */}
                     {/* Nav Item - Dashboard */}
                     {/* <li className="nav-item active">
                         <a className="nav-link" href="/">
@@ -29,7 +29,7 @@ export default function NewCase() {
                     {/* Divider */}
                     {/* <hr className="sidebar-divider" /> */}
 
-{/* **************** Menu Begin ******************** */}
+    {/* **************** Menu Begin ******************** */}
                     <div className="sidebar-heading">
                         Menu
                     </div>

@@ -1,11 +1,57 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,useState, useEffect } from 'react'
+import axios from 'axios';
+import AnimatedNumber from "animated-number-react";
 
 export default function Home() {
     
     window.onload = function() {
        console.log('shit')
-       
+       GetDataCovid();
+
     }
+
+    const [TableCovid, setTableCovid] = useState();
+    const [Confirmed, setConfirmed] = useState();
+    const [Recovered, setRecovered] = useState();
+    const [Hospitalized, setHospitalized] = useState();
+    const [Deaths, setDeaths] = useState();
+    const [NewRecovered, setNewRecovered] = useState();
+    const [NewDeaths, setNewDeaths] = useState();
+    const [UpdateDate, setUpdateDate] = useState();
+
+    const formatValue = value => value.toFixed(0);
+
+    function GetDataCovid (){
+        return axios.get('https://covid19.th-stat.com/api/open/today') 
+        .then(function (response) {
+            const data = response.data;
+            // console.table(data)
+            setTableCovid(data);
+            setConfirmed(data.Confirmed)
+            setRecovered(data.Recovered)
+            setHospitalized(data.Hospitalized)
+            setDeaths(data.Deaths)
+            setNewRecovered(data.NewRecovered)
+            setNewDeaths(data.NewDeaths)
+            setUpdateDate(data.UpdateDate)
+            })}
+
+                    
+
+            // setTimeout(() => {
+            //     setOpen(false);
+            //     PostShit();
+            //     }, 500); 
+
+    useEffect(() => {
+        console.log("UseEffect")
+        console.table(TableCovid)
+        // console.log(TableCovid)
+        console.log(Confirmed)
+        
+        
+        })
+
     return (
 
         <Fragment>
@@ -15,7 +61,7 @@ export default function Home() {
             {/* Sidebar */}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
 
-{/* **************** Big Home ******************** */}
+    {/* **************** Big Home ******************** */}
                 {/* Sidebar - Brand */}
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
                     <div class="sidebar-brand-icon rotate-n-15">
@@ -24,7 +70,7 @@ export default function Home() {
                     <div class="sidebar-brand-text mx-3">Home</div>
                 </a>
 
-{/* **************** Small Home ******************** */}
+    {/* **************** Small Home ******************** */}
                 {/* Nav Item - Dashboard */}
                 {/* <li className="nav-item active">
                     <a className="nav-link " href="/">
@@ -35,7 +81,7 @@ export default function Home() {
                 {/* Divider */}
                 {/* <hr className="sidebar-divider" /> */}
 
-{/* **************** Menu Begin ******************** */}
+    {/* **************** Menu Begin ******************** */}
                 <div className="sidebar-heading">
                     Menu
                 </div>
@@ -117,7 +163,7 @@ export default function Home() {
                         <div className="d-sm-flex align-items-center justify-content-between mb-1 ">
                             <h1 className="h1 mb-0 text-gray-800">Thailand Situation</h1>
                         </div>
-                            <p class='mb-4'>updated + {"(dd/mmm/yyyy hh:mm)"}</p><br/>
+                            <p class='mb-4'>updated: {UpdateDate}</p><br/>
 
         {/* **************** Cards ******************** */}
                         {/* Content Row */}
@@ -129,8 +175,14 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
-                                                <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Monthly)</div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">{Math.floor(Math.random()*100)+1}</div>
+                                                <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Confirmed</div>
+                                                <div className="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <AnimatedNumber
+                                                    value={Confirmed}
+                                                    duration={1300}
+                                                    formatValue={formatValue}
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="col-auto">
                                                 <i className="fas fa-calendar fa-2x text-gray-300" />
@@ -146,8 +198,14 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
-                                                <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Recovered</div>
+                                                <div className="h5 mb-0 font-weight-bold text-gray-800">
+                                                    <AnimatedNumber
+                                                    value={Confirmed}
+                                                    duration={1300}
+                                                    formatValue={formatValue}
+                                                    />
+                                                </div>
                                             </div>
                                             <div className="col-auto">
                                                 <i className="fas fa-dollar-sign fa-2x text-gray-300" />
@@ -170,6 +228,7 @@ export default function Home() {
                                                 <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
                                                 <div className="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                             </div>
+                                           
                                             <div className="col-auto">
                                                 <i className="fas fa-comments fa-2x text-gray-300" />
                                             </div>
