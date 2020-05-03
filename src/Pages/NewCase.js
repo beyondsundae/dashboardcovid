@@ -7,40 +7,47 @@ export default function NewCase() {
             
                 {/* Sidebar */}
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
                     {/* Sidebar - Brand */}
-                    {/* Divider */}
-                    <hr className="sidebar-divider my-0" />
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                        <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-laugh-wink"></i>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">Home</div>
+                    </a>
+
                     {/* Nav Item - Dashboard */}
                     <li className="nav-item active">
                         <a className="nav-link" href="/">
                             <i className="fas fa-fw fa-tachometer-alt" />
-                            <span>Dashboard</span></a>
+                            <span>Home</span></a>
                     </li>
                     {/* Divider */}
                     <hr className="sidebar-divider" />
                     {/* Heading */}
                     <div className="sidebar-heading">
-                        Interface
-    </div>
+                        Menu
+                    </div>
                     {/* Nav Item - Pages Collapse Menu */}
                     <li className="nav-item">
                         <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                             <i className="fas fa-fw fa-cog" />
-                            <span>Components</span>
+                            <span>Route:</span>
                         </a>
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Custom Components:</h6>
-                                <a className="collapse-item" href="/NewCase">Buttons</a>
-                                <a className="collapse-item" href="/">Cards</a>
+                                <h6 className="collapse-header">Pages:</h6>
+                                <a className="collapse-item" href="/">Home</a>
+                                <a className="collapse-item" href="/NewCase">Register</a>
                             </div>
                         </div>
                     </li>
                     {/* Divider */}
-                    <hr className="sidebar-divider d-none d-md-block" />
-                    {/* Sidebar Toggler (Sidebar) */}
+                    <hr className="sidebar-divider" />
                 </ul>
                 {/* End of Sidebar */}
+
+
                 {/* Content Wrapper */}
                 <div id="content-wrapper" className="d-flex flex-column">
                     {/* Main Content */}
@@ -114,7 +121,7 @@ export default function NewCase() {
                         <div className="container-fluid">
                             {/* Page Heading */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
+                                <h1 className="h3 mb-0 text-gray-800">New Case</h1>
                             </div>
                             {/* Content Row */}
                             <div className="row">
