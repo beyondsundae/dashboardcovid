@@ -1,25 +1,52 @@
 import React, { Fragment,useState, useEffect } from 'react'
 import axios from 'axios';
 import AnimatedNumber from "animated-number-react";
+import anime from 'animejs/lib/anime.es.js'
+import moment from 'moment'
 
 export default function Home() {
     
     window.onload = function() {
-       console.log('shit')
+        Get7Days();
        GetDataCovid();
-
+       GetProvince();
+       TimeRanger ()
     }
 
     const [TableCovid, setTableCovid] = useState();
     const [Confirmed, setConfirmed] = useState();
+    const [NewConfirmed, setNewConfirmed] = useState();
     const [Recovered, setRecovered] = useState();
     const [Hospitalized, setHospitalized] = useState();
+    const [NewHospitalized, setNewHospitalized] = useState();
     const [Deaths, setDeaths] = useState();
     const [NewRecovered, setNewRecovered] = useState();
     const [NewDeaths, setNewDeaths] = useState();
     const [UpdateDate, setUpdateDate] = useState();
+    const [SevenDays, setSevenDays] = useState();
+    const [Province, setProvince] = useState();
+    const [xxxx, setxxxx] = useState();
 
     const formatValue = value => value.toFixed(0);
+
+    const Animated = anime({
+        targets: '.xxxx',
+        translateX: [0,50],
+        // easing: 'easeInOutExpo'
+
+      }); 
+
+    // const Animated2 = anime({
+    //     targets: '.wow',
+    //     innerHTML: [0, 1000],
+        
+    //     easing: 'easeInOutExpo',
+    //     direction: 'alternate',
+    //     loop: 3,
+    //     // rotate: 360,
+        
+    //     round: 1 // Will round the animated value to 1 decimal
+    // })
 
     function GetDataCovid (){
         return axios.get('https://covid19.th-stat.com/api/open/today') 
@@ -28,35 +55,78 @@ export default function Home() {
             // console.table(data)
             setTableCovid(data);
             setConfirmed(data.Confirmed)
+            setNewConfirmed(data.NewConfirmed)
             setRecovered(data.Recovered)
             setHospitalized(data.Hospitalized)
+            setNewHospitalized(data.NewHospitalized)
             setDeaths(data.Deaths)
             setNewRecovered(data.NewRecovered)
             setNewDeaths(data.NewDeaths)
             setUpdateDate(data.UpdateDate)
             })}
 
+    function Get7Days (item){
+        return axios.get('https://covid19.th-stat.com/api/open/timeline') 
+        .then(function (response) {
+            const Original = response.data;
+            const QueryDate = Original.Data 
+            // const SevenDaysSelected = 
+            
+            // console.log(QueryDate)
+            // const PassedTime = moment().subtract(7, 'days').calendar();
+            const result7Days = QueryDate.map(item => {
+                setxxxx([item.Date])
+                return(
+                    item.Date > moment().subtract(7, 'days').calendar()
+                    ?<p>{item.Date}</p>
+                    :null
                     
+               )
+                    
+                })
+            // console.log(result7Days)
+            setSevenDays(result7Days)
+        }),[]}
+    
+    function TestFncText (){
+        return(
+            <h1>shit ow wow</h1>
+        )
+    }
 
-            // setTimeout(() => {
-            //     setOpen(false);
-            //     PostShit();
-            //     }, 500); 
+    function GetProvince (){
+        return axios.get('https://covid19.th-stat.com/api/open/cases/sum') 
+        .then(function (response) {
+            const data = response.data;
+            
+            // dataxx.map(item => 
+            //  {
+            //      console.table(item)
+            //     })
+            setProvince(data.Province)
+        },[])}
+
+    function TimeRanger (){
+        const CurrentTime = moment().format('L'); 
+        const PassedTime = moment().subtract(7, 'days').calendar();
+        // console.table(CurrentTime)
+        // console.table(PassedTime)
+    }
 
     useEffect(() => {
-        console.log("UseEffect")
-        console.table(TableCovid)
+        // console.log("UseEffect")
+        console.log(xxxx)
         // console.log(TableCovid)
-        console.log(Confirmed)
-        
-        
+        // console.table(Province)
+        // console.table("State Date",Date)
         })
 
+    
     return (
 
         <Fragment>
             {/* Page Wrapper */}
-
+        
 {/* **************** Sidebar ******************** */}
             {/* Sidebar */}
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
@@ -162,8 +232,10 @@ export default function Home() {
                         {/* Page Heading */}
                         <div className="d-sm-flex align-items-center justify-content-between mb-1 ">
                             <h1 className="h1 mb-0 text-gray-800">Thailand Situation</h1>
+                            {/* <h1 className='wow'></h1> */}
+                            
                         </div>
-                            <p class='mb-4'>updated: {UpdateDate}</p><br/>
+                            <p class='mb-4' id='runnn'>updated: {UpdateDate}</p><br/>
 
         {/* **************** Cards ******************** */}
                         {/* Content Row */}
@@ -175,15 +247,19 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
-                                                <div className="text-xs font-weight-bold text-primary text-uppercase mb-1">Confirmed</div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <AnimatedNumber
-                                                    value={Confirmed}
-                                                    duration={1300}
-                                                    formatValue={formatValue}
-                                                    />
-                                                </div>
+                                                <div className="text-sm font-weight-bold text-primary text-uppercase mb-1">Infected</div>
+                                                <div className="h3 mb-0 font-weight-bold text-gray-800">
+                                                    <div class='xxxx'>
+                                                        <AnimatedNumber
+                                                        value={Confirmed}
+                                                        duration={1300}
+                                                        formatValue={formatValue}
+                                                        />
+                                                    </div>
+                                                </div><br/>
+                                                <div>New Infected{" "}{NewConfirmed}</div>
                                             </div>
+                                            
                                             <div className="col-auto">
                                                 <i className="fas fa-calendar fa-2x text-gray-300" />
                                             </div>
@@ -198,14 +274,17 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
-                                                <div className="text-xs font-weight-bold text-success text-uppercase mb-1">Recovered</div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">
-                                                    <AnimatedNumber
-                                                    value={Confirmed}
-                                                    duration={1300}
-                                                    formatValue={formatValue}
-                                                    />
-                                                </div>
+                                                <div className="text-sm font-weight-bold text-success text-uppercase mb-1">Recovered</div>
+                                                    <div className="h3 mb-0 font-weight-bold text-gray-800">
+                                                        <div class='xxxx'>
+                                                            <AnimatedNumber
+                                                            value={Recovered}
+                                                            duration={1300}
+                                                            formatValue={formatValue}
+                                                            />
+                                                        </div>
+                                                    </div><br/>
+                                                    <div>New Recovered{" "}{NewRecovered}</div>
                                             </div>
                                             <div className="col-auto">
                                                 <i className="fas fa-dollar-sign fa-2x text-gray-300" />
@@ -215,18 +294,53 @@ export default function Home() {
                                 </div>
                             </div>
 
-            
-                            <div className="col-xl-3 col-md-6 mb-4">
-                            </div>
-                            
             {/* **************** Cards3 ******************** */}
                             <div className="col-xl-3 col-md-6 mb-4">
                                 <div className="card border-left-warning shadow h-100 py-2">
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
-                                                <div className="text-xs font-weight-bold text-warning text-uppercase mb-1">Pending Requests</div>
-                                                <div className="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                <div className="text-sm font-weight-bold text-warning text-uppercase mb-1">Hospitalized</div>
+                                                    <div className="h3 mb-0 font-weight-bold text-gray-800">
+                                                        <div class='xxxx'>
+                                                            <AnimatedNumber
+                                                            value={Hospitalized}
+                                                            duration={1300}
+                                                            formatValue={formatValue}
+                                                            />
+                                                        </div>
+                                                    </div><br/>
+                                                    <div>New Hospitalized{" "}{NewHospitalized}</div>
+                                                    
+                                            </div>
+                                        
+                                            <div className="col-auto">
+                                                <i className="fas fa-comments fa-2x text-gray-300" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+            {/* **************** Cards4 ******************** */}
+                            <div className="col-xl-3 col-md-6 mb-4">
+                                <div className="card border-left-danger shadow h-100 py-2">
+                                    <div className="card-body">
+                                        <div className="row no-gutters align-items-center">
+                                            <div className="col mr-2">
+                                                <div className="text-sm font-weight-bold text-danger text-uppercase mb-1">Deaths</div>
+                                                    <div className="h3 mb-0 font-weight-bold text-gray-800">
+                                                        <div class='xxxx'>
+                                                            <AnimatedNumber
+                                                            value={Deaths}
+                                                            duration={1300}
+                                                            formatValue={formatValue}
+                                                            />
+                                                        </div>
+                                                    </div><br/>
+                                                    <div>New Deaths{" "}{NewDeaths}</div>
+                                                    
                                             </div>
                                            
                                             <div className="col-auto">
@@ -251,8 +365,12 @@ export default function Home() {
                                     {/* Card Body */}
                                     <div className="card-body">
                                         <div className="chart-area">
-                                            <canvas id="myAreaChart" /> 
-                                            shit
+                                            <TestFncText/>
+                                            {()=>Get7Days()}
+                                            {/* <ul>
+                                                <li ></li>
+                                            </ul> */}
+                                            {SevenDays}
                                         </div>
                                     </div>
                                 </div>
