@@ -13,6 +13,7 @@ export default function Home() {
        GetDataCovid();
        GetProvince();
        TimeRanger ()
+       
     }
     
     const [TableCovid, setTableCovid] = useState();
@@ -27,7 +28,7 @@ export default function Home() {
     const [UpdateDate, setUpdateDate] = useState();
     const [SevenDays, setSevenDays] = useState();
     const [Province, setProvince] = useState();
-    const [xxxx, setxxxx] = useState();
+    const [kuyy, setkuyy] = useState([]);
     const [xxxx2, setxxxx2] = useState();
 
     const formatValue = value => value.toFixed(0);
@@ -70,44 +71,47 @@ export default function Home() {
             })}
 
     function Get7Days (item){
-        return axios.get('https://covid19.th-stat.com/api/open/timeline') 
+        axios.get('https://covid19.th-stat.com/api/open/timeline') 
         .then(function (response) {
             const Original = response.data;
             const QueryDate = Original.Data 
             // const SevenDaysSelected = 
             // setxxxx2(QueryDate)
+            //  setxxxx(QueryDate)
+            // console.log(QueryDate)
             // const PassedTime = moment().subtract(7, 'days').calendar();
-            setxxxx(Original)
-           const result7Days = QueryDate.map(item => {
-                return(
-                    item.Date > moment().subtract(7, 'days').calendar()
-                    ?
-                        <p key={item.Date}>
-                            {console.log(item.Date, item.NewConfirmed)}
-                            {item.Date}{" "}{item.NewConfirmed}
+            setkuyy(QueryDate)
+        //    const result7Days = QueryDate.map((item) => {
+        //         return(
+        //             item.Date > moment().subtract(7, 'days').calendar()
+        //             ?
+        //                 <p key={item.Date}>
+        //                     {console.log(item.Date, item.NewConfirmed)}
+        //                     {item.Date}{" "}{item.NewConfirmed}
                             
-                        </p>
+        //                 </p>
                     
-                    :null
-                    )    
-                })
+        //             :null
+        //             )    
+        //         })
             // console.log(result7Days)
             
-            setSevenDays(result7Days)
-        }),[]}
-    
+            // setSevenDays(result7Days)
+        })}
+
+
     function TestFncText (){
-        const data = [
-            {name: 'Page A', uv: 400, pv: 200, amt: 200},
-            {name: 'Page B', uv: 200, pv: 1300, amt: 2500} ];
+        const data = [  
+            {name: 'Page A', uv: 400},
+            {name: 'Page B', uv: 200} ];
         return(
-            <BarChart width={600} height={350} data={data}>
+            <BarChart width={600} height={350} data={kuyy}>
                 <XAxis dataKey="Date" stroke="#8884d8" />
                 <YAxis />
                 <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
                 <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="uv" fill="#8884d8" barSize={30} />
+                <Bar dataKey="NewConfirmed" fill="#8884d8" barSize={30} />
             </BarChart>
         )
     }
@@ -138,6 +142,7 @@ export default function Home() {
         // console.table(Province)
         // console.table("State Date",Date)
         // console.log(SevenDays)
+        // console.log(kuyy)
         })
 
     
@@ -387,8 +392,10 @@ export default function Home() {
                                             {/* <ul>
                                                 <li ></li>
                                             </ul> */}
-                                            {SevenDays}
-                                           
+                                            {/* {SevenDays} */}
+                                            
+                                           {TestFncText()}
+
                                         </div>
                                     </div>
                                 </div>
