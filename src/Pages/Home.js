@@ -3,6 +3,8 @@ import axios from 'axios';
 import AnimatedNumber from "animated-number-react";
 import anime from 'animejs/lib/anime.es.js'
 import moment from 'moment'
+import { LineChart, Line, CartesianGrid, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+
 
 export default function Home() {
     
@@ -12,7 +14,7 @@ export default function Home() {
        GetProvince();
        TimeRanger ()
     }
-
+    
     const [TableCovid, setTableCovid] = useState();
     const [Confirmed, setConfirmed] = useState();
     const [NewConfirmed, setNewConfirmed] = useState();
@@ -26,8 +28,10 @@ export default function Home() {
     const [SevenDays, setSevenDays] = useState();
     const [Province, setProvince] = useState();
     const [xxxx, setxxxx] = useState();
+    const [xxxx2, setxxxx2] = useState();
 
     const formatValue = value => value.toFixed(0);
+    
 
     const Animated = anime({
         targets: '.xxxx',
@@ -71,26 +75,40 @@ export default function Home() {
             const Original = response.data;
             const QueryDate = Original.Data 
             // const SevenDaysSelected = 
-            
-            // console.log(QueryDate)
+            // setxxxx2(QueryDate)
             // const PassedTime = moment().subtract(7, 'days').calendar();
-            const result7Days = QueryDate.map(item => {
-                setxxxx([item.Date])
+            setxxxx(Original)
+           const result7Days = QueryDate.map(item => {
                 return(
                     item.Date > moment().subtract(7, 'days').calendar()
-                    ?<p>{item.Date}</p>
+                    ?
+                        <p key={item.Date}>
+                            {console.log(item.Date, item.NewConfirmed)}
+                            {item.Date}{" "}{item.NewConfirmed}
+                            
+                        </p>
+                    
                     :null
-                    
-               )
-                    
+                    )    
                 })
             // console.log(result7Days)
+            
             setSevenDays(result7Days)
         }),[]}
     
     function TestFncText (){
+        const data = [
+            {name: 'Page A', uv: 400, pv: 200, amt: 200},
+            {name: 'Page B', uv: 200, pv: 1300, amt: 2500} ];
         return(
-            <h1>shit ow wow</h1>
+            <BarChart width={600} height={350} data={data}>
+                <XAxis dataKey="Date" stroke="#8884d8" />
+                <YAxis />
+                <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
+                <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                <Bar dataKey="uv" fill="#8884d8" barSize={30} />
+            </BarChart>
         )
     }
 
@@ -115,10 +133,11 @@ export default function Home() {
 
     useEffect(() => {
         // console.log("UseEffect")
-        console.log(xxxx)
+        // console.log(xxxx)
         // console.log(TableCovid)
         // console.table(Province)
         // console.table("State Date",Date)
+        // console.log(SevenDays)
         })
 
     
@@ -365,12 +384,11 @@ export default function Home() {
                                     {/* Card Body */}
                                     <div className="card-body">
                                         <div className="chart-area">
-                                            <TestFncText/>
-                                            {()=>Get7Days()}
                                             {/* <ul>
                                                 <li ></li>
                                             </ul> */}
                                             {SevenDays}
+                                           
                                         </div>
                                     </div>
                                 </div>
@@ -384,12 +402,11 @@ export default function Home() {
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
-                                        <div className="chart-pie pt-4 pb-2 border border-danger">
-                                            <canvas id="myPieChart" />
-                                            shit
+                                        <div className="chart-pie pt-4 pb-2">
+                                        
                                         </div>
 
-                                        <div className="mt-4 text-center small">
+                                        {/* <div className="mt-4 text-center small">
                                             <span className="mr-2">
                                                 <i className="fas fa-circle text-primary" /> Direct
                                             </span>
@@ -399,12 +416,14 @@ export default function Home() {
                                             <span className="mr-2">
                                                 <i className="fas fa-circle text-info" /> Referral
                                             </span>
-                                        </div>
+                                        </div> */}
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {/* Content Row */}
+                        {TestFncText()}
                     </div>
                     {/* /.container-fluid */}
                 </div>
