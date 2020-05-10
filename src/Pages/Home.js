@@ -13,7 +13,6 @@ export default function Home() {
        GetDataCovid();
        GetProvince();
        TimeRanger ()
-       
     }
     
     const [TableCovid, setTableCovid] = useState();
@@ -28,10 +27,11 @@ export default function Home() {
     const [UpdateDate, setUpdateDate] = useState();
     const [SevenDays, setSevenDays] = useState();
     const [Province, setProvince] = useState();
-    const [kuyy, setkuyy] = useState([]);
+    const [DailyData, setDailyData] = useState([]);
     const [xxxx2, setxxxx2] = useState();
 
     const formatValue = value => value.toFixed(0);
+    
     
 
     const Animated = anime({
@@ -74,13 +74,8 @@ export default function Home() {
         axios.get('https://covid19.th-stat.com/api/open/timeline') 
         .then(function (response) {
             const Original = response.data;
-            const QueryDate = Original.Data 
-            // const SevenDaysSelected = 
-            // setxxxx2(QueryDate)
-            //  setxxxx(QueryDate)
-            // console.log(QueryDate)
-            // const PassedTime = moment().subtract(7, 'days').calendar();
-            setkuyy(QueryDate)
+            const QueryData = Original.Data 
+            setDailyData(QueryData)
         //    const result7Days = QueryDate.map((item) => {
         //         return(
         //             item.Date > moment().subtract(7, 'days').calendar()
@@ -101,19 +96,34 @@ export default function Home() {
 
 
     function TestFncText (){
-        const data = [  
-            {name: 'Page A', uv: 400},
-            {name: 'Page B', uv: 200} ];
+
+        const SelectedDay1 = DailyData[DailyData.length-1]
+        const SelectedDay2 = DailyData[DailyData.length-2]
+        const SelectedDay3 = DailyData[DailyData.length-3]
+        const SelectedDay4 = DailyData[DailyData.length-4]
+        const SelectedDay5 = DailyData[DailyData.length-5]
+        const SelectedDay6 = DailyData[DailyData.length-6]
+        const SelectedDay7 = DailyData[DailyData.length-7]
+        const Arr = [SelectedDay7,SelectedDay6,SelectedDay5,SelectedDay4,SelectedDay3,SelectedDay2,SelectedDay1]
+        console.log(SelectedDay1)
+
         return(
-            <BarChart width={600} height={350} data={kuyy}>
+            // old 600 350
+            <BarChart width={800} height={350} data={Arr}>
                 <XAxis dataKey="Date" stroke="#8884d8" />
                 <YAxis />
-                <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-                <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+                <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
+                <Legend 
+                width={100} 
+                wrapperStyle={{ width:150, top: 5, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', lineHeight: '40px' }} />
                 <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                 <Bar dataKey="NewConfirmed" fill="#8884d8" barSize={30} />
             </BarChart>
         )
+    }
+
+    function Monitor (){
+        
     }
 
     function GetProvince (){
@@ -142,7 +152,7 @@ export default function Home() {
         // console.table(Province)
         // console.table("State Date",Date)
         // console.log(SevenDays)
-        // console.log(kuyy)
+        // console.log(...DailyData)
         })
 
     
@@ -389,13 +399,8 @@ export default function Home() {
                                     {/* Card Body */}
                                     <div className="card-body">
                                         <div className="chart-area">
-                                            {/* <ul>
-                                                <li ></li>
-                                            </ul> */}
-                                            {/* {SevenDays} */}
-                                            
-                                           {TestFncText()}
-
+                                            {/* {Monitor()} */}
+                                            {TestFncText()}
                                         </div>
                                     </div>
                                 </div>
@@ -430,7 +435,7 @@ export default function Home() {
                             </div>
                         </div>
                         {/* Content Row */}
-                        {TestFncText()}
+                        
                     </div>
                     {/* /.container-fluid */}
                 </div>
