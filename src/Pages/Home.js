@@ -3,16 +3,21 @@ import axios from 'axios';
 import AnimatedNumber from "animated-number-react";
 import anime from 'animejs/lib/anime.es.js'
 import moment from 'moment'
-import { LineChart, Line, CartesianGrid, BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import male from './Components/male.svg'
+import female from './Components/female.svg'
+import { Treemap, PieChart, Pie,ResponsiveContainer, 
+    ComposedChart, LineChart, Line, AreaChart, 
+    Area, CartesianGrid, BarChart, Bar, XAxis, 
+    YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
 
 
 export default function Home() {
     
     window.onload = function() {
-        Get7Days();
-       GetDataCovid();
-       GetProvince();
-       TimeRanger ()
+            Get7Days();
+            GetDataCovid();
+            GetProvinceAndGender();
+            TimeRanger ()
     }
     
     const [TableCovid, setTableCovid] = useState();
@@ -25,8 +30,8 @@ export default function Home() {
     const [NewRecovered, setNewRecovered] = useState();
     const [NewDeaths, setNewDeaths] = useState();
     const [UpdateDate, setUpdateDate] = useState();
-    const [SevenDays, setSevenDays] = useState();
-    const [Province, setProvince] = useState();
+    const [Province, setProvince] = useState([]);
+    const [Gender, setGender] = useState([]);
     const [DailyData, setDailyData] = useState([]);
     const [xxxx2, setxxxx2] = useState();
 
@@ -94,48 +99,14 @@ export default function Home() {
             // setSevenDays(result7Days)
         })}
 
-
-    function TestFncText (){
-
-        const SelectedDay1 = DailyData[DailyData.length-1]
-        const SelectedDay2 = DailyData[DailyData.length-2]
-        const SelectedDay3 = DailyData[DailyData.length-3]
-        const SelectedDay4 = DailyData[DailyData.length-4]
-        const SelectedDay5 = DailyData[DailyData.length-5]
-        const SelectedDay6 = DailyData[DailyData.length-6]
-        const SelectedDay7 = DailyData[DailyData.length-7]
-        const Arr = [SelectedDay7,SelectedDay6,SelectedDay5,SelectedDay4,SelectedDay3,SelectedDay2,SelectedDay1]
-        console.log(SelectedDay1)
-
-        return(
-            // old 600 350
-            <BarChart width={800} height={350} data={Arr}>
-                <XAxis dataKey="Date" stroke="#8884d8" />
-                <YAxis />
-                <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
-                <Legend 
-                width={100} 
-                wrapperStyle={{ width:150, top: 5, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', lineHeight: '40px' }} />
-                <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                <Bar dataKey="NewConfirmed" fill="#8884d8" barSize={30} />
-            </BarChart>
-        )
-    }
-
-    function Monitor (){
-        
-    }
-
-    function GetProvince (){
+    function GetProvinceAndGender (){
         return axios.get('https://covid19.th-stat.com/api/open/cases/sum') 
         .then(function (response) {
             const data = response.data;
-            
-            // dataxx.map(item => 
-            //  {
-            //      console.table(item)
-            //     })
             setProvince(data.Province)
+            setGender(data.Gender)
+            
+            
         },[])}
 
     function TimeRanger (){
@@ -145,11 +116,47 @@ export default function Home() {
         // console.table(PassedTime)
     }
 
+
+    function ChartNCandNR (){
+        const Selected7Days = DailyData.slice(-7)
+        return(
+            // old 600 350
+            <ResponsiveContainer >
+                <ComposedChart width={750} height={320} data={Selected7Days}>
+                    <XAxis dataKey="Date" stroke="#8884d8" />
+                    <YAxis/>
+                    <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
+                    <Legend/>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
+                    <Bar name="New Infected" dataKey="NewConfirmed" fill="#5B8BEB" barSize={30} />
+                    <Bar name="New Recovered" dataKey="NewRecovered" fill="#AEED76" barSize={30} />
+                </ComposedChart>
+            </ResponsiveContainer>
+        )
+    }
+
+    function ChartConfirmedandRecovered (){
+        return(
+            <ResponsiveContainer>
+                <ComposedChart width={750} height={320} data={DailyData}>
+                    <XAxis dataKey="Date" stroke="#8884d8"  />
+                    <YAxis/>
+                    <Tooltip wrapperStyle={{ width: 200, backgroundColor: '#ccc' }} />
+                    <Legend verticalAlign="bottom" height={36}/>
+                    <CartesianGrid stroke="#ccc" strokeDasharray="3 3" />
+                    <Area dataKey="Confirmed" fill="#5B8BEB" barSize={30} stroke="#5B8BEB"/>
+                    <Area dataKey="Recovered" fill="#AEED76" barSize={30} stroke="#AEED76"/>
+                </ComposedChart>
+            </ResponsiveContainer>
+        )
+    }
+
     useEffect(() => {
         // console.log("UseEffect")
         // console.log(xxxx)
         // console.log(TableCovid)
         // console.table(Province)
+        // console.log(Gender)
         // console.table("State Date",Date)
         // console.log(SevenDays)
         // console.log(...DailyData)
@@ -390,7 +397,7 @@ export default function Home() {
                         {/* Content Row */}
                         <div className="row">
                             {/* Area Chart */}
-                            <div className="col-xl-8 col-lg-7">
+                            <div className="col-xl-6 col-lg-12 col-md-12">
                                 <div className="card shadow mb-4">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -398,15 +405,16 @@ export default function Home() {
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
-                                        <div className="chart-area">
+                                        <div className="chart-area pb-2">
                                             {/* {Monitor()} */}
-                                            {TestFncText()}
+                                            {ChartNCandNR()}
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             {/* Pie Chart */}
-                            <div className="col-xl-4 col-lg-5">
+                            <div className="col-xl-6 col-lg-12 col-md-12">
                                 <div className="card shadow mb-4">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -414,28 +422,44 @@ export default function Home() {
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
-                                        <div className="chart-pie pt-4 pb-2">
-                                        
+                                        <div className="chart-pie pt-4 pb-5">
+                                            {ChartConfirmedandRecovered()}
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                                        {/* <div className="mt-4 text-center small">
-                                            <span className="mr-2">
-                                                <i className="fas fa-circle text-primary" /> Direct
-                                            </span>
-                                            <span className="mr-2">
-                                                <i className="fas fa-circle text-success" /> Social
-                                            </span>
-                                            <span className="mr-2">
-                                                <i className="fas fa-circle text-info" /> Referral
-                                            </span>
-                                        </div> */}
-                                        
+                            {/* Pie Chart */}
+                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6">
+                                <div className="card shadow pb-5 mb-4">
+                                    {/* Card Header - Dropdown */}
+                                    <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                    </div>
+                                    {/* Card Body */}
+                                    <div className="card-body">
+                                            <div className="row">
+                                                
+                                                <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
+                                                <img style={{ width: "100%"}} src={male}/>
+                                                <br/><br/>
+                                                    <h3>Male: {Gender.Male}</h3>
+                                                </div>
+
+                                                <div class='col '/>
+
+                                                
+                                                <div class='col col-5 col-md-5'>
+                                                <img style={{ width: "100%"}} src={female}/>
+                                                    <br/><br/>
+                                                    <h3>Female: {Gender.Female}</h3>
+                                                </div>
+                                            </div>    
                                     </div>
                                 </div>
                             </div>
                         </div>
                         {/* Content Row */}
-                        
                     </div>
                     {/* /.container-fluid */}
                 </div>
