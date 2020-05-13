@@ -181,17 +181,6 @@ export default function Home() {
                     <div class="sidebar-brand-text mx-3">Home</div>
                 </a>
 
-    {/* **************** Small Home ******************** */}
-                {/* Nav Item - Dashboard */}
-                {/* <li className="nav-item active">
-                    <a className="nav-link " href="/">
-                        <i className="fas fa-fw fa-tachometer-alt" />
-                        <span>Home</span></a>
-                </li> */}
-
-                {/* Divider */}
-                {/* <hr className="sidebar-divider" /> */}
-
     {/* **************** Menu Begin ******************** */}
                 <div className="sidebar-heading">
                     Menu

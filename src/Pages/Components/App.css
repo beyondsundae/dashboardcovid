@@ -1,0 +1,172 @@
+@font-face {
+  font-family: 'Mitr';
+  src: local('Mitr'), url('./Fonts/MitrRegular.ttf') format('truetype');
+}
+
+
+#useFont{
+  font-family: 'Mitr';
+}
+#useFont2{
+  font-family: 'Mitr';
+  color:rgb(102, 102, 102);
+}
+#AppBar{
+  background-color:rgb(11, 41, 94) ;
+  color:white;  
+}
+#ShitAllofPage{
+  background-color: none;
+  height:auto;
+}
+#shitUI{
+  margin:auto;
+  height:auto;
+}
+
+#shitDialog{
+  margin: auto;
+  height: auto;
+}
+#shitDialog2{
+  
+  margin: auto;
+  height: auto;
+}
+
+/* .owwDashboard{
+
+} */
+
+#kuy{
+  margin-top: 100px;
+}
+
+#boxLeft{
+  height:auto ;
+}/*LeftBox*/
+
+#boxRight{
+  height:auto;
+}/*RightBox*/
+
+#shitCard{
+  /* height:68em; */
+  height:auto;
+}/*GoldenBox*/
+
+#shitCardNext1{
+  height:auto;
+}
+#shitCardNext2{
+  height:auto;
+}
+#shitCardSend{
+  
+  cursor: pointer;
+  height: auto;
+  
+}
+#shitCardTop1{
+  height:4em;
+  color:white;
+  cursor: pointer;
+  background-color:rgb(11, 41, 94) ;
+}
+#shitCardTop2{
+  height:4em;
+  color:white;
+  cursor: pointer;
+  background-color:rgb(11, 41, 94) ;
+}
+
+#shitCardxx{
+  /* height:68em; */
+  height:auto;
+  cursor: pointer;
+}/*GoldenBox*/
+
+.verticalLine {
+  margin-top:2em;
+  margin-bottom:2em;
+  border-left: 3px solid rgb(11, 41, 94);
+  height: auto;
+}/*VertLine*/
+.horizonLine{
+  margin-top:2em;
+  border-left: 4px solid rgb(11, 41, 94, 0.3);
+  width: auto;
+  border:3px solid rgb(11, 41, 94, 0.3);
+}
+.horizonLine2{
+  width: auto;
+  margin-left:10%;
+  margin-right:10%; 
+  border:2px solid rgb(11, 41, 94,0.7)
+}
+.horizonLine3{
+  border-left: 4px solid rgb(11, 41, 94, 0.3);
+  width: auto;
+  margin-left:10%;
+  margin-right:10%; 
+  border:2px solid rgb(11, 41, 94, 0.3)
+}
+
+#center-col{
+  flex: 1;
+  overflow-y: scroll
+}
+#containerShit{
+  display: flex;
+  flex-direction: row;
+  height: auto;
+}/*ScrollBox*/
+
+#parcelH1{
+  margin-top:20px;
+  color:white;
+  background-color: rgb(11, 41, 94);
+  border-radius: 2px 2px 50px;
+}
+.DoubleBox{
+   border:1px solid rgb(83, 76, 76);
+   border-radius: 2px;
+}
+#AlertButton{
+  cursor: pointer;
+  margin: 4px;
+}
+#AlertButton2{
+  cursor: pointer;
+  margin: 4px;
+  
+}
+
+#ShitTooltip{
+  font-Size: "4em";
+}
+
+#ShitSnack{
+  width :100%;
+  height:100%;
+   
+}
+
+#icon{
+  height: 100%;
+ 
+}
+
+#Spacing{
+  margin-left: 5%;
+  font-family: 'Mitr';
+}
+
+#formControl{
+  min-Width: 100%;
+  
+}
+
+#borderTest{
+  border: 5px solid red;
+}
