@@ -870,7 +870,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 
             {/* **************** Cards1 ******************** */}            
                                 {/* Earnings (Monthly) Card Example */}
-                                <div className="col-xl-12 col-md-6 mb-4 ml-5">
+                                <div className="col-xl-12 col-md-11 mb-4 ml-3 ">
                                     <Grid item xs={12} sm={12} md={12} lg={4} xl={3}>
                                         <Card 
                                         elevation={5} 
@@ -886,185 +886,185 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                     </Grid><br/><br/>
 
                                     <Grid container spacing={5}>
-                <Grid item xs={12} sm={6} md={6} lg={4} xl={4} >
-                        <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
-                            <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
-                                <h4 
-                                className='text-center p-4' 
-                                id='useFont'>Sent {" "} 
-                                <Badge 
-                                badgeContent={DataBoxR.length} 
-                                color="secondary">
-                                </Badge>
-                                </h4>
-                            </Card>
-                                <Collapse key={'B1'} in={openB1['B1']}>
-                                <List>
-                                    {DataBoxL.map(item=>{
-                                        // console.log(item)
-                                        console.table(item.status)
-                                        return(
-                                        <div class='border border-top-0'>
-                                            <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
-                                            <ListItemAvatar>
-                                            <Avatar>
-                                            </Avatar>
-                                            </ListItemAvatar>
-                                                <ListItemText  key ={item.Id_parcel} >
-                                                    
-                                                    {item.status=="ส่งแล้ว"?
-                                                    <Box display="flex" justifyContent="flex-end">
-                                                        <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
-                                                    </Box>:
-                                                    <Box display="flex" justifyContent="flex-end">
-                                                    <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
-                                                    </Box>}
-                                                    
-                                                    <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
-                                                    <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
-                                                    <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
-                                                    <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
-                                                </ListItemText>
-                                            </ListItem>
-                    
+                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={4} >
+                                                <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
+                                                        <h4 
+                                                        className='text-center p-4' 
+                                                        id='useFont'>Sent {" "} 
+                                                        <Badge 
+                                                        badgeContent={DataBoxR.length} 
+                                                        color="secondary">
+                                                        </Badge>
+                                                        </h4>
+                                                    </Card>
+                                                        <Collapse key={'B1'} in={openB1['B1']}>
+                                                        <List>
+                                                            {DataBoxL.map(item=>{
+                                                                // console.log(item)
+                                                                console.table(item.status)
+                                                                return(
+                                                                <div class='border border-top-0'>
+                                                                    <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
+                                                                    <ListItemAvatar>
+                                                                    <Avatar>
+                                                                    </Avatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText  key ={item.Id_parcel} >
+                                                                            
+                                                                            {item.status=="ส่งแล้ว"?
+                                                                            <Box display="flex" justifyContent="flex-end">
+                                                                                <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
+                                                                            </Box>:
+                                                                            <Box display="flex" justifyContent="flex-end">
+                                                                            <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
+                                                                            </Box>}
+                                                                            
+                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
+                                                                            <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
+                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
+                                                                            <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
+                                                                        </ListItemText>
+                                                                    </ListItem>
                                             
-                                            <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
-                                            <div class='horizonLine3'/>
-                                                <ListItem key={item.Id_parcel}>
-                                            <ListItemAvatar>
-                                            </ListItemAvatar>
-                                                <ListItemText key ={item.Id_parcel}>
-                                                    <h2 className='' id='useFont'>รายละเอียด</h2><br/>
-                                                    <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
-                                                    <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
-                                                    <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
-                                                    <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
-                                                    <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
-                                                    <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
-                                                    <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
-                                                    <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
-                                                    <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
+                                                                    
+                                                                    <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
+                                                                    <div class='horizonLine3'/>
+                                                                        <ListItem key={item.Id_parcel}>
+                                                                    <ListItemAvatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText key ={item.Id_parcel}>
+                                                                            <h2 className='' id='useFont'>รายละเอียด</h2><br/>
+                                                                            <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
+                                                                            <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
+                                                                            <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
+                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
+                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
+                                                                            <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
+                                                                            <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
 
-                                                    <div className='row'>
-                                                    <div class="col col-3"></div>
-                                                    <div class="col col-3"></div>
-                                                        <div className='row col my-2'>
-                                                            <div className='row'>
-                                                                <div>
-                                                                    {item.status=="ส่งแล้ว"?
-                                                                     <Alert 
-                                                                        key ={item.Id_parcel} 
-                                                                        id='AlertButton'
-                                                                        severity="success"
-                                                                        onClick={ ()=>{ SelectAccept(item) } }>
-                                                                        <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
-                                                                    </Alert> :null
-                                                                    }
-                                                                </div>
+                                                                            <div className='row'>
+                                                                            <div class="col col-3"></div>
+                                                                            <div class="col col-3"></div>
+                                                                                <div className='row col my-2'>
+                                                                                    <div className='row'>
+                                                                                        <div>
+                                                                                            {item.status=="ส่งแล้ว"?
+                                                                                            <Alert 
+                                                                                                key ={item.Id_parcel} 
+                                                                                                id='AlertButton'
+                                                                                                severity="success"
+                                                                                                onClick={ ()=>{ SelectAccept(item) } }>
+                                                                                                <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
+                                                                                            </Alert> :null
+                                                                                            }
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ListItemText>
+                                                                        </ListItem>
+                                                            </Collapse>
+                                                            <Divider />
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </ListItemText>
-                                                </ListItem>
-                                    </Collapse>
-                                    <Divider />
-                                    </div>
-                                    )})}
-                                </List>
-                                
-                                </Collapse>
-                        </Card>
-                </Grid>
+                                                            )})}
+                                                        </List>
+                                                        
+                                                        </Collapse>
+                                                </Card>
+                                        </Grid>
 
-                <Grid item xs={12} sm={6} md={6} lg={4} xl={4} >
-                        <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
-                            <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB2("B2")}}>
-                                <h4 
-                                className='text-center p-4' 
-                                id='useFont'>Sent {" "} 
-                                <Badge 
-                                badgeContent={DataBoxR.length} 
-                                color="secondary">
-                                </Badge>
-                                </h4>
-                            </Card>
-                                <Collapse key={'B2'} in={openB2['B2']}>
-                                <List>
-                                    {DataBoxRec.map(item=>{
-                                        // console.log(item)
-                                        console.table(item.status)
-                                        return(
-                                        <div class='border border-top-0'>
-                                            <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
-                                            <ListItemAvatar>
-                                            <Avatar>
-                                            </Avatar>
-                                            </ListItemAvatar>
-                                                <ListItemText  key ={item.Id_parcel} >
-                                                    
-                                                    {item.status=="ส่งแล้ว"?
-                                                    <Box display="flex" justifyContent="flex-end">
-                                                        <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
-                                                    </Box>:
-                                                    <Box display="flex" justifyContent="flex-end">
-                                                    <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
-                                                    </Box>}
-                                                    
-                                                    <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
-                                                    <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
-                                                    <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
-                                                    <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
-                                                </ListItemText>
-                                            </ListItem>
-                    
-                                            <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
-                                            <div class='horizonLine3'/>
-                                                <ListItem key={item.Id_parcel}>
-                                            <ListItemAvatar>
-                                            </ListItemAvatar>
-                                                <ListItemText key ={item.Id_parcel}>
-                                                    <h2 className='' id='useFont'>รายละเอียด</h2><br/>
-                                                    <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
-                                                    <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
-                                                    <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
-                                                    <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
-                                                    <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
-                                                    <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
-                                                    <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
-                                                    <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
-                                                    <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
+                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={4} >
+                                                <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB2("B2")}}>
+                                                        <h4 
+                                                        className='text-center p-4' 
+                                                        id='useFont'>Sent {" "} 
+                                                        <Badge 
+                                                        badgeContent={DataBoxR.length} 
+                                                        color="secondary">
+                                                        </Badge>
+                                                        </h4>
+                                                    </Card>
+                                                        <Collapse key={'B2'} in={openB2['B2']}>
+                                                        <List>
+                                                            {DataBoxRec.map(item=>{
+                                                                // console.log(item)
+                                                                console.table(item.status)
+                                                                return(
+                                                                <div class='border border-top-0'>
+                                                                    <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
+                                                                    <ListItemAvatar>
+                                                                    <Avatar>
+                                                                    </Avatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText  key ={item.Id_parcel} >
+                                                                            
+                                                                            {item.status=="ส่งแล้ว"?
+                                                                            <Box display="flex" justifyContent="flex-end">
+                                                                                <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
+                                                                            </Box>:
+                                                                            <Box display="flex" justifyContent="flex-end">
+                                                                            <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
+                                                                            </Box>}
+                                                                            
+                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
+                                                                            <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
+                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
+                                                                            <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
+                                                                        </ListItemText>
+                                                                    </ListItem>
+                                            
+                                                                    <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
+                                                                    <div class='horizonLine3'/>
+                                                                        <ListItem key={item.Id_parcel}>
+                                                                    <ListItemAvatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText key ={item.Id_parcel}>
+                                                                            <h2 className='' id='useFont'>รายละเอียด</h2><br/>
+                                                                            <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
+                                                                            <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
+                                                                            <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
+                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
+                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
+                                                                            <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
+                                                                            <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
 
-                                                    <div className='row'>
-                                                    <div class="col col-3"></div>
-                                                    <div class="col col-3"></div>
-                                                        <div className='row col my-2'>
-                                                            <div className='row'>
-                                                                <div>
-                                                                    {item.status=="ส่งแล้ว"?
-                                                                     <Alert 
-                                                                        key ={item.Id_parcel} 
-                                                                        id='AlertButton'
-                                                                        severity="success"
-                                                                        onClick={ ()=>{ SelectAccept(item) } }>
-                                                                        <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
-                                                                    </Alert> :null
-                                                                    }
-                                                                </div>
+                                                                            <div className='row'>
+                                                                            <div class="col col-3"></div>
+                                                                            <div class="col col-3"></div>
+                                                                                <div className='row col my-2'>
+                                                                                    <div className='row'>
+                                                                                        <div>
+                                                                                            {item.status=="ส่งแล้ว"?
+                                                                                            <Alert 
+                                                                                                key ={item.Id_parcel} 
+                                                                                                id='AlertButton'
+                                                                                                severity="success"
+                                                                                                onClick={ ()=>{ SelectAccept(item) } }>
+                                                                                                <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
+                                                                                            </Alert> :null
+                                                                                            }
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </ListItemText>
+                                                                        </ListItem>
+                                                            </Collapse>
+                                                            <Divider />
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </ListItemText>
-                                                </ListItem>
-                                    </Collapse>
-                                    <Divider />
-                                    </div>
-                                    )})}
+                                                            )})}
 
-                                </List>
-                                </Collapse>
-                        </Card>
-                </Grid>
-            </Grid>
+                                                        </List>
+                                                        </Collapse>
+                                                </Card>
+                                        </Grid>
+                                    </Grid>
 
                                 </div>
                                 {/* Pending Requests Card Example */}
