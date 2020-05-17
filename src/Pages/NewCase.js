@@ -43,9 +43,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from "@material-ui/core/styles";
 import DialogContentText from '@material-ui/core/DialogContentText';
-
+import {
+    MuiPickersUtilsProvider,
+    KeyboardTimePicker,
+    KeyboardDatePicker,
+  } from '@material-ui/pickers';
+  import MomentUtils from '@date-io/moment';
+  import DateFnsUtils from '@date-io/date-fns';
 
 
     const useStyles = makeStyles({
@@ -74,16 +81,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
         const [DateTime, setDateTime] = useState();
         const [Monthx, setMonthx] = useState();
         const [Yearx, setYearx] = useState();
-        const [TinyAdderess, setTinyAdderess] = useState();
         const [DataBoxL, setDataBoxL] = useState([]);
-        const [DataBoxR, setDataBoxR] = useState([]);
         const [DataBoxRec, setDataBoxRec] = useState([]);
     
     
         const [openx, setOpenx] = useState(true);
         const handleClickxx=(item)=> {
             console.log("Handle Clicked...."+item.Id_parcel);
-            console.log(openx)
+            // console.log(openx)
             setOpenx({...openx,[item.Id_parcel]:!openx[item.Id_parcel]});
             }
         const [openB1, setOpenB1] = useState(true);
@@ -99,42 +104,42 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             setOpenB2({...openB2,['B2']:!openB2['B2']});
             }
     
-            const [state, setState] = React.useState({
+        const [state, setState] = React.useState({
                 right: false
               });
-            const toggleDrawer = (side, open) => event => {
-            setState({ ...state, [side]: open });
-            };
-            const sideList = side => (
-                <div
-                  className={classes.list}
-                  role="presentation"
-                //   id="borderTest"
-                  >
-                    <Card elevation={1} variant="outlined "  id='shitCardTop1'>
-                        <h3 className='text-center p-4' id='useFont'>เลือกเดือน</h3>
-                    </Card>
-                    <Card elevation={5}>
-                        <div class='text-center ml-3 m-3 p-1' id='shitCardxx'>
-                            <DatePicker
-                                id='shitCardxx'
-                                variant="inline"
-                                openTo="month"
-                                orientation="portrait"
-                                inputProps={{style: {fontFamily:'Mitr'}}} 
+        // const toggleDrawer = (side, open) => event => {
+        //     setState({ ...state, [side]: open });
+        //     };
+        //    const sideList = side => (
+        //         <div
+        //           className={classes.list}
+        //           role="presentation"
+        //         //   id="borderTest"
+        //           >
+        //             <Card elevation={1} variant="outlined "  id='shitCardTop1'>
+        //                 <h3 className='text-center p-4' id='useFont'>เลือกเดือน</h3>
+        //             </Card>
+        //             <Card elevation={5}>
+        //                 <div class='text-center ml-3 m-3 p-1' id='shitCardxx'>
+        //                     <DatePicker
+        //                         id='shitCardxx'
+        //                         variant="inline"
+        //                         openTo="month"
+        //                         orientation="portrait"
+        //                         inputProps={{style: {fontFamily:'Mitr'}}} 
                     
-                                // animateYearScrolling='true'
-                                views={["year", "month"]}
-                                value={SelectedDate}
-                                onChange={(date)=>{SetMonth(date)}}/>
+        //                         // animateYearScrolling='true'
+        //                         views={["year", "month"]}
+        //                         value={SelectedDate}
+        //                         onChange={(date)=>{SetMonth(date)}}/>
                         
-                            <Button variant="contained" color="secondary" onClick={()=>{Reload()}} size="large" id='Spacing'>
-                            ล้างค่า
-                            </Button>
-                        </div>
-                    </Card>
-                </div>
-              );
+        //                     <Button variant="contained" color="secondary" onClick={()=>{Reload()}} size="large" id='Spacing'>
+        //                     ล้างค่า
+        //                     </Button>
+        //                 </div>
+        //             </Card>
+        //         </div>
+        //       );
     
         const [SName, setSName] = useState([]); 
         function SNameChange (e){ 
@@ -143,8 +148,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
         function SPhonehange (e){ 
             setSPhone(e.target.value) }
         const [Addressza, setAddressza] = useState(" ");
-          
-        
         const [RName, setRName] = useState();
         function RNameChange (e){ 
             setRName(e.target.value) }  
@@ -152,8 +155,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
         function RPhoneChange (e){ 
             setRPhone(e.target.value) }
         const [Addressza2, setAddressza2] = useState();
-            
-        
         const [PName, setPName] = useState();
         function PNameChange (e){ 
             setPName(e.target.value) }
@@ -172,22 +173,30 @@ import DialogContentText from '@material-ui/core/DialogContentText';
         const [SNameR, setSNameR] =useState();
         const [SPhoneR, setSPhoneR] =useState();
         const [SAddressR, setSAddressR] =useState();
-    
         const [RNameR, setRNameR] =useState();
         const [RPhoneR, setRPhoneR] =useState();
         const [RAddressR, setRAddressR] =useState();
-    
         const [PNameR, setPNameR] =useState();
         const [DparcelR, setDparcelR] =useState();
-    
         const [RRNameR, setRRNameR] = useState();
         const [checked, setChecked] = React.useState('ครบ');
         const handleChange = event => {
             setChecked(event.target.value);
           };
+        const [Genderchecked, setGenderchecked] = React.useState('ชาย');
+        const handleChangeGender = event => {
+            setGenderchecked(event.target.value);
+          };
         const [SelectedDate, setSelectedDate] = useState(new Date()); 
+        // const [selectedDate, handleDateChange] = useState(new Date());
+        const handleDateChange = (date) => {
+            console.log(date)
+            setSelectedDate(date);
+            
+          };
         const [Monthza, setMonthza] = useState('All'); 
         const [Yearza, setYearza] = useState('All'); 
+        
          /*
         ! Right side
         */
@@ -243,7 +252,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                         setRRNameR(item.Real_Receiver_Name),
             )})}
     
-        function PostShit (e){
+        function PostToDatabase (e){
     
             var formData = {
                 SName:SName,
@@ -281,7 +290,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             e.preventDefault()
             setTimeout(() => {
                 setOpen(false);
-                PostShit();
+                PostToDatabase();
                 }, 500);  
                 }
     
@@ -350,8 +359,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             // console.log(fullDate)
             // console.log(Month)
             // console.log(Year)
-            OhSend();
-            OhReceived ();
+            // OhSend();
+            // OhReceived ();
+            // แก้ทีหลัง
             }
             /*
                 !Select month side bar
@@ -452,15 +462,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                     <DialogTitle 
                     id="form-dialog-title" 
                     className='text-center mt-3'>
-                        <h1 id='useFont'>ข้อมูลพัสดุที่ส่ง </h1>
+                        <h1 id='useFont'>แบบสำรวจผู้มีความเสี่ยงในพื้นที่ </h1>
                     </DialogTitle><hr/>
                     <DialogContent>
                     
-                    <DialogTitle 
+                    {/* <DialogTitle 
                     id="form-dialog-title" 
                     className='text-center'>
                         <h4 id='useFont'>ผู้ส่ง</h4>
-                    </DialogTitle>
+                    </DialogTitle> */}
                     <form
                     id="SEND"
                     name="SEND"
@@ -470,16 +480,133 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                         autoFocus
                         fullWidth
                         type="text"
-                        label="ชื่อผู้ส่ง" 
-                        id="nameSender" 
+                        label="เลขบัตรประชาชน" 
+                        // id="nameSender" 
+                        defaultValue="0123456789123"
                         variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
+                            inputProps={{minLength: 13  ,maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ SName }
-                                onChange={ SNameChange }
+                                // value={ SName }
+                                // onChange={ SNameChange }
                         />
                         <br/><br/>
 
+                        <TextField 
+                        required 
+                        // fullWidth
+                        type="text"
+                        label="ชื่อ" 
+                        // id="nameSender" 
+                        defaultValue="ตะวัน"
+                        variant="outlined" 
+                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                // value={ SName }
+                                // onChange={ SNameChange }
+                        />
+                        <span>   </span>
+
+                        <TextField 
+                        required 
+                        // fullWidth
+                        type="text"
+                        label="นามสกุล" 
+                        // id="nameSender" 
+                        defaultValue="จันโอเลี้ยง"
+                        variant="outlined" 
+                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                // value={ SName }
+                                // onChange={ SNameChange }
+                        />
+                        <br/><br/>
+
+                        <TextField 
+                        required 
+                        // fullWidth
+                        type="number"
+                        label="อายุ" 
+                        // id="nameSender" 
+                        defaultValue="23"
+                        variant="outlined" 
+                            inputProps={{min: 1, maxLength: 3, style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                // value={ SName }
+                                // onChange={ SNameChange }
+                        />
+                        <br/><br/>
+
+                        <FormLabel component="legend" id='useFont'>เพศ</FormLabel>
+                        <Radio
+                            checked={Genderchecked === 'ชาย'}
+                            onChange={handleChangeGender}
+                            value="ชาย"
+                            color='primary'
+                            name="radio-button-demo"
+                            inputProps={{ 'aria-label': 'A' }}
+                        /><span id='useFont'>ชาย</span>
+                        <Radio
+                            checked={Genderchecked === 'หญิง'}
+                            onChange={handleChangeGender}
+                            value="หญิง"
+                            color='secondary'
+                            name="radio-button-demo"
+                            inputProps={{ 'aria-label': 'B' }}
+                        /><span id='useFont'>หญิง</span>
+                        <br/><br/>
+
+                        <TextField
+                            required
+                            fullWidth
+                            id="outlined-textarea"
+                            label="ที่อยู่"
+                            multiline
+                            defaultValue="123/456 หมู่ 5 ต.อิอิ อ.อิอิ จ.อิอิ 12345"
+                            rows={4}
+                            variant="outlined"
+                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                        />
+                        <br/><br/>
+
+                        <TextField 
+                        required 
+                        // fullWidth
+                        type="text"
+                        label="อาชีพ" 
+                        // id="nameSender" 
+                        defaultValue="รับจ้าง"
+                        variant="outlined" 
+                            inputProps={{style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                // value={ SName }
+                                // onChange={ SNameChange }
+                        />
+                        <br/><br/>
+
+                        <FormControl required id='formControl'>
+                        <InputLabel htmlFor="age-native-simple" id='useFont'>เดินทางมาจาก</InputLabel>
+                            <Select 
+                            native
+                            required 
+                            // fullwidth
+                            id="addressdropdown" 
+                            className='col col-12' 
+                            select 
+                            label="เดินทางมาจาก" 
+                                inputProps={{style: {fontFamily:'Mitr'}}} 
+                                InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                    value={ Addressza } 
+                                    onChange={ (e)=>{ setAddressza(e.target.value) } } 
+                            >
+                                { ShowAddressxx } 
+                            </Select>
+                        </FormControl>
+                        <br/><br/>
+                        
+
+{/* **************** All new ******************** */}     
+                        <hr/><hr/>
                         <TextField 
                         required
                         fullWidth
@@ -493,23 +620,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                 onChange={ SPhonehange }
                         /><br/><br/>
 
-                        <FormControl required id='formControl'>
-                        <InputLabel htmlFor="age-native-simple" id='useFont'>ที่อยุ่สาขาที่ส่ง</InputLabel>
-                        <Select 
-                        native
-                        required 
-                        fullwidth
-                        id="addressdropdown" 
-                        className='col col-12 ' 
-                        select label="ที่อยู่สาขาต้นทาง" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Addressza } 
-                                onChange={ (e)=>{ setAddressza(e.target.value) } } 
-                        >
-                            { ShowAddressxx } 
-                        </Select>
-                        </FormControl><br/><br/>
+                        
                         
                                 <TextField 
                                 disabled
@@ -750,7 +861,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             {/* **************** Cards1 ******************** */}            
                                 {/* Earnings (Monthly) Card Example */}
                                 <div className="col-xl-12 col-md-11 mb-4 ml-3 ">
-                                    <Grid item xs={12} sm={12} md={12} lg={4} xl={3}>
+                                    <Grid item xs={12} sm={12} md={12} lg={4} xl={3} id='borderTest'>
                                         <Card 
                                         elevation={5} 
                                         variant="outlined " 
@@ -758,10 +869,57 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                         onClick={handleClickOpen}
                                         id='shitCardxx'>
                                             <h2 className='pl-5 my-1 ' ></h2>
-                                            <h4 className='mb-3 ml-5 ' id='useFont2'>ส่งพัสดุ</h4>
+                                            <h4 className='mb-3 ml-5 ' id='useFont2'>เพิ่มแบบสำรวจ</h4>
                                             <div class='horizonLine2'/>
                                             <br/>
                                         </Card>
+                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                        {/* <KeyboardDatePicker
+                                        margin="normal"
+                                        id="date-picker-dialog"
+                                        label="Date picker dialog"
+                                        format="MM/dd/yyyy"
+                                        value={SelectedDate}
+                                        onChange={handleDateChange}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'change date',
+                                        }}
+                                        /> */}
+
+                                        <KeyboardDatePicker
+                                            // autoOk
+                                            variant="inline"
+                                            inputVariant="outlined"
+                                            label="With keyboard"
+                                            format="MM/dd/yyyy"
+                                            value={SelectedDate}
+                                            InputAdornmentProps={{ position: "start" }}
+                                            onChange={date => handleDateChange(date)}
+                                        />
+                                        <br/><br/>
+
+                                        <DatePicker
+                                            variant="inline"
+                                            label="Basic example"
+                                            value={SelectedDate}
+                                            onChange={handleDateChange}
+                                        />
+                                        
+                                        {/* <DatePicker
+                                        id='shitCardxx'
+                                        variant="inline"
+                                        openTo="month"
+                                        orientation="portrait"
+                                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                            
+                                        // animateYearScrolling='true'
+                                        views={["year", "month"]}
+                                        value={SelectedDate}
+                                        onChange={(date)=>{SetMonth(date)}}/> */}
+                                       </MuiPickersUtilsProvider>
+                                        
+                                       <br/><br/>
+                                        
                                     </Grid><br/><br/>
 
                                     <Grid container spacing={5}>
@@ -998,7 +1156,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                                     value={ RRName }
                                                     type="text"
                                                     onChange={ RRNameChange }
-                                                    fullWidth/>
+                                                    fullWidth
+                                                />
                                                     <br/><br/>
                                                     {/* <Checkbox
                                                         checked={checked}
