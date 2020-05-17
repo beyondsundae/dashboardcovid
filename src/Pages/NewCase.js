@@ -57,25 +57,20 @@ import DialogContentText from '@material-ui/core/DialogContentText';
     const NewCase =()=>{
         
         window.onload = function() {
-            ohWow();
+            Menu();
             OhSend();
-            OhResponse();
+            // OhResponse();
             OhReceived ();
             TimeRanger();
-            MonthMenu();
-            handleClickxxB3();
             handleClickxxB2();
             handleClickxxB1();
-    
         }
         
         const [open, setOpen] = useState(false);
         const [OpenconfirmAccept, setOpenconfirmAccept] = useState(false);
-        const [OpenconfirmReject, setOpenconfirmReject] = useState(false);
     
-        const [OHwow, setOHwow] = useState();
+        // const [OHwow, setOHwow] = useState();
         const [ShowAddressxx, setShowAddressxx] = useState();
-        const [ShowMonthsxx, setShowMonthsxx] = useState();
         const [DateTime, setDateTime] = useState();
         const [Monthx, setMonthx] = useState();
         const [Yearx, setYearx] = useState();
@@ -93,21 +88,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             }
         const [openB1, setOpenB1] = useState(true);
         const handleClickxxB1=(item)=> {
-            console.log("Handle Clicked...."+'B1');
-            console.log(openB2)
+            // console.log("Handle Clicked...."+'B1');
+            // console.log(openB2)
             setOpenB1({...openB1,['B1']:!openB1['B1']});
             }
         const [openB2, setOpenB2] = useState(true);
         const handleClickxxB2=(item)=> {
-            console.log("Handle Clicked...."+'B2');
-            console.log(openB2)
+            // console.log("Handle Clicked...."+'B2');
+            // console.log(openB2)
             setOpenB2({...openB2,['B2']:!openB2['B2']});
-            }
-        const [openB3, setOpenB3] = useState(true);
-        const handleClickxxB3=(item)=> {
-            console.log("Handle Clicked...."+'B3');
-            console.log(openB3)
-            setOpenB3({...openB3,['B3']:!openB3['B3']});
             }
     
             const [state, setState] = React.useState({
@@ -203,16 +192,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
         ! Right side
         */
     
-        const ShitTooltip = withStyles({
-            tooltip: {
-              fontSize: "1em",
-              maxWidth: 700
-            }
-          })(Tooltip);
-        
-          const inputProps = {
-            fontFamily:'Mitr'
-          };
           const BoxStsProps1 = {
             bgcolor: "background.paper",
             borderColor: "coral",
@@ -231,18 +210,38 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             fontFamily:'Mitr',
             style: { width: "5rem", height: "2rem",textAlign: "center" }
           };
+           /*
+            ! ส่ม-เขียว indicator
+            */
           const classes = useStyles();
     
-        function PushParcel (e){
-            e.preventDefault()
-            setTimeout(() => {
-                setOpen(false);
-                PostShit();
-                }, 500);  
-        /*
-        ! When submit
-        */
-            }
+        function ShowData (item){
+        
+            var info ={
+                    params: {
+                        id:item.Id_parcel
+                    }} 
+            setGetIDParcel(item.Id_parcel)
+            
+            
+            axios.get('http://localhost:4000/specificdata',info)
+                .then(function (response){
+                    const dataSpecific = response.data;
+                    // console.log(dataSpecific)
+
+                    dataSpecific.map((item)=>
+                        setSNameR(item.Sender_Name),
+                        setSPhoneR(item.Sender_Phone),
+                        setSAddressR(item.Sender_Address),
+
+                        setRNameR(item.Receiver_Name),
+                        setRPhoneR(item.Receiver_Phone),
+                        setRAddressR(item.Receiver_Address),
+
+                        setPNameR(item.Parcel_Name),
+                        setDparcelR(item.Parcel_Description),
+                        setRRNameR(item.Real_Receiver_Name),
+            )})}
     
         function PostShit (e){
     
@@ -276,42 +275,15 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                 RPhone!==null&&RPhone!=="", Addressza2!==null&&Addressza2!=="", PName!==null&&PName!=="", Dparcel!==null&&Dparcel!=="") {
                     return(alert('เพิ่มพัสดุสำเร็จ'),
                     window.location.reload(false)
-                    );}
-            }
-            /*
-                !When post data
-            */
-    
-        function ShowData (item){
-            
-            var info ={
-                    params: {
-                        id:item.Id_parcel
-                    }} 
-            setGetIDParcel(item.Id_parcel)
-            
-            
-            axios.get('http://localhost:4000/specificdata',info)
-                .then(function (response){
-                    const dataSpecific = response.data;
-                    console.log(dataSpecific)
-    
-                    dataSpecific.map((item)=>
-                        setSNameR(item.Sender_Name),
-                        setSPhoneR(item.Sender_Phone),
-                        setSAddressR(item.Sender_Address),
-    
-                        setRNameR(item.Receiver_Name),
-                        setRPhoneR(item.Receiver_Phone),
-                        setRAddressR(item.Receiver_Address),
-    
-                        setPNameR(item.Parcel_Name),
-                        setDparcelR(item.Parcel_Description),
-                        setRRNameR(item.Real_Receiver_Name),
-            )})}
-            /*
-                !Get data to state
-            */
+                    )}}
+
+        function PushParcel (e){
+            e.preventDefault()
+            setTimeout(() => {
+                setOpen(false);
+                PostShit();
+                }, 500);  
+                }
     
         function Accept (){
             var accept ={
@@ -320,23 +292,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                 Check:checked}
             axios.put('http://localhost:4000/accept',accept)
                 .then(function (response){
-                    ohWow();  
+                    // ohWow();  
             })}
-            /*
-                !When Accept
-            */
-    
-        function Reject (){
-            var reject ={
-                id:GetIDParcel}
-            axios.put('http://localhost:4000/reject',reject)
-                .then(function (response){
-                    ohWow();
-            })}
-            /*
-                !When Reject
-            */
-    
+
         function ShortAddress(item){
             const addressShort = item.Receiver_Address
             const Shortaddress = addressShort.split('-')[0]
@@ -361,62 +319,44 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                     // <p>{item.Address_Name}</p>)
                     
                     setShowAddressxx(DropdownAddress)}
-                   )
-            }
+                   )}
             /*
                 !Dropdown Address
             */
-        const MonthMenu =()=>{
-            axios.get('http://localhost:4000/months')
-            .then(function(response){
-                const dataMonth = response.data;
-                // console.table(dataMonth)
-                const DropdownMonth = dataMonth.map((item) =>
-                    <MenuItem 
-                        key={ item.Month } 
-                        value={ item.Month} 
-                        onChange={ ()=> { setMonthza(item.Month) }} 
-                        fullwidth >
-                            { item.Month}
-                    </MenuItem>)
-                    // <p>{item.Address_Name}</p>)
-                    
-                    setShowMonthsxx(DropdownMonth)}
-                   )
-            }
-            /*
-                !Dropdown Address
-            */
+        
         function TimeRanger(){
             var DateTime = moment().format('L') +' '+moment().format('LT');
+            var Day = moment().format('DD');  
             var Month = moment().format('MMMM'); 
             var Year = moment().format('YYYY');  
             setDateTime(DateTime)
             setMonthx(Month)
             setYearx(Year)
-            console.log('TimeRanger')
+            // console.log('TimeRanger')
             console.log(DateTime)
-            // console.log(Month)
+            console.log(Day)
+            console.log(Month)
+            console.log(Year)
             }
-            /*
-                !Time Ranger function
-            */
     
         function SetMonth(date){
             console.log(date)
-                var fullDate = date
-                setSelectedDate(fullDate)
-                // var Month = dateFormat(fullDate, "mmmm");
-                // var Year = dateFormat(fullDate, "yyyy");
-                // setMonthza(Month)
-                // setYearza(Year)
-                // console.log(fullDate)
-                // console.log(Month)
-                // console.log(Year)
-                OhSend();
-                OhReceived ();
-            
-        }
+            var fullDate = date
+            setSelectedDate(fullDate)
+            // var Month = dateFormat(fullDate, "mmmm");
+            // var Year = dateFormat(fullDate, "yyyy");
+            // setMonthza(Month)
+            // setYearza(Year)
+            // console.log(fullDate)
+            // console.log(Month)
+            // console.log(Year)
+            OhSend();
+            OhReceived ();
+            }
+            /*
+                !Select month side bar
+            */
+
         function SelectAccept(item){
             ShowData (item);
             handleClickOpenConfirmAccept();
@@ -433,7 +373,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                     Yearza:Yearza
                 }}
     
-            return axios.get('http://localhost:4000/OhSendx',info) 
+            return axios.get('http://localhost:4000/OhSent',info) 
             .then(function (response) {
                 const data = response.data;
                 // console.table(data)
@@ -441,14 +381,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                 
                 })}
         
-        function OhResponse (){
-            return axios.get('http://localhost:4000/OhResponse')
-            .then(function (response){
-                const data = response.data;
-                setDataBoxR(data);
-                // console.table(data)
-                })}
-    
         function OhReceived (){
             var info ={
                 params: {
@@ -463,32 +395,6 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                 // console.table(data)
                 })}
     
-        function ohWow (){
-            axios.get('http://localhost:4000/wholedata')
-                .then(function (response){
-                    const dataThree = response.data;
-                    const MapdataThree = dataThree.map(( item )=>
-    
-                        <div className='my-3'>
-                            
-                            
-                            
-                        </div>
-                        )
-                        setOHwow(MapdataThree)       
-            })
-                .catch(function (error) {
-                    console.log(error);
-            });
-            /*
-            !Get Left-side data
-            */
-    
-           Menu();
-        }
-         
-    
-        
         const handleClickOpen = () => {
             setOpen(true);
         };
@@ -517,39 +423,11 @@ import DialogContentText from '@material-ui/core/DialogContentText';
             !Open-Close-Submit Accept Dialog
         */
     
-        const handleClickOpenConfirmReject = () => {
-            // eslint-disable-next-line
-            if (RNameR==null||RNameR==""||RRNameR==undefined){
-                alert("กรุณาเลือกพัสดุ");
-            }
-            else if (RNameR!==null||RNameR!==""||RRNameR!==undefined){
-                // eslint-disable-next-line
-                if(RRNameR=="-"){
-                     setOpenconfirmReject(true);
-                }
-                // eslint-disable-next-line
-                else if(RRNameR!=="-"){
-                    alert("คุณได้กดรับ/ปฏิเสธพัสดุไปเเล้ว")
-                }
-            }
-        };
-        const handleClickCloseConfirmReject = () => {
-            setOpenconfirmReject(false);
-        };
-        const handleClickCloseConfirmRejectWihtReject= () => {
-            Reject();
-            setOpenconfirmReject(false);
-            window.location.reload(false);
-            alert(" พัสดุนี้ถูกปฏิเสธ ")
-        };
-        /*
-            !Open-Close-Submit Reject Dialog
-        */
         function Reload(){
             window.location.reload(false)
         }
         useEffect(() => {
-            console.log(DataBoxL)
+            // console.log(DataBoxL)
             // console.log("UseEffect")
             // console.log(SelectedDate)
             // console.log("Year")
@@ -629,7 +507,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                 value={ Addressza } 
                                 onChange={ (e)=>{ setAddressza(e.target.value) } } 
                         >
-                            {ShowAddressxx}
+                            { ShowAddressxx } 
                         </Select>
                         </FormControl><br/><br/>
                         
@@ -770,6 +648,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                     
                 </Dialog>
 
+
 {/* **************** Sidebar ******************** */}
                 {/* Sidebar */}
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -893,7 +772,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                                         className='text-center p-4' 
                                                         id='useFont'>Sent {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxR.length} 
+                                                        badgeContent={DataBoxL.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
@@ -902,7 +781,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                                         <List>
                                                             {DataBoxL.map(item=>{
                                                                 // console.log(item)
-                                                                console.table(item.status)
+                                                                // console.table(item.status)
                                                                 return(
                                                                 <div class='border border-top-0'>
                                                                     <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
@@ -981,9 +860,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                                     <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB2("B2")}}>
                                                         <h4 
                                                         className='text-center p-4' 
-                                                        id='useFont'>Sent {" "} 
+                                                        id='useFont'>Done {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxR.length} 
+                                                        badgeContent={DataBoxRec.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
@@ -992,7 +871,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                                                         <List>
                                                             {DataBoxRec.map(item=>{
                                                                 // console.log(item)
-                                                                console.table(item.status)
+                                                                // console.table(item.status)
                                                                 return(
                                                                 <div class='border border-top-0'>
                                                                     <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
@@ -1094,6 +973,84 @@ import DialogContentText from '@material-ui/core/DialogContentText';
                         </div>
                     </footer>
                 </div>
+
+
+{/* **************** AcceptDialog ******************** */}  
+                <div className='containter row pl-2'>       
+                    <div >
+                                <Dialog fullWidth 
+                                    open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
+                                    aria-labelledby="form-dialog-title" id='shitDialog2'>
+                                        <h3 id='useFont' className='ml-4 mt-4 mb-3'>การยืนยันรับพัสดุ</h3>
+                                        <DialogContent>
+                                            <DialogContentText id='useFont'>
+                                                หากต้องการที่จะรับ <strong >{PNameR}</strong>  โปรดกรอกชื่อเเละกดปุ่ม <strong>"ยืนยัน"</strong>.
+                                            </DialogContentText>
+                                            <form id="SENDACC" name="SENDACC" onSubmit={ handleClickCloseConfirmAcceptWihtAccept }>
+                                                <TextField
+                                                    required
+                                                    autoFocus
+                                                    margin="dense"
+                                                    id="name"
+                                                    label="ชื่อผู้รับ"
+                                                    inputProps={{style: {fontFamily:'Mitr'}}} 
+                                                    InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                                    value={ RRName }
+                                                    type="text"
+                                                    onChange={ RRNameChange }
+                                                    fullWidth/>
+                                                    <br/><br/>
+                                                    {/* <Checkbox
+                                                        checked={checked}
+                                                        onChange={handleChange}
+                                                        value="primary"
+                                                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                                                    /> */}
+                                                    <p id='useFont'>ความครบถ้วนของพัสดุ</p>
+                                                    <Radio
+                                                    
+                                                        checked={checked === 'ครบ'}
+                                                        onChange={handleChange}
+                                                        value="ครบ"
+                                                        color='primary'
+                                                        name="radio-button-demo"
+                                                        inputProps={{ 'aria-label': 'A' }}
+                                                    /><span id='useFont'>ครบ</span>
+                                                    <Radio
+                                                        checked={checked === 'ไม่ครบ'}
+                                                        onChange={handleChange}
+                                                        value="ไม่ครบ"
+                                                        color='secondary'
+                                                        name="radio-button-demo"
+                                                        inputProps={{ 'aria-label': 'B' }}
+                                                    /><span id='useFont'>ไม่ครบ</span>
+                                                    
+                                            </form>
+                                        </DialogContent>
+                                        
+                                        <DialogActions>
+                                        <Button 
+                                            id='AlertButton2' 
+                                            variant="contained" 
+                                            color="secondary"
+                                            size="large"
+                                            onClick={handleClickCloseConfirmAccept}><AlertTitle id='useFont'>ยกเลิก</AlertTitle>
+                                        </Button>
+                                        <Button 
+                                            form="SENDACC"
+                                            type="submit"
+                                            id='AlertButton' 
+                                            variant="contained" 
+                                            color="primary"
+                                            size="large"
+                                            // onClick={handleClickCloseConfirmAcceptWihtAccept}
+                                            >
+                                                <AlertTitle id='useFont'>ยืนยัน</AlertTitle>
+                                            </Button>
+                                        </DialogActions>
+                                    </Dialog>
+                    </div>
+                </div>  
             </Fragment>
 
 

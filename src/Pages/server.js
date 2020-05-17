@@ -27,7 +27,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'Parcel_Information',
+    database: 'HighRisk_Information',
   });
 
 
@@ -49,13 +49,13 @@ app.get('/',(req,res)=>{
 })
 
 
-app.get('/wholedata', (req, res)=>{
-    connection.query("SELECT * FROM Parcel ORDER BY Id_parcel DESC", function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-      });
-})
-app.get('/OhSendx', (req, res)=>{
+// app.get('/wholedata', (req, res)=>{
+//     connection.query("SELECT * FROM Parcel ORDER BY Id_parcel DESC", function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//       });
+// })
+app.get('/OhSent', (req, res)=>{
     let param = req.query.Monthza;
     let param2 = req.query.Yearza;
     console.log('SENDx')
@@ -67,18 +67,18 @@ connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' AND 
       });
 }
     else if (param == 'All' &&  param2 == 'All'){
-connection.query("SELECT * FROM `Parcel` WHERE status='ส่งแล้ว' ORDER BY `status` DESC, `Date_Time` ASC",[param], function (err, result, fields) {
+connection.query("SELECT * FROM `Parcel` WHERE status='ส่งแล้ว' ORDER BY `status` DESC, `Date_Time` DESC",[param], function (err, result, fields) {
             if (err) throw err;
                 res.send(result)
             });
 }})
 
-app.get('/OhResponse', (req, res)=>{
-    connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' ORDER BY Id_parcel DESC  ", function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-      });
-})
+// app.get('/OhResponse', (req, res)=>{
+//     connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' ORDER BY Id_parcel DESC  ", function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//       });
+// })
 app.get('/OhReceived', (req, res)=>{
     let param = req.query.Monthza;
     let param2 = req.query.Yearza;
@@ -113,31 +113,31 @@ app.get('/address', (req, res)=>{
             res.send(result)
       });
 })
-app.get('/months', (req, res)=>{
-    connection.query("SELECT * FROM Months", function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-      });
-})
+// app.get('/months', (req, res)=>{
+//     connection.query("SELECT * FROM Months", function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//       });
+// })
 
-app.put('/accept', (req, res)=>{
-    let id = req.body.id
-    let RRName = req.body.RRName
-    let Check = req.body.Check
-    connection.query("UPDATE Parcel SET status = 'รับแล้ว', Real_Receiver_Name = ?, color = 'alert alert-success btn-block mr-3', Checked = ? WHERE Id_parcel = "+id,[RRName, Check], function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-        });
-})   
+// app.put('/accept', (req, res)=>{
+//     let id = req.body.id
+//     let RRName = req.body.RRName
+//     let Check = req.body.Check
+//     connection.query("UPDATE Parcel SET status = 'รับแล้ว', Real_Receiver_Name = ?, color = 'alert alert-success btn-block mr-3', Checked = ? WHERE Id_parcel = "+id,[RRName, Check], function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//         });
+// })   
 
-app.put('/reject', (req, res)=>{
-    let id = req.body.id
-    let RRName = "Rejected"
-    connection.query("UPDATE Parcel SET status = 'ถูกปฏิเสธ', Real_Receiver_Name = ?, color = 'alert alert-danger btn-block mr-3' WHERE Id_parcel =" +id,[RRName], function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-        });
-})    
+// app.put('/reject', (req, res)=>{
+//     let id = req.body.id
+//     let RRName = "Rejected"
+//     connection.query("UPDATE Parcel SET status = 'ถูกปฏิเสธ', Real_Receiver_Name = ?, color = 'alert alert-danger btn-block mr-3' WHERE Id_parcel =" +id,[RRName], function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//         });
+// })    
 
 app.post('/PostParcel',(req, res) => {
     console.log("insertingrs done")
