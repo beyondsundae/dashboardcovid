@@ -37,15 +37,15 @@ connection.connect(function(err){
     });
 
         
-process.on('uncaughtException', function(err) {         
-    // restart app here
-    console.log("shit i got an error, nevermind i will restart now ")
-  });
+// process.on('uncaughtException', function(err) {         
+//     // restart app here
+//     console.log("shit i got an error, nevermind i will restart now ")
+//   });
 
 
 
 app.get('/',(req,res)=>{
-    res.send('heeelll')
+    res.send('Begin 4000')
 })
 
 
@@ -55,6 +55,57 @@ app.get('/',(req,res)=>{
 //             res.send(result)
 //       });
 // })
+
+app.post('/PostToDatabase',(req, res) => {
+    console.log("insertingrs done")
+    let data = {
+        Personal_ID: req.body.PersoID,
+        Name: req.body.Name,
+        LastName: req.body.LastName,
+        Age: req.body.Age,
+        Genderchecked: req.body.Genderchecked,
+        AddressPerson: req.body.AddressPerson,
+        Job: req.body.Job,
+        Comefrom: req.body.Comefrom,
+        DateArrivedVillage: req.body.DateArrivedVillage,
+        stateCheckedA: JSON.parse(req.body.stateCheckA),
+        stateCheckedB: req.body.stateCheckB,
+        stateCheckedC: req.body.stateCheckC,
+        Temperature: req.body.Temperature,
+        stateCheckedD: req.body.stateCheckD,
+        stateCheckedE: req.body.stateCheckE,
+        stateCheckedF: req.body.stateCheckF,
+        stateCheckedG: req.body.stateCheckG,
+        stateCheckedH: req.body.stateCheckH,
+        stateCheckedI: req.body.stateCheckI,
+        stateCheckedJ: req.body.stateCheckJ,
+        stateCheckedK: req.body.stateCheckK,
+        checkedRisk: req.body.checkedRisk,
+        Recorder: req.body.Recorder
+
+        // Sender_Name: req.body.SName, 
+        // Sender_Phone: req.body.SPhone, 
+        // Sender_Address: req.body.Addressza, 
+        // Receiver_Name: req.body.RName, 
+        // Receiver_Phone: req.body.RPhone, 
+        // Receiver_Address: req.body.Addressza2, 
+        // Parcel_Name: req.body.PName, 
+        // Parcel_Description: req.body.Dparcel,
+        // Date_Time: req.body.DateTime,
+        // Month:req.body.Monthx,
+        // Year:req.body.Yearx,
+        // status:"ส่งแล้ว",
+        // color:"alert alert-warning btn-block mr-3",
+        // Real_Receiver_name:"-",
+        // Checked:'-'
+        };
+
+    let sql = "INSERT INTO Person SET ?";
+        connection.query(sql, data,(err, results) => {
+        if(err) throw err;
+    });
+});
+
 app.get('/OhSent', (req, res)=>{
     let param = req.query.Monthza;
     let param2 = req.query.Yearza;
@@ -139,30 +190,6 @@ app.get('/address', (req, res)=>{
 //         });
 // })    
 
-app.post('/PostParcel',(req, res) => {
-    console.log("insertingrs done")
-    let data = {
-        Sender_Name: req.body.SName, 
-        Sender_Phone: req.body.SPhone, 
-        Sender_Address: req.body.Addressza, 
-        Receiver_Name: req.body.RName, 
-        Receiver_Phone: req.body.RPhone, 
-        Receiver_Address: req.body.Addressza2, 
-        Parcel_Name: req.body.PName, 
-        Parcel_Description: req.body.Dparcel,
-        Date_Time: req.body.DateTime,
-        Month:req.body.Monthx,
-        Year:req.body.Yearx,
-        status:"ส่งแล้ว",
-        color:"alert alert-warning btn-block mr-3",
-        Real_Receiver_name:"-",
-        Checked:'-'
-        };
 
-    let sql = "INSERT INTO Parcel SET ?";
-        connection.query(sql, data,(err, results) => {
-        if(err) throw err;
-    });
-});
     
     module.exports = app;

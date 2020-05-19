@@ -66,7 +66,7 @@ import {
     const NewCase =()=>{
         
         window.onload = function() {
-            Menu();
+            MenuAddress();
             OhSend();
             // OhResponse();
             OhReceived ();
@@ -171,60 +171,94 @@ import {
         ! Modal side
         */
     {/* **************** old ******************** */}  
-        const [PersoID, setPersoID] = useState([]); 
+        const [PersoID, setPersoID] = useState([1234567890123]); 
         function PersoIDChange (e){ 
             setPersoID(e.target.value) }
-        const [Name, setName] = useState([]); 
+        const [Name, setName] = useState(["asasd"]); 
         function NameChange (e){ 
             setName(e.target.value) }
-        const [LastName, setLastName] = useState([]); 
+        const [LastName, setLastName] = useState(["sss"]); 
         function LastNameChange (e){ 
             setLastName(e.target.value) }
-        const [Age, setAge] = useState([]); 
+        const [Age, setAge] = useState([19]); 
         function AgeChange (e){ 
             setAge(e.target.value) }
         const [Genderchecked, setGenderchecked] = React.useState('ชาย');
         const handleChangeGender = event => {
             setGenderchecked(event.target.value);};
-        const [AddressRisk, setAddressRisk] = useState([]); 
-        function AddressRiskChange (e){ 
-            setAddressRisk(e.target.value) }     
-        const [Job, setJob] = useState([]); 
+        const [AddressPerson, setAddressPerson] = useState(["asdasd"]); 
+        function AddressPersonChange (e){ 
+            setAddressPerson(e.target.value) }     
+        const [Job, setJob] = useState(["asdasd"]); 
         function JobChange (e){ 
             setJob(e.target.value) }
         const [Comefrom, setComefrom] = useState([]); 
         function ComefromChange (e){ 
             setComefrom(e.target.value) }
 
-        const [stateCheck, setStateCheck] = React.useState({
-            checkedA: false,
-            checkedB: false,
-            checkedC: false,
-
-            checkedD: false,
-            checkedE: false,
-            checkedF: false,
-            checkedG: false,
-            checkedH: false,
-            checkedI: false,
-            checkedJ: false,
-            checkedK: false,
-            });
+        const [stateCheckA, setStateCheckA] = React.useState(0)
+        const handleChangeCheckA = (event) => {
+            setStateCheckA(event.target.checked );};
+        const [stateCheckB, setStateCheckB] = React.useState(0)
+        const handleChangeCheckB = (event) => {
+            setStateCheckB(event.target.checked );};
+        const [stateCheckC, setStateCheckC] = React.useState(0)
+        const handleChangeCheckC = (event) => {
+            setStateCheckC(event.target.checked );};
+        const [stateCheckD, setStateCheckD] = React.useState(0)
+        const handleChangeCheckD = (event) => {
+            setStateCheckD(event.target.checked );};
+        const [stateCheckE, setStateCheckE] = React.useState(0)
+        const handleChangeCheckE = (event) => {
+            setStateCheckE(event.target.checked );};
+        const [stateCheckF, setStateCheckF] = React.useState(0)
+        const handleChangeCheckF = (event) => {
+            setStateCheckF(event.target.checked );};
+        const [stateCheckG, setStateCheckG] = React.useState(0)
+        const handleChangeCheckG = (event) => {
+            setStateCheckG(event.target.checked );};
+        const [stateCheckH, setStateCheckH] = React.useState(0)
+        const handleChangeCheckH = (event) => {
+            setStateCheckH(event.target.checked );};
+        const [stateCheckI, setStateCheckI] = React.useState(0)
+        const handleChangeCheckI = (event) => {
+            setStateCheckI(event.target.checked );};
+        const [stateCheckJ, setStateCheckJ] = React.useState(0)
+        const handleChangeCheckJ = (event) => {
+            setStateCheckJ(event.target.checked );};
+        const [stateCheckK, setStateCheckK] = React.useState(0)
+        const handleChangeCheckK = (event) => {
+            setStateCheckK(event.target.checked );};
+        // const [stateCheck, setStateCheck] = React.useState()
+        // const handleChangeCheck = (event) => {
+        //     setStateCheck(event.target.checked );};
         
-        const handleChangeCheck = (event) => {
-        setStateCheck({ ...stateCheck, [event.target.name]: event.target.checked });
-        };
-        const [Temperature, setTemperature] = useState([]); 
+        
+        const [Temperature, setTemperature] = useState([36]); 
         function TemperatureChange (e){ 
             setTemperature(e.target.value) }
         const [checkedRisk, setCheckedRisk] = React.useState('ปกติ');
         const handleChangeRisk = event => {
             setCheckedRisk(event.target.value);
         };
-        const [Recorder, setRecorder] = React.useState([]);
+        const [Recorder, setRecorder] = React.useState(["asdas"]);
         const RecorderChange = event => {
             setRecorder(event.target.value);
         };
+        const [DateArrivedVillage, setDateArrivedVillage] = useState(new Date().toLocaleDateString()); 
+        const onDateChange = (date) => {
+            const fullDate = date
+            const Day = dateFormat(fullDate, "dd");
+            const Month = dateFormat(fullDate, "mm");
+            const Year = dateFormat(fullDate, "yyyy");
+            const Formatted = Month +"/"+ Day +"/"+ Year
+            // console.log("pickdate01 : " + fullDate)
+            // console.log("pickdate02 : " + Formatted)
+            // console.log("SelectedDate : " + SelectedDate)
+            setDateArrivedVillage(Formatted);
+            
+          };
+
     {/* **************** new ******************** */}  
         const [GetIDParcel, setGetIDParcel] = useState();
         const [SNameR, setSNameR] =useState();
@@ -245,19 +279,7 @@ import {
           
 
           // const [selectedDate, handleDateChange] = useState(new Date());
-        const [DateArrivedVillage, setDateArrivedVillage] = useState(new Date().toLocaleDateString()); 
-        const onDateChange = (date) => {
-            const fullDate = date
-            const Day = dateFormat(fullDate, "dd");
-            const Month = dateFormat(fullDate, "mm");
-            const Year = dateFormat(fullDate, "yyyy");
-            const Formatted = Month +"/"+ Day +"/"+ Year
-            // console.log("pickdate01 : " + fullDate)
-            // console.log("pickdate02 : " + Formatted)
-            // console.log("SelectedDate : " + SelectedDate)
-            setDateArrivedVillage(Formatted);
-            
-          };
+        
         const [Monthza, setMonthza] = useState('All'); 
         const [Yearza, setYearza] = useState('All'); 
         
@@ -297,7 +319,6 @@ import {
     
 {/* **************** Process function ******************** */}             
         function ShowData (item){
-        
             var info ={
                     params: {
                         id:item.Id_parcel
@@ -323,24 +344,43 @@ import {
                         setDparcelR(item.Parcel_Description),
                         setRRNameR(item.Real_Receiver_Name),
             )})}
+
+        function PrePost (e){
+            e.preventDefault()
+            setTimeout(() => {
+                setOpen(false);
+                PostToDatabase();
+                }, 500);  
+                }
     
         function PostToDatabase (e){
-    
             var formData = {
-                SName:SName,
-                SPhone:SPhone,
-                Addressza:Addressza,
-                RName:RName,
-                RPhone:RPhone,
-                Addressza2:Addressza2,
-                PName:PName,
-                Dparcel:Dparcel,
-                DateTime:DateTime,
-                Monthx:Monthx,
-                Yearx:Yearx
+                PersoID:PersoID,
+                Name:Name,
+                LastName:LastName,
+                Age:Age,
+                Genderchecked:Genderchecked,
+                AddressPerson:AddressPerson,
+                Job:Job,
+                Comefrom:Comefrom,
+                DateArrivedVillage:DateArrivedVillage,
+                stateCheckA:stateCheckA,
+                stateCheckB:stateCheckB,
+                stateCheckC:stateCheckC,
+                Temperature:Temperature,
+                stateCheckD:stateCheckD,
+                stateCheckE:stateCheckE,
+                stateCheckF:stateCheckF,
+                stateCheckG:stateCheckG,
+                stateCheckH:stateCheckH,
+                stateCheckI:stateCheckI,
+                stateCheckJ:stateCheckJ,
+                stateCheckK:stateCheckK,
+                checkedRisk:checkedRisk,
+                Recorder:Recorder
             }
     
-            axios.post('http://localhost:4000/PostParcel', formData)
+            axios.post('http://localhost:4000/PostToDatabase', formData)
                 .then(function (response) {
                     console.log(response);
               })
@@ -358,13 +398,7 @@ import {
                     window.location.reload(false)
                     )}}
 
-        function PushParcel (e){
-            e.preventDefault()
-            setTimeout(() => {
-                setOpen(false);
-                PostToDatabase();
-                }, 500);  
-                }
+        
     
         function Accept (){
             var accept ={
@@ -385,7 +419,7 @@ import {
             /*
                 !Short Address
             */
-        const Menu =()=>{
+        const MenuAddress =()=>{
             axios.get('http://localhost:4000/address')
             .then(function(response){
                 const dataAddress = response.data;
@@ -520,11 +554,11 @@ import {
             console.log("สกุล :" + LastName)
             console.log("อายุ :" + Age)
             console.log("เพศ :" + Genderchecked)
-            console.log("ที่อยู่ :" + AddressRisk)
+            console.log("ที่อยู่ :" + AddressPerson)
             console.log("อาชีพ :" + Job)
             console.log("เดินทางมาจาก :" + Comefrom)
             console.log("วันที่เข้าหมู่บ้าน :" + DateArrivedVillage)
-            console.table(stateCheck)
+            console.table(stateCheckA)
             console.log("อุณหภูมิ :" + Temperature)
             console.table("ระบุผล :" + checkedRisk)
             console.table("ผู้รายงาน :" + Recorder)
@@ -555,7 +589,7 @@ import {
                     <form
                     id="SEND"
                     name="SEND"
-                    onSubmit={ PushParcel }>
+                    onSubmit={ PrePost }>
                         <TextField 
                         required 
                         autoFocus
@@ -647,8 +681,8 @@ import {
                             variant="outlined"
                             inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}}
-                                value={ AddressRisk }
-                                onChange={ AddressRiskChange }
+                                value={ AddressPerson }
+                                onChange={ AddressPersonChange }
                         />
                         <br/><br/>
 
@@ -705,10 +739,10 @@ import {
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedA}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckA}
+                                onChange={handleChangeCheckA}
                                 className="ml-5"
-                                name="checkedA"
+                                name="stateCheckA"
                                 color="primary"
                         />}label="ไปสถานที่เสี่ยง"/>
                         <br/>
@@ -716,21 +750,21 @@ import {
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedB}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckB}
+                                onChange={handleChangeCheckB}
                                 className="ml-5"
-                                name="checkedB"
+                                name="stateCheckB"
                                 color="primary"
-                        />}label="ไปสถามที่ที่มีคนมาก"/>
+                        />}label="ไปสถานที่ที่มีคนมาก"/>
                         <br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedC}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckC}
+                                onChange={handleChangeCheckC}
                                 className="ml-5"
-                                name="checkedC"
+                                name="stateCheckC"
                                 color="primary"
                         />}label="ใกล้ชิดผู้ป่วย"/>
                         <br/><br/>
@@ -755,80 +789,80 @@ import {
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedD}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckD}
+                                onChange={handleChangeCheckD}
                                 className="ml-5"
-                                name="checkedD"
+                                name="stateCheckD"
                                 color="primary"
                         />}label="ปวดศีรษะ"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedE}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckE}
+                                onChange={handleChangeCheckE}
                                 className="ml-5"
-                                name="checkedE"
+                                name="stateCheckE"
                                 color="primary"
                         />}label="ไอ"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedF}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckF}
+                                onChange={handleChangeCheckF}
                                 className="ml-5"
-                                name="checkedF"
+                                name="stateCheckF"
                                 color="primary"
                         />}label="มีเสมหะ"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedG}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckG}
+                                onChange={handleChangeCheckG}
                                 className="ml-5"
-                                name="checkedG"
+                                name="stateCheckG"
                                 color="primary"
                         />}label="เจ็บคอ"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedH}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckH}
+                                onChange={handleChangeCheckH}
                                 className="ml-5"
-                                name="checkedH"
+                                name="stateCheckH"
                                 color="primary"
                         />}label="ปวดกล้ามเนื้อ"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedI}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckI}
+                                onChange={handleChangeCheckI}
                                 className="ml-5"
-                                name="checkedI"
+                                name="stateCheckI"
                                 color="primary"
                         />}label="หายใจลำบาก"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedJ}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckJ}
+                                onChange={handleChangeCheckJ}
                                 className="ml-5"
-                                name="checkedJ"
+                                name="stateCheckJ"
                                 color="primary"
                         />}label="ท้องเสีย"/><br/>
 
                         <FormControlLabel
                             control={
                             <Checkbox
-                                checked={stateCheck.checkedK}
-                                onChange={handleChangeCheck}
+                                checked={stateCheckK}
+                                onChange={handleChangeCheckK}
                                 className="ml-5"
-                                name="checkedK"
+                                name="stateCheckK"
                                 color="primary"
                         />}label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/>
                         <br/><br/>
