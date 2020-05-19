@@ -46,6 +46,8 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from "@material-ui/core/styles";
 import DialogContentText from '@material-ui/core/DialogContentText';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -59,7 +61,7 @@ import {
         list: { width: 250}
       });
     
-    // var dateFormat = require('dateformat');
+    var dateFormat = require('dateformat');
     
     const NewCase =()=>{
         
@@ -73,7 +75,7 @@ import {
             handleClickxxB1();
         }
         
-        const [open, setOpen] = useState(false);
+        const [open, setOpen] = useState(true);
         const [OpenconfirmAccept, setOpenconfirmAccept] = useState(false);
     
         // const [OHwow, setOHwow] = useState();
@@ -104,9 +106,9 @@ import {
             setOpenB2({...openB2,['B2']:!openB2['B2']});
             }
     
-        const [state, setState] = React.useState({
-                right: false
-              });
+        // const [state, setState] = React.useState({
+        //         right: false
+        //       });
         // const toggleDrawer = (side, open) => event => {
         //     setState({ ...state, [side]: open });
         //     };
@@ -168,7 +170,62 @@ import {
         /*
         ! Modal side
         */
-    
+    {/* **************** old ******************** */}  
+        const [PersoID, setPersoID] = useState([]); 
+        function PersoIDChange (e){ 
+            setPersoID(e.target.value) }
+        const [Name, setName] = useState([]); 
+        function NameChange (e){ 
+            setName(e.target.value) }
+        const [LastName, setLastName] = useState([]); 
+        function LastNameChange (e){ 
+            setLastName(e.target.value) }
+        const [Age, setAge] = useState([]); 
+        function AgeChange (e){ 
+            setAge(e.target.value) }
+        const [Genderchecked, setGenderchecked] = React.useState('ชาย');
+        const handleChangeGender = event => {
+            setGenderchecked(event.target.value);};
+        const [AddressRisk, setAddressRisk] = useState([]); 
+        function AddressRiskChange (e){ 
+            setAddressRisk(e.target.value) }     
+        const [Job, setJob] = useState([]); 
+        function JobChange (e){ 
+            setJob(e.target.value) }
+        const [Comefrom, setComefrom] = useState([]); 
+        function ComefromChange (e){ 
+            setComefrom(e.target.value) }
+
+        const [stateCheck, setStateCheck] = React.useState({
+            checkedA: false,
+            checkedB: false,
+            checkedC: false,
+
+            checkedD: false,
+            checkedE: false,
+            checkedF: false,
+            checkedG: false,
+            checkedH: false,
+            checkedI: false,
+            checkedJ: false,
+            checkedK: false,
+            });
+        
+        const handleChangeCheck = (event) => {
+        setStateCheck({ ...stateCheck, [event.target.name]: event.target.checked });
+        };
+        const [Temperature, setTemperature] = useState([]); 
+        function TemperatureChange (e){ 
+            setTemperature(e.target.value) }
+        const [checkedRisk, setCheckedRisk] = React.useState('ปกติ');
+        const handleChangeRisk = event => {
+            setCheckedRisk(event.target.value);
+        };
+        const [Recorder, setRecorder] = React.useState([]);
+        const RecorderChange = event => {
+            setRecorder(event.target.value);
+        };
+    {/* **************** new ******************** */}  
         const [GetIDParcel, setGetIDParcel] = useState();
         const [SNameR, setSNameR] =useState();
         const [SPhoneR, setSPhoneR] =useState();
@@ -183,24 +240,38 @@ import {
         const handleChange = event => {
             setChecked(event.target.value);
           };
-        const [Genderchecked, setGenderchecked] = React.useState('ชาย');
-        const handleChangeGender = event => {
-            setGenderchecked(event.target.value);
-          };
-        const [SelectedDate, setSelectedDate] = useState(new Date()); 
-        // const [selectedDate, handleDateChange] = useState(new Date());
-        const handleDateChange = (date) => {
-            console.log(date)
-            setSelectedDate(date);
+
+        
+          
+
+          // const [selectedDate, handleDateChange] = useState(new Date());
+        const [DateArrivedVillage, setDateArrivedVillage] = useState(new Date().toLocaleDateString()); 
+        const onDateChange = (date) => {
+            const fullDate = date
+            const Day = dateFormat(fullDate, "dd");
+            const Month = dateFormat(fullDate, "mm");
+            const Year = dateFormat(fullDate, "yyyy");
+            const Formatted = Month +"/"+ Day +"/"+ Year
+            // console.log("pickdate01 : " + fullDate)
+            // console.log("pickdate02 : " + Formatted)
+            // console.log("SelectedDate : " + SelectedDate)
+            setDateArrivedVillage(Formatted);
             
           };
         const [Monthza, setMonthza] = useState('All'); 
         const [Yearza, setYearza] = useState('All'); 
         
-         /*
-        ! Right side
-        */
-    
+        // const [checkedA, setCheckedA] = React.useState();
+        // const handleChangeCheckA = event => {
+        //     setCheckedA(event.target.checked);
+        // };
+
+       
+
+        
+
+
+ {/* **************** Style ******************** */}    
           const BoxStsProps1 = {
             bgcolor: "background.paper",
             borderColor: "coral",
@@ -224,6 +295,7 @@ import {
             */
           const classes = useStyles();
     
+{/* **************** Process function ******************** */}             
         function ShowData (item){
         
             var info ={
@@ -320,13 +392,11 @@ import {
                 const DropdownAddress = dataAddress.map((item) =>
                         <option 
                         key={ item.ID_ADDRESS } 
-                        value={ item.Address_Full} 
+                        value={ item.Address_Name} 
                         // onChange={ ()=> { setAddressza(item.Address_Name) }} 
                         fullwidth >
                             { item.Address_Name}
                     </option>)
-                    // <p>{item.Address_Name}</p>)
-                    
                     setShowAddressxx(DropdownAddress)}
                    )}
             /*
@@ -342,30 +412,32 @@ import {
             setMonthx(Month)
             setYearx(Year)
             // console.log('TimeRanger')
-            console.log(DateTime)
-            console.log(Day)
-            console.log(Month)
-            console.log(Year)
-            }
-    
-        function SetMonth(date){
-            console.log(date)
-            var fullDate = date
-            setSelectedDate(fullDate)
-            // var Month = dateFormat(fullDate, "mmmm");
-            // var Year = dateFormat(fullDate, "yyyy");
-            // setMonthza(Month)
-            // setYearza(Year)
-            // console.log(fullDate)
+            console.log("Time Ranger : " +DateTime)
+            // console.log(Day)
             // console.log(Month)
             // console.log(Year)
-            // OhSend();
-            // OhReceived ();
-            // แก้ทีหลัง
             }
-            /*
-                !Select month side bar
-            */
+    
+        // function SetMonth(date){
+        //     console.log(date)
+        //     var fullDate = date
+        //     setDateArrivedVillage(fullDate)
+        //     var Day = dateFormat(fullDate, "mmmm");
+        //     var Month = dateFormat(fullDate, "mmmm");
+        //     var Year = dateFormat(fullDate, "yyyy");
+        //     // setMonthza(Month)
+        //     // setYearza(Year)
+        //     // console.log(fullDate)
+        //     console.log(Day)
+        //     console.log(Month)
+        //     console.log(Year)
+        //     // OhSend();
+        //     // OhReceived ();
+        //     // แก้ทีหลัง
+        //     }
+        //     /*
+        //         !Select month side bar
+        //     */
 
         function SelectAccept(item){
             ShowData (item);
@@ -442,6 +514,20 @@ import {
             // console.log(SelectedDate)
             // console.log("Year")
             // console.log(Yearza)
+            console.log('************************************')
+            console.log("เลขบัตร :" + PersoID)
+            console.log("ชื่อ :" + Name)
+            console.log("สกุล :" + LastName)
+            console.log("อายุ :" + Age)
+            console.log("เพศ :" + Genderchecked)
+            console.log("ที่อยู่ :" + AddressRisk)
+            console.log("อาชีพ :" + Job)
+            console.log("เดินทางมาจาก :" + Comefrom)
+            console.log("วันที่เข้าหมู่บ้าน :" + DateArrivedVillage)
+            console.table(stateCheck)
+            console.log("อุณหภูมิ :" + Temperature)
+            console.table("ระบุผล :" + checkedRisk)
+            console.table("ผู้รายงาน :" + Recorder)
         })
 
     return (
@@ -466,11 +552,6 @@ import {
                     </DialogTitle><hr/>
                     <DialogContent>
                     
-                    {/* <DialogTitle 
-                    id="form-dialog-title" 
-                    className='text-center'>
-                        <h4 id='useFont'>ผู้ส่ง</h4>
-                    </DialogTitle> */}
                     <form
                     id="SEND"
                     name="SEND"
@@ -482,12 +563,12 @@ import {
                         type="text"
                         label="เลขบัตรประชาชน" 
                         // id="nameSender" 
-                        defaultValue="0123456789123"
+                        // defaultValue="0123456789123" 
                         variant="outlined" 
                             inputProps={{minLength: 13  ,maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                // value={ SName }
-                                // onChange={ SNameChange }
+                                value={ PersoID }
+                                onChange={ PersoIDChange }
                         />
                         <br/><br/>
 
@@ -497,12 +578,12 @@ import {
                         type="text"
                         label="ชื่อ" 
                         // id="nameSender" 
-                        defaultValue="ตะวัน"
+                        // defaultValue="อร่อย"
                         variant="outlined" 
                             inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                // value={ SName }
-                                // onChange={ SNameChange }
+                                value={ Name }
+                                onChange={ NameChange }
                         />
                         <span>   </span>
 
@@ -512,12 +593,12 @@ import {
                         type="text"
                         label="นามสกุล" 
                         // id="nameSender" 
-                        defaultValue="จันโอเลี้ยง"
+                        // defaultValue="จนต้องต่อยคนข้างๆ"
                         variant="outlined" 
                             inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                // value={ SName }
-                                // onChange={ SNameChange }
+                                value={ LastName }
+                                onChange={ LastNameChange }
                         />
                         <br/><br/>
 
@@ -527,12 +608,12 @@ import {
                         type="number"
                         label="อายุ" 
                         // id="nameSender" 
-                        defaultValue="23"
+                        // defaultValue="23"
                         variant="outlined" 
                             inputProps={{min: 1, maxLength: 3, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                // value={ SName }
-                                // onChange={ SNameChange }
+                                value={ Age }
+                                onChange={ AgeChange }
                         />
                         <br/><br/>
 
@@ -561,11 +642,13 @@ import {
                             id="outlined-textarea"
                             label="ที่อยู่"
                             multiline
-                            defaultValue="123/456 หมู่ 5 ต.อิอิ อ.อิอิ จ.อิอิ 12345"
+                            // defaultValue="123/456 หมู่ 5 ต.อิอิ อ.อิอิ จ.อิอิ 12345"
                             rows={4}
                             variant="outlined"
                             inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}}
+                                value={ AddressRisk }
+                                onChange={ AddressRiskChange }
                         />
                         <br/><br/>
 
@@ -575,12 +658,12 @@ import {
                         type="text"
                         label="อาชีพ" 
                         // id="nameSender" 
-                        defaultValue="รับจ้าง"
+                        // defaultValue="รับจ้าง"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                // value={ SName }
-                                // onChange={ SNameChange }
+                                value={ Job }
+                                onChange={ JobChange }
                         />
                         <br/><br/>
 
@@ -591,144 +674,200 @@ import {
                             required 
                             // fullwidth
                             id="addressdropdown" 
-                            className='col col-12' 
+                            className='col col-11' 
                             select 
                             label="เดินทางมาจาก" 
                                 inputProps={{style: {fontFamily:'Mitr'}}} 
                                 InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                    value={ Addressza } 
-                                    onChange={ (e)=>{ setAddressza(e.target.value) } } 
+                                    value={ Comefrom } 
+                                    onChange={ ComefromChange } 
                             >
                                 { ShowAddressxx } 
                             </Select>
                         </FormControl>
                         <br/><br/>
                         
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <DatePicker
+                            required 
+                            // autoOk
+                            variant="inline"
+                            label="วันที่เข้าหมุ่บ้าน (เดือน/วัน/ปี)"
+                            className='col col-6' 
+                            value={DateArrivedVillage}
+                            format="MM/dd/yyyy"
+                            onChange={date => onDateChange(date)}
+                            />
+                        </MuiPickersUtilsProvider>
+                        <br/><br/>
 
-{/* **************** All new ******************** */}     
-                        <hr/><hr/>
+                        <h5 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h5>
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedA}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedA"
+                                color="primary"
+                        />}label="ไปสถานที่เสี่ยง"/>
+                        <br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedB}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedB"
+                                color="primary"
+                        />}label="ไปสถามที่ที่มีคนมาก"/>
+                        <br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedC}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedC"
+                                color="primary"
+                        />}label="ใกล้ชิดผู้ป่วย"/>
+                        <br/><br/>
+
                         <TextField 
-                        required
-                        fullWidth
-                        type="text"
-                        id="phoneSender" 
-                        label="เบอร์โทรผู้ส่ง" 
-                        variant="outlined"
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
+                        required 
+                        // fullWidth
+                        type="number"
+                        label="อุณหภูมิ" 
+                        className="col col-4"
+                        // id="nameSender" 
+                        // defaultValue="รับจ้าง"
+                        variant="outlined" 
+                            inputProps={{min: 35, max: 45, maxLength: 3, step:"0.1", style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={SPhone}
-                                onChange={ SPhonehange }
-                        /><br/><br/>
-
+                                value={ Temperature }
+                                onChange={ TemperatureChange }
+                        />
+                        <br/><br/>
                         
-                        
-                                <TextField 
-                                disabled
-                                variant="outlined"  
-                                multiline rows="2" 
-                                id="addresstextarea" 
-                                InputProps={{readOnly: true, }} 
-                                className='col col-11 float-right'
-                                    inputProps={{style: {fontFamily:'Mitr'}}} 
-                                    InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                        value={ Addressza }
-                                /><br/><br/><br/><hr/>
+                        <h5 id="useFont" className="ml-3">อาการ</h5>
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedD}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedD"
+                                color="primary"
+                        />}label="ปวดศีรษะ"/><br/>
 
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedE}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedE"
+                                color="primary"
+                        />}label="ไอ"/><br/>
 
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedF}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedF"
+                                color="primary"
+                        />}label="มีเสมหะ"/><br/>
 
-                        <DialogTitle 
-                        id="form-dialog-title" 
-                        className='text-center'>
-                            <h4 id='useFont'>ผู้รับ </h4>
-                        </DialogTitle>
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedG}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedG"
+                                color="primary"
+                        />}label="เจ็บคอ"/><br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedH}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedH"
+                                color="primary"
+                        />}label="ปวดกล้ามเนื้อ"/><br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedI}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedI"
+                                color="primary"
+                        />}label="หายใจลำบาก"/><br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedJ}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedJ"
+                                color="primary"
+                        />}label="ท้องเสีย"/><br/>
+
+                        <FormControlLabel
+                            control={
+                            <Checkbox
+                                checked={stateCheck.checkedK}
+                                onChange={handleChangeCheck}
+                                className="ml-5"
+                                name="checkedK"
+                                color="primary"
+                        />}label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/>
+                        <br/><br/>
+
+                        <h5 id="useFont" className="ml-3">ระบุผล</h5>
+                        <Radio
+                            checked={checkedRisk === 'ปกติ'}
+                            onChange={handleChangeRisk}
+                            className="ml-5"
+                            value="ปกติ"
+                            color='primary'
+                            name="radio-button-demo"
+                            inputProps={{ 'aria-label': 'A' }}
+                        /><span id='useFont'>ปกติ</span>
+                        <Radio
+                            checked={checkedRisk === 'มีความเสี่ยง'}
+                            onChange={handleChangeRisk}
+                            className="ml-1"
+                            value="มีความเสี่ยง"
+                            color='secondary'
+                            name="radio-button-demo"
+                            inputProps={{ 'aria-label': 'B' }}
+                        /><span id='useFont'>มีความเสี่ยง</span>
+                        <br/><br/>
 
                         <TextField 
                         required 
                         fullWidth
                         type="text"
-                        label="ชื่อผู้รับ" 
-                        id="nameSender" 
+                        label="ผู้รายงาน" 
+                        // id="nameSender" 
+                        // defaultValue="น้องขุนทอง"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={RName}
-                                onChange={ RNameChange }
-                        /><br/><br/>
-                        <TextField 
-                        required 
-                        fullWidth
-                        type="text"
-                        id="phoneSender" 
-                        variant="outlined"
-                        label="เบอร์โทรผู้รับ" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={RPhone}
-                                onChange={ RPhoneChange }
-                        /><br/><br/>
-
-                        <FormControl required id='formControl'>
-                        <InputLabel htmlFor="age-native-simple" id='useFont'>ที่อยุ่สาขาที่รับ</InputLabel>
-                        <Select 
-                        native
-                        required 
-                        fullwidth
-                        id="addressdropdown" 
-                        className='col col-12 ' 
-                        select label="ที่อยู่สาขาปลายทาง" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Addressza2 } 
-                                onChange={ (e)=>{ setAddressza2(e.target.value) } }  
-                        >
-                            { ShowAddressxx }
-                        </Select>
-                        </FormControl><br/><br/>
-                                <TextField  
-                                disabled
-                                variant="outlined"  
-                                multiline rows="2" 
-                                id="addresstextarea" 
-                                className='col col-11 float-right' 
-                                    inputProps={{style: {fontFamily:'Mitr'}}} 
-                                    InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                        InputProps={{readOnly: true, }} 
-                                        value={ Addressza2 }/><br/><br/><br/><hr/>
-
-                    
-
-                        <DialogTitle 
-                        id="form-dialog-title" 
-                        className='text-center'>
-                        <h4 id='useFont'>ข้อมูลของพัสดุ { <FaBoxOpen/> } </h4>
-                        </DialogTitle>
-
-                        <TextField 
-                        required 
-                        fullWidth
-                        label="พัสดุ" 
-                        type="text"
-                        value={PName}
-                        id="namePracel" 
-                        variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                onChange={ PNameChange }
-                        /><br/><br/>
-                                    
-                        <TextField 
-                        required 
-                        type="text"
-                        value={Dparcel}
-                        variant="outlined" 
-                        multiline rows="4"
-                        label="รายละเอียดของพัสดุ"
-                        id="detailpraceltextarea" 
-                        onChange={ DparcelChange }
-                        className='col col-11 float-right' 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                         />
+                                value={ Recorder }
+                                onChange={ RecorderChange }
+                        />
+                        <br/><br/>
                         </form>
                     </DialogContent>
                     
@@ -752,13 +891,10 @@ import {
                     color="primary"
                     variant="contained" 
                      >
-                        ส่งพัสดุ
+                        เพิ่ม
                     </Button>
-
                     </DialogActions>
-                    
                 </Dialog>
-
 
 {/* **************** Sidebar ******************** */}
                 {/* Sidebar */}
@@ -873,52 +1009,8 @@ import {
                                             <div class='horizonLine2'/>
                                             <br/>
                                         </Card>
-                                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                        {/* <KeyboardDatePicker
-                                        margin="normal"
-                                        id="date-picker-dialog"
-                                        label="Date picker dialog"
-                                        format="MM/dd/yyyy"
-                                        value={SelectedDate}
-                                        onChange={handleDateChange}
-                                        KeyboardButtonProps={{
-                                            'aria-label': 'change date',
-                                        }}
-                                        /> */}
-
-                                        <KeyboardDatePicker
-                                            // autoOk
-                                            variant="inline"
-                                            inputVariant="outlined"
-                                            label="With keyboard"
-                                            format="MM/dd/yyyy"
-                                            value={SelectedDate}
-                                            InputAdornmentProps={{ position: "start" }}
-                                            onChange={date => handleDateChange(date)}
-                                        />
-                                        <br/><br/>
-
-                                        <DatePicker
-                                            variant="inline"
-                                            label="Basic example"
-                                            value={SelectedDate}
-                                            onChange={handleDateChange}
-                                        />
                                         
-                                        {/* <DatePicker
-                                        id='shitCardxx'
-                                        variant="inline"
-                                        openTo="month"
-                                        orientation="portrait"
-                                        inputProps={{style: {fontFamily:'Mitr'}}} 
-                            
-                                        // animateYearScrolling='true'
-                                        views={["year", "month"]}
-                                        value={SelectedDate}
-                                        onChange={(date)=>{SetMonth(date)}}/> */}
-                                       </MuiPickersUtilsProvider>
                                         
-                                       <br/><br/>
                                         
                                     </Grid><br/><br/>
 
