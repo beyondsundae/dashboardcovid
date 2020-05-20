@@ -68,7 +68,7 @@ app.post('/PostToDatabase',(req, res) => {
         Job: req.body.Job,
         Comefrom: req.body.Comefrom,
         DateArrivedVillage: req.body.DateArrivedVillage,
-        stateCheckedA: JSON.parse(req.body.stateCheckA),
+        stateCheckedA: req.body.stateCheckA,
         stateCheckedB: req.body.stateCheckB,
         stateCheckedC: req.body.stateCheckC,
         Temperature: req.body.Temperature,
@@ -81,7 +81,9 @@ app.post('/PostToDatabase',(req, res) => {
         stateCheckedJ: req.body.stateCheckJ,
         stateCheckedK: req.body.stateCheckK,
         checkedRisk: req.body.checkedRisk,
-        Recorder: req.body.Recorder
+        Recorder: req.body.Recorder,
+        RecordTime: req.body.DateTimeNow,
+        // status:"ส่งแล้ว"
 
         // Sender_Name: req.body.SName, 
         // Sender_Phone: req.body.SPhone, 
@@ -106,57 +108,60 @@ app.post('/PostToDatabase',(req, res) => {
     });
 });
 
-app.get('/OhSent', (req, res)=>{
+app.get('/specificdata', (req, res)=>{
+    let param = req.query.id
+    connection.query("SELECT * FROM Person WHERE ID = "+ param , function (err, result, fields) {
+        if (err) throw err;
+            res.send(result)
+      });
+})
+
+app.put('/accept', (req, res)=>{
+    let id = req.body.id
+    let RRName = req.body.RRName
+    let Check = req.body.Check
+    connection.query("UPDATE Parcel SET status = 'รับแล้ว', Real_Receiver_Name = ?, color = 'alert alert-success btn-block mr-3', Checked = ? WHERE Id_parcel = "+id,[RRName, Check], function (err, result, fields) {
+        if (err) throw err;
+            res.send(result)
+        });
+})   
+
+app.get('/Quarantine', (req, res)=>{
     let param = req.query.Monthza;
     let param2 = req.query.Yearza;
-    console.log('SENDx')
+    console.log('Quarantinex')
     console.log(param +' '+ param2)
     if (param !== 'All' && param2 !== 'All'){
-connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC  ",[param,param2], function (err, result, fields) {
+connection.query("SELECT * FROM Person WHERE checkedRisk='กักตัวเพื่อรอดูอาการ' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC  ",[param,param2], function (err, result, fields) {
         if (err) throw err;
             res.send(result)
       });
 }
     else if (param == 'All' &&  param2 == 'All'){
-connection.query("SELECT * FROM `Parcel` WHERE status='ส่งแล้ว' ORDER BY `status` DESC, `Date_Time` DESC",[param], function (err, result, fields) {
+connection.query("SELECT * FROM `Person` WHERE checkedRisk='กักตัวเพื่อรอดูอาการ' ORDER BY `checkedRisk` DESC, `RecordTime` DESC",[param], function (err, result, fields) {
             if (err) throw err;
                 res.send(result)
             });
 }})
 
-// app.get('/OhResponse', (req, res)=>{
-//     connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' ORDER BY Id_parcel DESC  ", function (err, result, fields) {
-//         if (err) throw err;
-//             res.send(result)
-//       });
-// })
-app.get('/OhReceived', (req, res)=>{
+app.get('/YouRiskNow', (req, res)=>{
     let param = req.query.Monthza;
     let param2 = req.query.Yearza;
     console.log('RECEx')
     console.log(param +' '+ param2)
 
     if (param !== 'All' && param2 !== 'All'){
-connection.query("SELECT * FROM Parcel WHERE status='รับแล้ว' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC",[param,param2], function (err, result, fields) {
+connection.query("SELECT * FROM Person WHERE checkedRisk='มีความเสี่ยง' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC",[param,param2], function (err, result, fields) {
         if (err) throw err;
             res.send(result)
               });
 }
     else if (param == 'All' &&  param2 == 'All'){
-connection.query("SELECT * FROM `Parcel` WHERE status='รับแล้ว' ORDER BY `status` DESC, `Date_Time` DESC",[param],function (err, result, fields) {
+connection.query("SELECT * FROM `Person` WHERE checkedRisk='มีความเสี่ยง' ORDER BY `checkedRisk` DESC, `RecordTime` DESC",[param],function (err, result, fields) {
             if (err) throw err;
                 res.send(result)
             });
 }})
-
-
-app.get('/specificdata', (req, res)=>{
-    let param = req.query.id
-    connection.query("SELECT * FROM Parcel WHERE Id_parcel = "+ param , function (err, result, fields) {
-        if (err) throw err;
-            res.send(result)
-      });
-})
 
 app.get('/address', (req, res)=>{
     connection.query("SELECT * FROM Address", function (err, result, fields) {
@@ -164,6 +169,54 @@ app.get('/address', (req, res)=>{
             res.send(result)
       });
 })
+
+// app.get('/OhSent', (req, res)=>{
+//     let param = req.query.Monthza;
+//     let param2 = req.query.Yearza;
+//     console.log('SENDx')
+//     console.log(param +' '+ param2)
+//     if (param !== 'All' && param2 !== 'All'){
+// connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC  ",[param,param2], function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//       });
+// }
+//     else if (param == 'All' &&  param2 == 'All'){
+// connection.query("SELECT * FROM `Parcel` WHERE status='ส่งแล้ว' ORDER BY `checkedRisk` DESC, `Date_Time` DESC",[param], function (err, result, fields) {
+//             if (err) throw err;
+//                 res.send(result)
+//             });
+// }})
+
+// app.get('/OhResponse', (req, res)=>{
+//     connection.query("SELECT * FROM Parcel WHERE status='ส่งแล้ว' ORDER BY Id_parcel DESC  ", function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//       });
+// })
+// app.get('/OhReceived', (req, res)=>{
+//     let param = req.query.Monthza;
+//     let param2 = req.query.Yearza;
+//     console.log('RECEx')
+//     console.log(param +' '+ param2)
+
+//     if (param !== 'All' && param2 !== 'All'){
+// connection.query("SELECT * FROM Parcel WHERE status='รับแล้ว' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC",[param,param2], function (err, result, fields) {
+//         if (err) throw err;
+//             res.send(result)
+//               });
+// }
+//     else if (param == 'All' &&  param2 == 'All'){
+// connection.query("SELECT * FROM `Parcel` WHERE status='รับแล้ว' ORDER BY `status` DESC, `Date_Time` DESC",[param],function (err, result, fields) {
+//             if (err) throw err;
+//                 res.send(result)
+//             });
+// }})
+
+
+
+
+
 // app.get('/months', (req, res)=>{
 //     connection.query("SELECT * FROM Months", function (err, result, fields) {
 //         if (err) throw err;
@@ -171,15 +224,7 @@ app.get('/address', (req, res)=>{
 //       });
 // })
 
-// app.put('/accept', (req, res)=>{
-//     let id = req.body.id
-//     let RRName = req.body.RRName
-//     let Check = req.body.Check
-//     connection.query("UPDATE Parcel SET status = 'รับแล้ว', Real_Receiver_Name = ?, color = 'alert alert-success btn-block mr-3', Checked = ? WHERE Id_parcel = "+id,[RRName, Check], function (err, result, fields) {
-//         if (err) throw err;
-//             res.send(result)
-//         });
-// })   
+
 
 // app.put('/reject', (req, res)=>{
 //     let id = req.body.id

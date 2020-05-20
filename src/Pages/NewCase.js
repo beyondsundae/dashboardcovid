@@ -67,31 +67,35 @@ import {
         
         window.onload = function() {
             MenuAddress();
-            OhSend();
+            // OhSend();
             // OhResponse();
-            OhReceived ();
+            // OhReceived ();
+            Quarantine ()
+            YouRiskNow ()
+            NoCovid ()
             TimeRanger();
             handleClickxxB2();
             handleClickxxB1();
         }
         
-        const [open, setOpen] = useState(true);
+        const [open, setOpen] = useState(false);
         const [OpenconfirmAccept, setOpenconfirmAccept] = useState(false);
     
         // const [OHwow, setOHwow] = useState();
         const [ShowAddressxx, setShowAddressxx] = useState();
-        const [DateTime, setDateTime] = useState();
+        const [DateTimeNow, setDateTimeNow] = useState();
         const [Monthx, setMonthx] = useState();
         const [Yearx, setYearx] = useState();
-        const [DataBoxL, setDataBoxL] = useState([]);
-        const [DataBoxRec, setDataBoxRec] = useState([]);
+        const [DataBoxLeft, setDataBoxLeft] = useState([]);
+        const [DataBoxMid, setDataBoxMid] = useState([]);
+        const [DataBoxRight, setDataBoxRight] = useState([]);
     
     
         const [openx, setOpenx] = useState(true);
         const handleClickxx=(item)=> {
-            console.log("Handle Clicked...."+item.Id_parcel);
+            console.log("Handle Clicked...."+item.ID);
             // console.log(openx)
-            setOpenx({...openx,[item.Id_parcel]:!openx[item.Id_parcel]});
+            setOpenx({...openx,[item.ID]:!openx[item.ID]});
             }
         const [openB1, setOpenB1] = useState(true);
         const handleClickxxB1=(item)=> {
@@ -171,25 +175,25 @@ import {
         ! Modal side
         */
     {/* **************** old ******************** */}  
-        const [PersoID, setPersoID] = useState([1234567890123]); 
+        const [PersoID, setPersoID] = useState([]); 
         function PersoIDChange (e){ 
             setPersoID(e.target.value) }
-        const [Name, setName] = useState(["asasd"]); 
+        const [Name, setName] = useState([]); 
         function NameChange (e){ 
             setName(e.target.value) }
-        const [LastName, setLastName] = useState(["sss"]); 
+        const [LastName, setLastName] = useState([]); 
         function LastNameChange (e){ 
             setLastName(e.target.value) }
-        const [Age, setAge] = useState([19]); 
+        const [Age, setAge] = useState([]); 
         function AgeChange (e){ 
             setAge(e.target.value) }
         const [Genderchecked, setGenderchecked] = React.useState('ชาย');
         const handleChangeGender = event => {
             setGenderchecked(event.target.value);};
-        const [AddressPerson, setAddressPerson] = useState(["asdasd"]); 
+        const [AddressPerson, setAddressPerson] = useState([]); 
         function AddressPersonChange (e){ 
             setAddressPerson(e.target.value) }     
-        const [Job, setJob] = useState(["asdasd"]); 
+        const [Job, setJob] = useState([]); 
         function JobChange (e){ 
             setJob(e.target.value) }
         const [Comefrom, setComefrom] = useState([]); 
@@ -234,14 +238,14 @@ import {
         //     setStateCheck(event.target.checked );};
         
         
-        const [Temperature, setTemperature] = useState([36]); 
+        const [Temperature, setTemperature] = useState([]); 
         function TemperatureChange (e){ 
             setTemperature(e.target.value) }
-        const [checkedRisk, setCheckedRisk] = React.useState('ปกติ');
+        const [checkedRisk, setCheckedRisk] = React.useState('กักตัวเพื่อรอดูอาการ');
         const handleChangeRisk = event => {
             setCheckedRisk(event.target.value);
         };
-        const [Recorder, setRecorder] = React.useState(["asdas"]);
+        const [Recorder, setRecorder] = React.useState([]);
         const RecorderChange = event => {
             setRecorder(event.target.value);
         };
@@ -296,29 +300,38 @@ import {
  {/* **************** Style ******************** */}    
           const BoxStsProps1 = {
             bgcolor: "background.paper",
-            borderColor: "coral",
-            color: "coral",
+            borderColor: "GoldenRod",
+            color: "GoldenRod",
             m: 1,
             border: 1,
             fontFamily:'Mitr',
-            style: { width: "5rem", height: "2rem",textAlign: "center" }
+            style: { width: "10rem", height: "2rem",textAlign: "center" }
           };
           const BoxStsProps2 = {
             bgcolor: "background.paper",
-            borderColor: "green",
-            color: "green",
+            borderColor: "Crimson",
+            color: "Crimson",
             m: 1,
             border: 1,
             fontFamily:'Mitr',
-            style: { width: "5rem", height: "2rem",textAlign: "center" }
+            style: { width: "7rem", height: "2rem",textAlign: "center" }
+          };
+          const BoxStsProps3 = {
+            bgcolor: "background.paper",
+            borderColor: "Green",
+            color: "Green",
+            m: 1,
+            border: 1,
+            fontFamily:'Mitr',
+            style: { width: "7rem", height: "2rem",textAlign: "center" }
           };
            /*
-            ! ส่ม-เขียว indicator
+            ! แดง-เหลือง-เขียว indicator
             */
           const classes = useStyles();
     
 {/* **************** Process function ******************** */}             
-        function ShowData (item){
+        function GetData (item){
             var info ={
                     params: {
                         id:item.Id_parcel
@@ -326,7 +339,7 @@ import {
             setGetIDParcel(item.Id_parcel)
             
             
-            axios.get('http://localhost:4000/specificdata',info)
+            axios.get('http://localhost:4000/SpecificDatatoAccept',info)
                 .then(function (response){
                     const dataSpecific = response.data;
                     // console.log(dataSpecific)
@@ -377,7 +390,8 @@ import {
                 stateCheckJ:stateCheckJ,
                 stateCheckK:stateCheckK,
                 checkedRisk:checkedRisk,
-                Recorder:Recorder
+                Recorder:Recorder,
+                DateTimeNow:DateTimeNow
             }
     
             axios.post('http://localhost:4000/PostToDatabase', formData)
@@ -390,35 +404,66 @@ import {
     
               TimeRanger();
               
-                // eslint-disable-next-line
-                if (SName!==null&&SName!=="", SPhone!==null&&!SPhone=="", Addressza!==null&&Addressza!=="", RName!==null&&RName!=="",
-                // eslint-disable-next-line
-                RPhone!==null&&RPhone!=="", Addressza2!==null&&Addressza2!=="", PName!==null&&PName!=="", Dparcel!==null&&Dparcel!=="") {
-                    return(alert('เพิ่มพัสดุสำเร็จ'),
-                    window.location.reload(false)
-                    )}}
-
-        
+              setTimeout(() => {
+                alert('เพิ่มแบบสำรวจสำเร็จ')
+                window.location.reload(false)
+                }, 500);  
+                }
     
+        function Quarantine (){
+            var info ={
+                params: {
+                    Monthza:Monthza,
+                    Yearza:Yearza
+                }}
+    
+            return axios.get('http://localhost:4000/Quarantine',info) 
+            .then(function (response) {
+                const data = response.data;
+                // console.table(data)
+                setDataBoxLeft(data);
+                
+                })}
+
+        function YouRiskNow (){
+            var info ={
+                params: {
+                    Monthza:Monthza,
+                    Yearza:Yearza
+                }}
+    
+            return axios.get('http://localhost:4000/YouRiskNow',info) 
+            .then(function (response) {
+                const data = response.data;
+                // console.table(data)
+                setDataBoxMid(data);
+                
+                })}
+        function NoCovid (){
+            var info ={
+                params: {
+                    Monthza:Monthza,
+                    Yearza:Yearza
+                }}
+    
+            return axios.get('http://localhost:4000/NoCovid',info) 
+            .then(function (response) {
+                const data = response.data;
+                // console.table(data)
+                setDataBoxRight(data);
+                
+                })}
+                
         function Accept (){
             var accept ={
                 id:GetIDParcel,
                 RRName:RRName,
                 Check:checked}
-            axios.put('http://localhost:4000/accept',accept)
+            axios.put('http://localhost:4000/Accept',accept)
                 .then(function (response){
                     // ohWow();  
             })}
 
-        function ShortAddress(item){
-            const addressShort = item.Receiver_Address
-            const Shortaddress = addressShort.split('-')[0]
-            // console.log(SmallAddress)
-            return(Shortaddress)
-            }
-            /*
-                !Short Address
-            */
         const MenuAddress =()=>{
             axios.get('http://localhost:4000/address')
             .then(function(response){
@@ -433,23 +478,15 @@ import {
                     </option>)
                     setShowAddressxx(DropdownAddress)}
                    )}
-            /*
-                !Dropdown Address
-            */
         
         function TimeRanger(){
             var DateTime = moment().format('L') +' '+moment().format('LT');
             var Day = moment().format('DD');  
             var Month = moment().format('MMMM'); 
             var Year = moment().format('YYYY');  
-            setDateTime(DateTime)
+            setDateTimeNow(DateTime)
             setMonthx(Month)
             setYearx(Year)
-            // console.log('TimeRanger')
-            console.log("Time Ranger : " +DateTime)
-            // console.log(Day)
-            // console.log(Month)
-            // console.log(Year)
             }
     
         // function SetMonth(date){
@@ -474,42 +511,12 @@ import {
         //     */
 
         function SelectAccept(item){
-            ShowData (item);
+            GetData (item);
             handleClickOpenConfirmAccept();
             }
              /*
                 !ClickToAccept
             */
-    
-    
-        function OhSend (){
-            var info ={
-                params: {
-                    Monthza:Monthza,
-                    Yearza:Yearza
-                }}
-    
-            return axios.get('http://localhost:4000/OhSent',info) 
-            .then(function (response) {
-                const data = response.data;
-                // console.table(data)
-                setDataBoxL(data);
-                
-                })}
-        
-        function OhReceived (){
-            var info ={
-                params: {
-                    Monthza:Monthza,
-                    Yearza:Yearza
-                }}
-    
-            return axios.get('http://localhost:4000/OhReceived',info)
-            .then(function (response){
-                const data = response.data;
-                setDataBoxRec(data);
-                // console.table(data)
-                })}
     
         const handleClickOpen = () => {
             setOpen(true);
@@ -543,25 +550,26 @@ import {
             window.location.reload(false)
         }
         useEffect(() => {
-            // console.log(DataBoxL)
+            console.log(DateTimeNow)
             // console.log("UseEffect")
             // console.log(SelectedDate)
             // console.log("Year")
             // console.log(Yearza)
-            console.log('************************************')
-            console.log("เลขบัตร :" + PersoID)
-            console.log("ชื่อ :" + Name)
-            console.log("สกุล :" + LastName)
-            console.log("อายุ :" + Age)
-            console.log("เพศ :" + Genderchecked)
-            console.log("ที่อยู่ :" + AddressPerson)
-            console.log("อาชีพ :" + Job)
-            console.log("เดินทางมาจาก :" + Comefrom)
-            console.log("วันที่เข้าหมู่บ้าน :" + DateArrivedVillage)
-            console.table(stateCheckA)
-            console.log("อุณหภูมิ :" + Temperature)
-            console.table("ระบุผล :" + checkedRisk)
-            console.table("ผู้รายงาน :" + Recorder)
+            // console.log(...DataBoxLeft)
+            // console.log(...DataBoxMid)
+            // console.log("เลขบัตร :" + PersoID)
+            // console.log("ชื่อ :" + Name)
+            // console.log("สกุล :" + LastName)
+            // console.log("อายุ :" + Age)
+            // console.log("เพศ :" + Genderchecked)
+            // console.log("ที่อยู่ :" + AddressPerson)
+            // console.log("อาชีพ :" + Job)
+            // console.log("เดินทางมาจาก :" + Comefrom)
+            // console.log("วันที่เข้าหมู่บ้าน :" + DateArrivedVillage)
+            // console.table(stateCheckA)
+            // console.log("อุณหภูมิ :" + Temperature)
+            // console.table("ระบุผล :" + checkedRisk)
+            // console.table("ผู้รายงาน :" + Recorder)
         })
 
     return (
@@ -869,14 +877,14 @@ import {
 
                         <h5 id="useFont" className="ml-3">ระบุผล</h5>
                         <Radio
-                            checked={checkedRisk === 'ปกติ'}
+                            checked={checkedRisk === 'กักตัวเพื่อรอดูอาการ'}
                             onChange={handleChangeRisk}
                             className="ml-5"
                             value="ปกติ"
                             color='primary'
                             name="radio-button-demo"
                             inputProps={{ 'aria-label': 'A' }}
-                        /><span id='useFont'>ปกติ</span>
+                        /><span id='useFont'>กักตัวเพื่อรอดูอาการ</span>
                         <Radio
                             checked={checkedRisk === 'มีความเสี่ยง'}
                             onChange={handleChangeRisk}
@@ -1049,21 +1057,21 @@ import {
                                     </Grid><br/><br/>
 
                                     <Grid container spacing={5}>
-                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={4} >
+                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
                                                 <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
                                                     <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
                                                         <h4 
                                                         className='text-center p-4' 
-                                                        id='useFont'>Sent {" "} 
+                                                        id='useFont'>กักตัวเพื่อรอดูอาการ {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxL.length} 
+                                                        badgeContent={DataBoxLeft.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
                                                     </Card>
                                                         <Collapse key={'B1'} in={openB1['B1']}>
                                                         <List>
-                                                            {DataBoxL.map(item=>{
+                                                            {DataBoxLeft.map(item=>{
                                                                 // console.log(item)
                                                                 // console.table(item.status)
                                                                 return(
@@ -1073,54 +1081,67 @@ import {
                                                                     <Avatar>
                                                                     </Avatar>
                                                                     </ListItemAvatar>
-                                                                        <ListItemText  key ={item.Id_parcel} >
+                                                                        <ListItemText  key ={item.ID} >
                                                                             
-                                                                            {item.status=="ส่งแล้ว"?
+                                                                            {item.checkedRisk=="กักตัวเพื่อรอดูอาการ"?
                                                                             <Box display="flex" justifyContent="flex-end">
-                                                                                <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
-                                                                            </Box>:
-                                                                            <Box display="flex" justifyContent="flex-end">
-                                                                            <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
-                                                                            </Box>}
+                                                                                <Box borderRadius={30} {...BoxStsProps1} >กักตัวเพื่อรอดูอาการ</Box>
+                                                                            </Box>:null}
                                                                             
-                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
-                                                                            <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
-                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
-                                                                            <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{ item.Comefrom }</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{ item.DateArrivedVillage }</span><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{ item.Temperature }{" "}{"°C"}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้ตรวจ:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
                                                                         </ListItemText>
                                                                     </ListItem>
-                                            
                                                                     
-                                                                    <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
+                                                                    <Collapse key={item.ID} in={openx[item.ID]}>
                                                                     <div class='horizonLine3'/>
-                                                                        <ListItem key={item.Id_parcel}>
+                                                                        <ListItem key={item.ID}>
                                                                     <ListItemAvatar>
                                                                     </ListItemAvatar>
-                                                                        <ListItemText key ={item.Id_parcel}>
+                                                                        <ListItemText key ={item.ID}>
                                                                             <h2 className='' id='useFont'>รายละเอียด</h2><br/>
-                                                                            <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
-                                                                            <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
-                                                                            <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
-                                                                            <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
-                                                                            <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
-                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
-                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
-                                                                            <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
-                                                                            <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เลขบัตรประชาชน:'+' '}</strong><span id='useFont2'>{item.Personal_ID}</span><br/>
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'อายุ:'+' '}</strong><span id='useFont2'>{item.Age}</span><br/>
+                                                                            <strong id='useFont'>{'เพศ:'+' '}</strong><span id='useFont2'>{item.Genderchecked}</span><br/>
+                                                                            <strong id='useFont'>{'ที่อยู่:'+' '}</strong><span id='useFont2'>{item.AddressPerson}</span><br/>
+                                                                            <strong id='useFont'>{'อาชีพ:'+' '}</strong><span id='useFont2'>{item.Job}</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{item.Comefrom}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{item.DateArrivedVillage}</span><br/>
+                                                                            <h6 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h6>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedA} disabled className="ml-5" color="primary"/>} label="ไปสถานที่เสี่ยง"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedB} disabled className="ml-5" color="primary"/>} label="ไปสถานที่ที่มีคนมาก"/><br/>   
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedC} disabled className="ml-5" color="primary"/>} label="ใกล้ชิดผู้ป่วย"/><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{item.Temperature}</span><br/>            
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedD} disabled className="ml-5" color="primary"/>} label="ปวดศีรษะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedE} disabled className="ml-5" color="primary"/>} label="ไอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedF} disabled className="ml-5" color="primary"/>} label="มีเสมหะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedG} disabled className="ml-5" color="primary"/>} label="เจ็บคอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedH} disabled className="ml-5" color="primary"/>} label="ปวดกล้ามเนื้อ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedI} disabled className="ml-5" color="primary"/>} label="หายใจลำบาก"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedJ} disabled className="ml-5" color="primary"/>} label="ท้องเสีย"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedK} disabled className="ml-5" color="primary"/>} label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/><br/>     
+                                                                            <strong id='useFont'>{'ระบุผล:'+' '}</strong><span id='useFont2'>{item.checkedRisk}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้รายงาน:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
 
                                                                             <div className='row'>
-                                                                            <div class="col col-3"></div>
-                                                                            <div class="col col-3"></div>
+                                                                            <div class="col col-4"></div>
+                                                                            <div class="col col-4"></div>
                                                                                 <div className='row col my-2'>
                                                                                     <div className='row'>
                                                                                         <div>
-                                                                                            {item.status=="ส่งแล้ว"?
+                                                                                            {item.checkedRisk=="กักตัวเพื่อรอดูอาการ"?
                                                                                             <Alert 
-                                                                                                key ={item.Id_parcel} 
+                                                                                                key ={item.ID} 
                                                                                                 id='AlertButton'
-                                                                                                severity="success"
+                                                                                                severity="info"
                                                                                                 onClick={ ()=>{ SelectAccept(item) } }>
-                                                                                                <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
+                                                                                                <AlertTitle id='useFont'>แก้ไขผล</AlertTitle>
                                                                                             </Alert> :null
                                                                                             }
                                                                                         </div>
@@ -1139,21 +1160,21 @@ import {
                                                 </Card>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={4} >
+                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
                                                 <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
-                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB2("B2")}}>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
                                                         <h4 
                                                         className='text-center p-4' 
-                                                        id='useFont'>Done {" "} 
+                                                        id='useFont'>กักตัวเพื่อรอดูอาการ {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxRec.length} 
+                                                        badgeContent={DataBoxLeft.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
                                                     </Card>
-                                                        <Collapse key={'B2'} in={openB2['B2']}>
+                                                        <Collapse key={'B1'} in={openB1['B1']}>
                                                         <List>
-                                                            {DataBoxRec.map(item=>{
+                                                            {DataBoxMid.map(item=>{
                                                                 // console.log(item)
                                                                 // console.table(item.status)
                                                                 return(
@@ -1163,70 +1184,150 @@ import {
                                                                     <Avatar>
                                                                     </Avatar>
                                                                     </ListItemAvatar>
-                                                                        <ListItemText  key ={item.Id_parcel} >
+                                                                        <ListItemText  key ={item.ID} >
                                                                             
-                                                                            {item.status=="ส่งแล้ว"?
+                                                                            {item.checkedRisk=="มีความเสี่ยง"?
                                                                             <Box display="flex" justifyContent="flex-end">
-                                                                                <Box borderRadius={30} {...BoxStsProps1} >ส่งแล้ว</Box>
-                                                                            </Box>:
-                                                                            <Box display="flex" justifyContent="flex-end">
-                                                                            <Box borderRadius={30} {...BoxStsProps2} >รับแล้ว</Box>
-                                                                            </Box>}
+                                                                                <Box borderRadius={30} {...BoxStsProps2} >มีความเสี่ยง</Box>
+                                                                            </Box>:null}
                                                                             
-                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{ShortAddress(item)}</span><br/>
-                                                                            <strong id='useFont'>{'สถานะพัสดุ:'+' '}</strong><span id='useFont2'>{ item.status }</span><br/>
-                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{ item.Parcel_Name }</span><br/>
-                                                                            <strong id='useFont'>{'วันเวลาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Date_Time}</span><br/>
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{ item.Comefrom }</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{ item.DateArrivedVillage }</span><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{ item.Temperature }{" "}{"°C"}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้ตรวจ:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
                                                                         </ListItemText>
                                                                     </ListItem>
-                                            
-                                                                    <Collapse key={item.Id_parcel} in={openx[item.Id_parcel]}>
+                                                                    
+                                                                    <Collapse key={item.ID} in={openx[item.ID]}>
                                                                     <div class='horizonLine3'/>
-                                                                        <ListItem key={item.Id_parcel}>
+                                                                        <ListItem key={item.ID}>
                                                                     <ListItemAvatar>
                                                                     </ListItemAvatar>
-                                                                        <ListItemText key ={item.Id_parcel}>
+                                                                        <ListItemText key ={item.ID}>
                                                                             <h2 className='' id='useFont'>รายละเอียด</h2><br/>
-                                                                            <strong id='useFont'>{'ชื่อผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Name}</span><br/>
-                                                                            <strong id='useFont'>{'เบอร์โทรผู้ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Phone}</span><br/>
-                                                                            <strong id='useFont'>{'สาขาที่ส่ง:'+' '}</strong><span id='useFont2'>{item.Sender_Address}</span><br/><br/>
-                                                                            <strong id='useFont'>{'ชื่อผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Name}</span><br/>
-                                                                            <strong id='useFont'>{'เบอร์โทรผู้รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Phone}</span><br/>
-                                                                            <strong id='useFont'>{'สาขาที่รับ:'+' '}</strong><span id='useFont2'>{item.Receiver_Address}</span><br/><br/>
-                                                                            <strong id='useFont'>{'พัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Name}</span><br/>
-                                                                            <strong id='useFont'>{'รายละเอียดพัสดุ:'+' '}</strong><span id='useFont2'>{item.Parcel_Description}</span><br/><br/>
-                                                                            <strong id='useFont'>{'ผู้ลงชื่อรับพัสดุ:'+' '}</strong><span id='useFont2'>{item.Real_Receiver_Name}</span><br/>
+                                                                            <strong id='useFont'>{'เลขบัตรประชาชน:'+' '}</strong><span id='useFont2'>{item.Personal_ID}</span><br/>
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'อายุ:'+' '}</strong><span id='useFont2'>{item.Age}</span><br/>
+                                                                            <strong id='useFont'>{'เพศ:'+' '}</strong><span id='useFont2'>{item.Genderchecked}</span><br/>
+                                                                            <strong id='useFont'>{'ที่อยู่:'+' '}</strong><span id='useFont2'>{item.AddressPerson}</span><br/>
+                                                                            <strong id='useFont'>{'อาชีพ:'+' '}</strong><span id='useFont2'>{item.Job}</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{item.Comefrom}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{item.DateArrivedVillage}</span><br/>
+                                                                            <h5 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h5>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedA} disabled className="ml-5" color="primary"/>} label="ไปสถานที่เสี่ยง"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedB} disabled className="ml-5" color="primary"/>} label="ไปสถานที่ที่มีคนมาก"/><br/>   
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedC} disabled className="ml-5" color="primary"/>} label="ใกล้ชิดผู้ป่วย"/><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{item.Temperature}</span><br/>            
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedD} disabled className="ml-5" color="primary"/>} label="ปวดศีรษะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedE} disabled className="ml-5" color="primary"/>} label="ไอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedF} disabled className="ml-5" color="primary"/>} label="มีเสมหะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedG} disabled className="ml-5" color="primary"/>} label="เจ็บคอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedH} disabled className="ml-5" color="primary"/>} label="ปวดกล้ามเนื้อ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedI} disabled className="ml-5" color="primary"/>} label="หายใจลำบาก"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedJ} disabled className="ml-5" color="primary"/>} label="ท้องเสีย"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedK} disabled className="ml-5" color="primary"/>} label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/><br/>     
+                                                                            <strong id='useFont'>{'ระบุผล:'+' '}</strong><span id='useFont2'>{item.checkedRisk}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้รายงาน:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
 
-                                                                            <div className='row'>
-                                                                            <div class="col col-3"></div>
-                                                                            <div class="col col-3"></div>
-                                                                                <div className='row col my-2'>
-                                                                                    <div className='row'>
-                                                                                        <div>
-                                                                                            {item.status=="ส่งแล้ว"?
-                                                                                            <Alert 
-                                                                                                key ={item.Id_parcel} 
-                                                                                                id='AlertButton'
-                                                                                                severity="success"
-                                                                                                onClick={ ()=>{ SelectAccept(item) } }>
-                                                                                                <AlertTitle id='useFont'>รับพัสดุ</AlertTitle>
-                                                                                            </Alert> :null
-                                                                                            }
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
                                                                         </ListItemText>
                                                                         </ListItem>
                                                             </Collapse>
                                                             <Divider />
                                                             </div>
                                                             )})}
-
                                                         </List>
+                                                        
                                                         </Collapse>
                                                 </Card>
                                         </Grid>
+
+                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
+                                                <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
+                                                        <h4 
+                                                        className='text-center p-4' 
+                                                        id='useFont'>กักตัวเพื่อรอดูอาการ {" "} 
+                                                        <Badge 
+                                                        badgeContent={DataBoxLeft.length} 
+                                                        color="secondary">
+                                                        </Badge>
+                                                        </h4>
+                                                    </Card>
+                                                        <Collapse key={'B1'} in={openB1['B1']}>
+                                                        <List>
+                                                            {DataBoxRight.map(item=>{
+                                                                // console.log(item)
+                                                                // console.table(item.status)
+                                                                return(
+                                                                <div class='border border-top-0'>
+                                                                    <ListItem button key={item.Month} onClick={()=>{handleClickxx(item)}} >
+                                                                    <ListItemAvatar>
+                                                                    <Avatar>
+                                                                    </Avatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText  key ={item.ID} >
+                                                                            
+                                                                            {item.checkedRisk=="กักตัวเพื่อรอดูอาการ"?
+                                                                            <Box display="flex" justifyContent="flex-end">
+                                                                                <Box borderRadius={30} {...BoxStsProps1} >กักตัวเพื่อรอดูอาการ</Box>
+                                                                            </Box>:null}
+                                                                            
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{ item.Comefrom }</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{ item.DateArrivedVillage }</span><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{ item.Temperature }{" "}{"°C"}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้ตรวจ:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
+                                                                        </ListItemText>
+                                                                    </ListItem>
+                                                                    
+                                                                    <Collapse key={item.ID} in={openx[item.ID]}>
+                                                                    <div class='horizonLine3'/>
+                                                                        <ListItem key={item.ID}>
+                                                                    <ListItemAvatar>
+                                                                    </ListItemAvatar>
+                                                                        <ListItemText key ={item.ID}>
+                                                                            <h2 className='' id='useFont'>รายละเอียด</h2><br/>
+                                                                            <strong id='useFont'>{'เลขบัตรประชาชน:'+' '}</strong><span id='useFont2'>{item.Personal_ID}</span><br/>
+                                                                            <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
+                                                                            <strong id='useFont'>{'อายุ:'+' '}</strong><span id='useFont2'>{item.Age}</span><br/>
+                                                                            <strong id='useFont'>{'เพศ:'+' '}</strong><span id='useFont2'>{item.Genderchecked}</span><br/>
+                                                                            <strong id='useFont'>{'ที่อยู่:'+' '}</strong><span id='useFont2'>{item.AddressPerson}</span><br/>
+                                                                            <strong id='useFont'>{'อาชีพ:'+' '}</strong><span id='useFont2'>{item.Job}</span><br/>
+                                                                            <strong id='useFont'>{'เดินทางมาจาก:'+' '}</strong><span id='useFont2'>{item.Comefrom}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่เข้าหมู่บ้าน:'+' '}</strong><span id='useFont2'>{item.DateArrivedVillage}</span><br/>
+                                                                            <h5 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h5>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedA} disabled className="ml-5" color="primary"/>} label="ไปสถานที่เสี่ยง"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedB} disabled className="ml-5" color="primary"/>} label="ไปสถานที่ที่มีคนมาก"/><br/>   
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedC} disabled className="ml-5" color="primary"/>} label="ใกล้ชิดผู้ป่วย"/><br/>
+                                                                            <strong id='useFont'>{'อุณหภูมิ:'+' '}</strong><span id='useFont2'>{item.Temperature}</span><br/>            
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedD} disabled className="ml-5" color="primary"/>} label="ปวดศีรษะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedE} disabled className="ml-5" color="primary"/>} label="ไอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedF} disabled className="ml-5" color="primary"/>} label="มีเสมหะ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedG} disabled className="ml-5" color="primary"/>} label="เจ็บคอ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedH} disabled className="ml-5" color="primary"/>} label="ปวดกล้ามเนื้อ"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedI} disabled className="ml-5" color="primary"/>} label="หายใจลำบาก"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedJ} disabled className="ml-5" color="primary"/>} label="ท้องเสีย"/><br/>
+                                                                                <FormControlLabel control={ <Checkbox checked={item.stateCheckedK} disabled className="ml-5" color="primary"/>} label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/><br/>     
+                                                                            <strong id='useFont'>{'ระบุผล:'+' '}</strong><span id='useFont2'>{item.checkedRisk}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้รายงาน:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
+                                                                            <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
+
+                                                                        </ListItemText>
+                                                                        </ListItem>
+                                                            </Collapse>
+                                                            <Divider />
+                                                            </div>
+                                                            )})}
+                                                        </List>
+                                                        
+                                                        </Collapse>
+                                                </Card>
+                                        </Grid>
+
                                     </Grid>
 
                                 </div>
