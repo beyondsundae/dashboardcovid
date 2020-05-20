@@ -83,6 +83,7 @@ app.post('/PostToDatabase',(req, res) => {
         checkedRisk: req.body.checkedRisk,
         Recorder: req.body.Recorder,
         RecordTime: req.body.DateTimeNow,
+        RecorderWhoChangeState: "-",
         // status:"ส่งแล้ว"
 
         // Sender_Name: req.body.SName, 
@@ -108,7 +109,7 @@ app.post('/PostToDatabase',(req, res) => {
     });
 });
 
-app.get('/specificdata', (req, res)=>{
+app.get('/SpecificDatatoAccept', (req, res)=>{
     let param = req.query.id
     connection.query("SELECT * FROM Person WHERE ID = "+ param , function (err, result, fields) {
         if (err) throw err;
@@ -116,11 +117,11 @@ app.get('/specificdata', (req, res)=>{
       });
 })
 
-app.put('/accept', (req, res)=>{
+app.put('/Accept', (req, res)=>{
     let id = req.body.id
-    let RRName = req.body.RRName
+    let RecorderWhoChangeState = req.body.RecorderWhoChangeState
     let Check = req.body.Check
-    connection.query("UPDATE Parcel SET status = 'รับแล้ว', Real_Receiver_Name = ?, color = 'alert alert-success btn-block mr-3', Checked = ? WHERE Id_parcel = "+id,[RRName, Check], function (err, result, fields) {
+    connection.query("UPDATE Person SET RecorderWhoChangeState = ?, checkedRisk = ? WHERE ID = "+id,[RecorderWhoChangeState, Check], function (err, result, fields) {
         if (err) throw err;
             res.send(result)
         });
@@ -158,6 +159,25 @@ connection.query("SELECT * FROM Person WHERE checkedRisk='มีความเ�
 }
     else if (param == 'All' &&  param2 == 'All'){
 connection.query("SELECT * FROM `Person` WHERE checkedRisk='มีความเสี่ยง' ORDER BY `checkedRisk` DESC, `RecordTime` DESC",[param],function (err, result, fields) {
+            if (err) throw err;
+                res.send(result)
+            });
+}})
+
+app.get('/NoCovid', (req, res)=>{
+    let param = req.query.Monthza;
+    let param2 = req.query.Yearza;
+    console.log('RECEx')
+    console.log(param +' '+ param2)
+
+    if (param !== 'All' && param2 !== 'All'){
+connection.query("SELECT * FROM Person WHERE checkedRisk='ไม่มีอาการ' AND Month = ? AND Year = ? ORDER BY Id_parcel DESC",[param,param2], function (err, result, fields) {
+        if (err) throw err;
+            res.send(result)
+              });
+}
+    else if (param == 'All' &&  param2 == 'All'){
+connection.query("SELECT * FROM `Person` WHERE checkedRisk='ไม่มีอาการ' ORDER BY `checkedRisk` DESC, `RecordTime` DESC",[param],function (err, result, fields) {
             if (err) throw err;
                 res.send(result)
             });

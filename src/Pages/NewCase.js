@@ -74,6 +74,7 @@ import {
             YouRiskNow ()
             NoCovid ()
             TimeRanger();
+            handleClickxxB3();
             handleClickxxB2();
             handleClickxxB1();
         }
@@ -108,6 +109,12 @@ import {
             // console.log("Handle Clicked...."+'B2');
             // console.log(openB2)
             setOpenB2({...openB2,['B2']:!openB2['B2']});
+            }
+        const [openB3, setOpenB3] = useState(true);
+        const handleClickxxB3=(item)=> {
+            // console.log("Handle Clicked...."+'B2');
+            // console.log(openB3)
+            setOpenB3({...openB3,['B3']:!openB3['B3']});
             }
     
         // const [state, setState] = React.useState({
@@ -174,7 +181,7 @@ import {
         /*
         ! Modal side
         */
-    {/* **************** old ******************** */}  
+    {/* **************** New ******************** */}  
         const [PersoID, setPersoID] = useState([]); 
         function PersoIDChange (e){ 
             setPersoID(e.target.value) }
@@ -249,6 +256,10 @@ import {
         const RecorderChange = event => {
             setRecorder(event.target.value);
         };
+        const [RecorderWhoChangeState, setRecorderWhoChangeState] = React.useState([]);
+        const RecorderWhoChangeStateChange = event => {
+            setRecorderWhoChangeState(event.target.value);
+        };
         const [DateArrivedVillage, setDateArrivedVillage] = useState(new Date().toLocaleDateString()); 
         const onDateChange = (date) => {
             const fullDate = date
@@ -263,18 +274,10 @@ import {
             
           };
 
-    {/* **************** new ******************** */}  
-        const [GetIDParcel, setGetIDParcel] = useState();
-        const [SNameR, setSNameR] =useState();
-        const [SPhoneR, setSPhoneR] =useState();
-        const [SAddressR, setSAddressR] =useState();
-        const [RNameR, setRNameR] =useState();
-        const [RPhoneR, setRPhoneR] =useState();
-        const [RAddressR, setRAddressR] =useState();
-        const [PNameR, setPNameR] =useState();
-        const [DparcelR, setDparcelR] =useState();
-        const [RRNameR, setRRNameR] = useState();
-        const [checked, setChecked] = React.useState('ครบ');
+    {/* **************** Accept ******************** */}  
+    const [GetIDParcel, setGetIDParcel] = useState();
+        const [AcceptPeople, setAcceptPeople] =useState();
+        const [checked, setChecked] = React.useState('มีความเสี่ยง');
         const handleChange = event => {
             setChecked(event.target.value);
           };
@@ -334,28 +337,18 @@ import {
         function GetData (item){
             var info ={
                     params: {
-                        id:item.Id_parcel
+                        id:item.ID
                     }} 
-            setGetIDParcel(item.Id_parcel)
+            setGetIDParcel(item.ID)
             
             
             axios.get('http://localhost:4000/SpecificDatatoAccept',info)
                 .then(function (response){
                     const dataSpecific = response.data;
-                    // console.log(dataSpecific)
-
+                    console.log(dataSpecific)
                     dataSpecific.map((item)=>
-                        setSNameR(item.Sender_Name),
-                        setSPhoneR(item.Sender_Phone),
-                        setSAddressR(item.Sender_Address),
-
-                        setRNameR(item.Receiver_Name),
-                        setRPhoneR(item.Receiver_Phone),
-                        setRAddressR(item.Receiver_Address),
-
-                        setPNameR(item.Parcel_Name),
-                        setDparcelR(item.Parcel_Description),
-                        setRRNameR(item.Real_Receiver_Name),
+                    setAcceptPeople(item.Name),
+                        
             )})}
 
         function PrePost (e){
@@ -457,7 +450,7 @@ import {
         function Accept (){
             var accept ={
                 id:GetIDParcel,
-                RRName:RRName,
+                RecorderWhoChangeState:RecorderWhoChangeState,
                 Check:checked}
             axios.put('http://localhost:4000/Accept',accept)
                 .then(function (response){
@@ -540,7 +533,7 @@ import {
             Accept();
             setOpenconfirmAccept(false);
             window.location.reload(false);
-            alert("ผู้รับคือ : "+ RRName)
+            alert("ผู้แก้ไขผล : "+ RecorderWhoChangeState)
         };
         /*
             !Open-Close-Submit Accept Dialog
@@ -622,7 +615,7 @@ import {
                         // id="nameSender" 
                         // defaultValue="อร่อย"
                         variant="outlined" 
-                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Name }
                                 onChange={ NameChange }
@@ -637,7 +630,7 @@ import {
                         // id="nameSender" 
                         // defaultValue="จนต้องต่อยคนข้างๆ"
                         variant="outlined" 
-                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ LastName }
                                 onChange={ LastNameChange }
@@ -687,7 +680,7 @@ import {
                             // defaultValue="123/456 หมู่ 5 ต.อิอิ อ.อิอิ จ.อิอิ 12345"
                             rows={4}
                             variant="outlined"
-                            inputProps={{maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                            inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}}
                                 value={ AddressPerson }
                                 onChange={ AddressPersonChange }
@@ -985,21 +978,21 @@ import {
 
         {/* **************** BigBoxGirl ******************** */}
                             {/* Topbar Navbar */}
-                            <ul className="navbar-nav ml-auto">
+                            {/* <ul className="navbar-nav ml-auto"> */}
                                 {/* Nav Item - Messages */}
-                                <div className="topbar-divider d-none d-sm-block" />
+                                {/* <div className="topbar-divider d-none d-sm-block" /> */}
         
         {/* **************** BoxGirl ******************** */}
                                 {/* Nav Item - User Information */}
-                                <li className="nav-item dropdown no-arrow">
+                                {/* <li className="nav-item dropdown no-arrow">
                                     <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
                                         <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
-                                    </a>
+                                    </a> */}
 
         {/* **************** DropdownGirl ******************** */}
                                     {/* Dropdown - User Information */}
-                                    <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    {/* <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                         <a className="dropdown-item" href="#">
                                             <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
                                             Profile
@@ -1019,7 +1012,7 @@ import {
                                         </a>
                                     </div>
                                 </li>
-                            </ul>
+                            </ul> */}
                         </nav>
                         {/* End of Topbar */}
 
@@ -1039,7 +1032,7 @@ import {
             {/* **************** Cards1 ******************** */}            
                                 {/* Earnings (Monthly) Card Example */}
                                 <div className="col-xl-12 col-md-11 mb-4 ml-3 ">
-                                    <Grid item xs={12} sm={12} md={12} lg={4} xl={3} id='borderTest'>
+                                    <Grid item xs={12} sm={12} md={12} lg={4} xl={3} >
                                         <Card 
                                         elevation={5} 
                                         variant="outlined " 
@@ -1057,7 +1050,7 @@ import {
                                     </Grid><br/><br/>
 
                                     <Grid container spacing={5}>
-                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
+                                        <Grid item xs={12} sm={11} md={12} lg={4} xl={3} >
                                                 <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
                                                     <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
                                                         <h4 
@@ -1160,19 +1153,19 @@ import {
                                                 </Card>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
+                                        <Grid item xs={12} sm={11} md={12} lg={4} xl={3} >
                                                 <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
-                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB2("B2")}}>
                                                         <h4 
                                                         className='text-center p-4' 
-                                                        id='useFont'>กักตัวเพื่อรอดูอาการ {" "} 
+                                                        id='useFont'>มีความเสี่ยง {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxLeft.length} 
+                                                        badgeContent={DataBoxMid.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
                                                     </Card>
-                                                        <Collapse key={'B1'} in={openB1['B1']}>
+                                                        <Collapse key={'B2'} in={openB2['B2']}>
                                                         <List>
                                                             {DataBoxMid.map(item=>{
                                                                 // console.log(item)
@@ -1231,6 +1224,7 @@ import {
                                                                             <strong id='useFont'>{'ระบุผล:'+' '}</strong><span id='useFont2'>{item.checkedRisk}</span><br/>
                                                                             <strong id='useFont'>{'ผู้รายงาน:'+' '}</strong><span id='useFont2'>{item.Recorder}</span><br/>
                                                                             <strong id='useFont'>{'วันที่ตรวจ:'+' '}</strong><span id='useFont2'>{item.RecordTime}</span><br/>
+                                                                            <strong id='useFont'>{'ผู้แก้ไขผล:'+' '}</strong><span id='useFont2'>{item.RecorderWhoChangeState}</span><br/>
 
                                                                         </ListItemText>
                                                                         </ListItem>
@@ -1244,19 +1238,19 @@ import {
                                                 </Card>
                                         </Grid>
 
-                                        <Grid item xs={12} sm={12} md={6} lg={4} xl={3} >
+                                        <Grid item xs={12} sm={11} md={12} lg={4} xl={3} >
                                                 <Card elevation={5} variant="outlined " className='my-2' id='shitCardNext1'>
-                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB1("B1")}}>
+                                                    <Card elevation={1} variant="outlined "  id='shitCardTop1' onClick={()=>{handleClickxxB3("B3")}}>
                                                         <h4 
                                                         className='text-center p-4' 
-                                                        id='useFont'>กักตัวเพื่อรอดูอาการ {" "} 
+                                                        id='useFont'>ไม่มีอาการ {" "} 
                                                         <Badge 
-                                                        badgeContent={DataBoxLeft.length} 
+                                                        badgeContent={DataBoxRight.length} 
                                                         color="secondary">
                                                         </Badge>
                                                         </h4>
                                                     </Card>
-                                                        <Collapse key={'B1'} in={openB1['B1']}>
+                                                        <Collapse key={'B3'} in={openB3['B3']}>
                                                         <List>
                                                             {DataBoxRight.map(item=>{
                                                                 // console.log(item)
@@ -1270,9 +1264,9 @@ import {
                                                                     </ListItemAvatar>
                                                                         <ListItemText  key ={item.ID} >
                                                                             
-                                                                            {item.checkedRisk=="กักตัวเพื่อรอดูอาการ"?
+                                                                            {item.checkedRisk=="ไม่มีอาการ"?
                                                                             <Box display="flex" justifyContent="flex-end">
-                                                                                <Box borderRadius={30} {...BoxStsProps1} >กักตัวเพื่อรอดูอาการ</Box>
+                                                                                <Box borderRadius={30} {...BoxStsProps3} >ไม่มีอาการ</Box>
                                                                             </Box>:null}
                                                                             
                                                                             <strong id='useFont'>{'ชื่อ-สกุล:'+' '}</strong><span id='useFont2'>{ item.Name }{" "}{ item.LastName }</span><br/>
@@ -1369,7 +1363,7 @@ import {
                                         <h3 id='useFont' className='ml-4 mt-4 mb-3'>การยืนยันรับพัสดุ</h3>
                                         <DialogContent>
                                             <DialogContentText id='useFont'>
-                                                หากต้องการที่จะรับ <strong >{PNameR}</strong>  โปรดกรอกชื่อเเละกดปุ่ม <strong>"ยืนยัน"</strong>.
+                                                ต้องการเปลี่ยนสถานะของ <strong >{AcceptPeople}</strong>  โปรดกรอกชื่อและกดปุ่ม <strong>"ยืนยัน"</strong>.
                                             </DialogContentText>
                                             <form id="SENDACC" name="SENDACC" onSubmit={ handleClickCloseConfirmAcceptWihtAccept }>
                                                 <TextField
@@ -1377,12 +1371,12 @@ import {
                                                     autoFocus
                                                     margin="dense"
                                                     id="name"
-                                                    label="ชื่อผู้รับ"
+                                                    label="ผู้แก้ไขผล"
                                                     inputProps={{style: {fontFamily:'Mitr'}}} 
                                                     InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                                    value={ RRName }
+                                                    value={ RecorderWhoChangeState }
                                                     type="text"
-                                                    onChange={ RRNameChange }
+                                                    onChange={ RecorderWhoChangeStateChange }
                                                     fullWidth
                                                 />
                                                     <br/><br/>
@@ -1392,24 +1386,24 @@ import {
                                                         value="primary"
                                                         inputProps={{ 'aria-label': 'primary checkbox' }}
                                                     /> */}
-                                                    <p id='useFont'>ความครบถ้วนของพัสดุ</p>
+                                                    <p id='useFont'>ต้องการเปลี่ยนสถานะเป็น</p>
                                                     <Radio
                                                     
-                                                        checked={checked === 'ครบ'}
+                                                        checked={checked === 'ไม่มีอาการ'}
                                                         onChange={handleChange}
-                                                        value="ครบ"
+                                                        value="ไม่มีอาการ"
                                                         color='primary'
                                                         name="radio-button-demo"
                                                         inputProps={{ 'aria-label': 'A' }}
-                                                    /><span id='useFont'>ครบ</span>
+                                                    /><span id='useFont'>ไม่มีอาการ</span>
                                                     <Radio
-                                                        checked={checked === 'ไม่ครบ'}
+                                                        checked={checked === 'มีความเสี่ยง'}
                                                         onChange={handleChange}
-                                                        value="ไม่ครบ"
+                                                        value="มีความเสี่ยง"
                                                         color='secondary'
                                                         name="radio-button-demo"
                                                         inputProps={{ 'aria-label': 'B' }}
-                                                    /><span id='useFont'>ไม่ครบ</span>
+                                                    /><span id='useFont'>มีความเสี่ยง</span>
                                                     
                                             </form>
                                         </DialogContent>

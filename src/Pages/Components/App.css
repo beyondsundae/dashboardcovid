@@ -73,11 +73,23 @@
   cursor: pointer;
   background-color:rgb(11, 41, 94) ;
 }
-#shitCardTop2{
+#shitCardTopR{
   height:4em;
   color:white;
   cursor: pointer;
-  background-color:rgb(11, 41, 94) ;
+  background-color:Crimson ;
+}
+#shitCardTopY{
+  height:4em;
+  color:white;
+  cursor: pointer;
+  background-color:GoldenRod ;
+}
+#shitCardTopG{
+  height:4em;
+  color:white;
+  cursor: pointer;
+  background-color:Green ;
 }
 
 #shitCardxx{
