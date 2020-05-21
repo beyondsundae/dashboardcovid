@@ -873,7 +873,7 @@ import {
                             checked={checkedRisk === 'กักตัวเพื่อรอดูอาการ'}
                             onChange={handleChangeRisk}
                             className="ml-5"
-                            value="ปกติ"
+                            value="กักตัวเพื่อรอดูอาการ"
                             color='primary'
                             name="radio-button-demo"
                             inputProps={{ 'aria-label': 'A' }}
@@ -958,7 +958,7 @@ import {
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">Pages:</h6>
                                 <a className="collapse-item" href="/">Home</a>
-                                <a className="collapse-item" href="/NewCase">Register</a>
+                                <a className="collapse-item" href="/NewCase">Add new case</a>
                             </div>
                         </div>
                     </li>
@@ -1360,7 +1360,7 @@ import {
                                 <Dialog fullWidth 
                                     open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
                                     aria-labelledby="form-dialog-title" id='shitDialog2'>
-                                        <h3 id='useFont' className='ml-4 mt-4 mb-3'>การยืนยันรับพัสดุ</h3>
+                                        <h3 id='useFont' className='ml-4 mt-4 mb-3'>แก้ไขผล</h3>
                                         <DialogContent>
                                             <DialogContentText id='useFont'>
                                                 ต้องการเปลี่ยนสถานะของ <strong >{AcceptPeople}</strong>  โปรดกรอกชื่อและกดปุ่ม <strong>"ยืนยัน"</strong>.

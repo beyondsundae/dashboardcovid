@@ -196,7 +196,7 @@ export default function Home() {
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Pages:</h6>
                             <a className="collapse-item" href="/">Home</a>
-                            <a className="collapse-item" href="/NewCase">Register</a>
+                            <a className="collapse-item" href="/NewCase">Add new case</a>
                         </div>
                     </div>
                 </li>
@@ -390,7 +390,7 @@ export default function Home() {
                                 <div className="card shadow mb-4">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                        <h6 className="m-0 font-weight-bold text-primary">Information of infected in 7 Days</h6>
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
@@ -407,7 +407,7 @@ export default function Home() {
                                 <div className="card shadow mb-4">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                        <h6 className="m-0 font-weight-bold text-primary">Information since January</h6>
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
@@ -423,7 +423,7 @@ export default function Home() {
                                 <div className="card shadow pb-5 mb-4">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                                        <h6 className="m-0 font-weight-bold text-primary">Infecter's gender </h6>
                                     </div>
                                     {/* Card Body */}
                                     <div className="card-body">
