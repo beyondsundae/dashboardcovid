@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import Drawer from "@material-ui/core/Drawer";
 import Select from '@material-ui/core/Select';
+import Slide from '@material-ui/core/Slide';
 // import FaceIcon from '@material-ui/icons/Face';
 // import MailIcon from '@material-ui/icons/Mail';
 // import MenuIcon from '@material-ui/icons/Menu';
@@ -38,6 +39,10 @@ import Typography from '@material-ui/core/Typography';
 import InputLabel from '@material-ui/core/InputLabel';
 import IconButton from '@material-ui/core/IconButton';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import survey from './Components/survey.svg'
+import survey2 from './Components/survey2.svg'
+import survey3 from './Components/survey3.svg'
+import survey4 from './Components/survey4.svg'
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -48,6 +53,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import DialogContentText from '@material-ui/core/DialogContentText';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Snackbar from '@material-ui/core/Snackbar';
 import {
     MuiPickersUtilsProvider,
     KeyboardTimePicker,
@@ -62,7 +68,19 @@ import {
       });
     
     var dateFormat = require('dateformat');
-    
+
+    const Transition = React.forwardRef(function Transition(props, ref) {
+        return <Slide direction="right" ref={ref} {...props} />;
+      });
+
+    const Transition2 = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+    });
+
+    function TransitionUp(props) {
+        return <Slide {...props} direction="up" />;
+      }
+
     const NewCase =()=>{
         
         window.onload = function() {
@@ -575,6 +593,7 @@ import {
                 fullWidth 
                 open={open} 
                 id='shitDialog'
+                TransitionComponent={Transition}
                 className='p-5' 
                 onClose={handleClose} 
                 aria-labelledby="form-dialog-title" 
@@ -584,6 +603,7 @@ import {
                     id="form-dialog-title" 
                     className='text-center mt-3'>
                         <h1 id='useFont'>แบบสำรวจผู้มีความเสี่ยงในพื้นที่ </h1>
+                        <img style={{ width: "20%"}} src={survey}/>
                     </DialogTitle><hr/>
                     <DialogContent>
                     
@@ -1040,8 +1060,13 @@ import {
                                         onClick={handleClickOpen}
                                         id='shitCardxx'>
                                             <h2 className='pl-5 my-1 ' ></h2>
-                                            <h4 className='mb-3 ml-5 ' id='useFont2'>เพิ่มแบบสำรวจ</h4>
+                                            <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
+                                                <img style={{ width: "100%"}} src={survey}/>
+                                                <br/><br/>
+                                                </div>
                                             <div class='horizonLine2'/>
+                                            <h4 className='my-3 ml-5 ' id='useFont2'>เพิ่มแบบสำรวจ</h4>
+                                            
                                             <br/>
                                         </Card>
                                         
@@ -1358,6 +1383,7 @@ import {
                 <div className='containter row pl-2'>       
                     <div >
                                 <Dialog fullWidth 
+                                TransitionComponent={Transition2}
                                     open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
                                     aria-labelledby="form-dialog-title" id='shitDialog2'>
                                         <h3 id='useFont' className='ml-4 mt-4 mb-3'>แก้ไขผล</h3>

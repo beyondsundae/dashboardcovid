@@ -5,6 +5,10 @@ import anime from 'animejs/lib/anime.es.js'
 import moment from 'moment'
 import male from './Components/male.svg'
 import female from './Components/female.svg'
+import fever from './Components/fever.svg'
+import exercise from './Components/exercise.svg'
+import patient from './Components/patient.svg'
+import funeral from './Components/funeral.svg'
 import { Treemap, PieChart, Pie,ResponsiveContainer, 
     ComposedChart, LineChart, Line, AreaChart, 
     Area, CartesianGrid, BarChart, Bar, XAxis, 
@@ -289,10 +293,8 @@ export default function Home() {
                                                 </div><br/>
                                                 <div>New Infected{" "}{NewConfirmed}</div>
                                             </div>
+                                            <img style={{ width: "15%", opacity: "0.5"}} src={fever}/>
                                             
-                                            <div className="col-auto">
-                                                <i className="fas fa-calendar fa-2x text-gray-300" />
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -316,9 +318,8 @@ export default function Home() {
                                                     </div><br/>
                                                     <div>New Recovered{" "}{NewRecovered}</div>
                                             </div>
-                                            <div className="col-auto">
-                                                <i className="fas fa-dollar-sign fa-2x text-gray-300" />
-                                            </div>
+                                            <img style={{ width: "15%", opacity: "0.5"}} src={exercise}/>
+
                                         </div>
                                     </div>
                                 </div>
@@ -343,10 +344,8 @@ export default function Home() {
                                                     <div>New Hospitalized{" "}{NewHospitalized}</div>
                                                     
                                             </div>
-                                        
-                                            <div className="col-auto">
-                                                <i className="fas fa-comments fa-2x text-gray-300" />
-                                            </div>
+                                            <img style={{ width: "15%", opacity: "0.5"}} src={patient}/>
+
                                         </div>
                                     </div>
                                 </div>
@@ -372,10 +371,8 @@ export default function Home() {
                                                     <div>New Deaths{" "}{NewDeaths}</div>
                                                     
                                             </div>
-                                           
-                                            <div className="col-auto">
-                                                <i className="fas fa-comments fa-2x text-gray-300" />
-                                            </div>
+                                            <img style={{ width: "15%", opacity: "0.5"}} src={funeral}/>
+
                                         </div>
                                     </div>
                                 </div>
