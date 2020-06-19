@@ -40,9 +40,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import IconButton from '@material-ui/core/IconButton';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import survey from './Components/survey.svg'
-import survey2 from './Components/survey2.svg'
-import survey3 from './Components/survey3.svg'
-import survey4 from './Components/survey4.svg'
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -85,22 +82,16 @@ import {
         
         window.onload = function() {
             MenuAddress();
-            // OhSend();
-            // OhResponse();
-            // OhReceived ();
-            Quarantine ()
-            YouRiskNow ()
-            NoCovid ()
-            TimeRanger();
+                updateValue ()
+                TimeRanger();
             handleClickxxB3();
             handleClickxxB2();
             handleClickxxB1();
         }
-        
+
         const [open, setOpen] = useState(false);
         const [OpenconfirmAccept, setOpenconfirmAccept] = useState(false);
     
-        // const [OHwow, setOHwow] = useState();
         const [ShowAddressxx, setShowAddressxx] = useState();
         const [DateTimeNow, setDateTimeNow] = useState();
         const [Monthx, setMonthx] = useState();
@@ -172,112 +163,34 @@ import {
         //         </div>
         //       );
     
-        const [SName, setSName] = useState([]); 
-        function SNameChange (e){ 
-            setSName(e.target.value) }
-        const [SPhone, setSPhone] = useState();
-        function SPhonehange (e){ 
-            setSPhone(e.target.value) }
-        const [Addressza, setAddressza] = useState(" ");
-        const [RName, setRName] = useState();
-        function RNameChange (e){ 
-            setRName(e.target.value) }  
-        const [RPhone, setRPhone] = useState();
-        function RPhoneChange (e){ 
-            setRPhone(e.target.value) }
-        const [Addressza2, setAddressza2] = useState();
-        const [PName, setPName] = useState();
-        function PNameChange (e){ 
-            setPName(e.target.value) }
-        const [Dparcel, setDparcel] = useState();
-        function DparcelChange (e){ 
-            setDparcel(e.target.value) }
-        
-        const [RRName, setRRName] = useState();
-        function RRNameChange (e){ 
-            setRRName(e.target.value) }
-        /*
-        ! Modal side
-        */
+       
     {/* **************** New ******************** */}  
         const [PersoID, setPersoID] = useState([]); 
-        function PersoIDChange (e){ 
-            setPersoID(e.target.value) }
         const [Name, setName] = useState([]); 
-        function NameChange (e){ 
-            setName(e.target.value) }
         const [LastName, setLastName] = useState([]); 
-        function LastNameChange (e){ 
-            setLastName(e.target.value) }
         const [Age, setAge] = useState([]); 
-        function AgeChange (e){ 
-            setAge(e.target.value) }
-        const [Genderchecked, setGenderchecked] = React.useState('ชาย');
-        const handleChangeGender = event => {
-            setGenderchecked(event.target.value);};
+        const [Genderchecked, setGenderchecked] = useState('ชาย');
         const [AddressPerson, setAddressPerson] = useState([]); 
-        function AddressPersonChange (e){ 
-            setAddressPerson(e.target.value) }     
         const [Job, setJob] = useState([]); 
-        function JobChange (e){ 
-            setJob(e.target.value) }
         const [Comefrom, setComefrom] = useState([]); 
-        function ComefromChange (e){ 
-            setComefrom(e.target.value) }
 
-        const [stateCheckA, setStateCheckA] = React.useState(0)
-        const handleChangeCheckA = (event) => {
-            setStateCheckA(event.target.checked );};
-        const [stateCheckB, setStateCheckB] = React.useState(0)
-        const handleChangeCheckB = (event) => {
-            setStateCheckB(event.target.checked );};
-        const [stateCheckC, setStateCheckC] = React.useState(0)
-        const handleChangeCheckC = (event) => {
-            setStateCheckC(event.target.checked );};
-        const [stateCheckD, setStateCheckD] = React.useState(0)
-        const handleChangeCheckD = (event) => {
-            setStateCheckD(event.target.checked );};
-        const [stateCheckE, setStateCheckE] = React.useState(0)
-        const handleChangeCheckE = (event) => {
-            setStateCheckE(event.target.checked );};
-        const [stateCheckF, setStateCheckF] = React.useState(0)
-        const handleChangeCheckF = (event) => {
-            setStateCheckF(event.target.checked );};
-        const [stateCheckG, setStateCheckG] = React.useState(0)
-        const handleChangeCheckG = (event) => {
-            setStateCheckG(event.target.checked );};
-        const [stateCheckH, setStateCheckH] = React.useState(0)
-        const handleChangeCheckH = (event) => {
-            setStateCheckH(event.target.checked );};
-        const [stateCheckI, setStateCheckI] = React.useState(0)
-        const handleChangeCheckI = (event) => {
-            setStateCheckI(event.target.checked );};
-        const [stateCheckJ, setStateCheckJ] = React.useState(0)
-        const handleChangeCheckJ = (event) => {
-            setStateCheckJ(event.target.checked );};
-        const [stateCheckK, setStateCheckK] = React.useState(0)
-        const handleChangeCheckK = (event) => {
-            setStateCheckK(event.target.checked );};
-        // const [stateCheck, setStateCheck] = React.useState()
-        // const handleChangeCheck = (event) => {
-        //     setStateCheck(event.target.checked );};
-        
+        const [stateCheckA, setStateCheckA] = useState(0)
+        const [stateCheckB, setStateCheckB] = useState(0)
+        const [stateCheckC, setStateCheckC] = useState(0)
+        const [stateCheckD, setStateCheckD] = useState(0)
+        const [stateCheckE, setStateCheckE] = useState(0)
+        const [stateCheckF, setStateCheckF] = useState(0)
+        const [stateCheckG, setStateCheckG] = useState(0)
+        const [stateCheckH, setStateCheckH] = useState(0)
+        const [stateCheckI, setStateCheckI] = useState(0)
+        const [stateCheckJ, setStateCheckJ] = useState(0)
+        const [stateCheckK, setStateCheckK] = useState(0)
         
         const [Temperature, setTemperature] = useState([]); 
-        function TemperatureChange (e){ 
-            setTemperature(e.target.value) }
-        const [checkedRisk, setCheckedRisk] = React.useState('กักตัวเพื่อรอดูอาการ');
-        const handleChangeRisk = event => {
-            setCheckedRisk(event.target.value);
-        };
-        const [Recorder, setRecorder] = React.useState([]);
-        const RecorderChange = event => {
-            setRecorder(event.target.value);
-        };
-        const [RecorderWhoChangeState, setRecorderWhoChangeState] = React.useState([]);
-        const RecorderWhoChangeStateChange = event => {
-            setRecorderWhoChangeState(event.target.value);
-        };
+        const [checkedRisk, setCheckedRisk] = useState('กักตัวเพื่อรอดูอาการ');
+        const [Recorder, setRecorder] = useState([]);
+        const [RecorderWhoChangeState, setRecorderWhoChangeState] = useState([]);
+       
         const [DateArrivedVillage, setDateArrivedVillage] = useState(new Date().toLocaleDateString()); 
         const onDateChange = (date) => {
             const fullDate = date
@@ -289,34 +202,15 @@ import {
             // console.log("pickdate02 : " + Formatted)
             // console.log("SelectedDate : " + SelectedDate)
             setDateArrivedVillage(Formatted);
-            
           };
 
     {/* **************** Accept ******************** */}  
     const [GetIDParcel, setGetIDParcel] = useState();
         const [AcceptPeople, setAcceptPeople] =useState();
-        const [checked, setChecked] = React.useState('มีความเสี่ยง');
-        const handleChange = event => {
-            setChecked(event.target.value);
-          };
+        const [checkedAfterquarantine, setCheckedAfterquarantine] = useState('มีความเสี่ยง');
 
-        
-          
-
-          // const [selectedDate, handleDateChange] = useState(new Date());
-        
         const [Monthza, setMonthza] = useState('All'); 
         const [Yearza, setYearza] = useState('All'); 
-        
-        // const [checkedA, setCheckedA] = React.useState();
-        // const handleChangeCheckA = event => {
-        //     setCheckedA(event.target.checked);
-        // };
-
-       
-
-        
-
 
  {/* **************** Style ******************** */}    
           const BoxStsProps1 = {
@@ -353,7 +247,7 @@ import {
     
 {/* **************** Process function ******************** */}             
         function GetData (item){
-            var info ={
+            let info ={
                     params: {
                         id:item.ID
                     }} 
@@ -378,7 +272,7 @@ import {
                 }
     
         function PostToDatabase (e){
-            var formData = {
+            let formData = {
                 PersoID:PersoID,
                 Name:Name,
                 LastName:LastName,
@@ -416,10 +310,39 @@ import {
               TimeRanger();
               
               setTimeout(() => {
+                updateValue ()
                 alert('เพิ่มแบบสำรวจสำเร็จ')
-                window.location.reload(false)
+                Clearfield ()
+                // window.location.reload(false)
                 }, 500);  
                 }
+
+        function Clearfield (){
+            setPersoID([])
+            setName([])
+            setLastName([])
+            setAge([])
+            setGenderchecked('ชาย');
+            setAddressPerson([])
+            setJob([])
+            setComefrom([])
+            setStateCheckA(0)
+            setStateCheckB(0)
+            setStateCheckC(0)
+            setStateCheckD(0)
+            setStateCheckE(0)
+            setStateCheckF(0)
+            setStateCheckG(0)
+            setStateCheckH(0)
+            setStateCheckI(0)
+            setStateCheckJ(0)
+            setStateCheckK(0)
+            setTemperature([])
+            setCheckedRisk('กักตัวเพื่อรอดูอาการ');
+            setRecorder([])
+            setRecorderWhoChangeState([])
+            setDateArrivedVillage(new Date().toLocaleDateString()); 
+        }
     
         function Quarantine (){
             var info ={
@@ -469,11 +392,17 @@ import {
             var accept ={
                 id:GetIDParcel,
                 RecorderWhoChangeState:RecorderWhoChangeState,
-                Check:checked}
+                Check:checkedAfterquarantine}
             axios.put('http://localhost:4000/Accept',accept)
                 .then(function (response){
                     // ohWow();  
             })}
+
+        function updateValue (){
+            Quarantine ()
+            YouRiskNow ()
+            NoCovid ()
+        }
 
         const MenuAddress =()=>{
             axios.get('http://localhost:4000/address')
@@ -534,7 +463,9 @@ import {
         };
         const handleClose = () => {
             setOpen(false);
-            window.location.reload(false);
+            // window.location.reload(false);
+            Clearfield ()
+            updateValue ()
         };
         /*
             !Open-Close Dialog
@@ -550,18 +481,22 @@ import {
             e.preventDefault()
             Accept();
             setOpenconfirmAccept(false);
-            window.location.reload(false);
+            // window.location.reload(false);
+            updateValue ()
             alert("ผู้แก้ไขผล : "+ RecorderWhoChangeState)
         };
         /*
             !Open-Close-Submit Accept Dialog
         */
     
-        function Reload(){
-            window.location.reload(false)
-        }
         useEffect(() => {
-            console.log(DateTimeNow)
+            
+
+            // setTimeout(() => {
+            //     console.log('Hello, World!')
+            //   }, 3000);
+
+            // console.log(DateTimeNow)
             // console.log("UseEffect")
             // console.log(SelectedDate)
             // console.log("Year")
@@ -592,7 +527,7 @@ import {
             <Dialog 
                 fullWidth 
                 open={open} 
-                id='shitDialog'
+                id='Dialog'
                 TransitionComponent={Transition}
                 className='p-5' 
                 onClose={handleClose} 
@@ -618,12 +553,11 @@ import {
                         type="text"
                         label="เลขบัตรประชาชน" 
                         // id="nameSender" 
-                        // defaultValue="0123456789123" 
                         variant="outlined" 
                             inputProps={{minLength: 13  ,maxLength: 13, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ PersoID }
-                                onChange={ PersoIDChange }
+                                onChange={ event =>  setPersoID(event.target.value) }
                         />
                         <br/><br/>
 
@@ -633,12 +567,11 @@ import {
                         type="text"
                         label="ชื่อ" 
                         // id="nameSender" 
-                        // defaultValue="อร่อย"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Name }
-                                onChange={ NameChange }
+                                onChange={ event =>  setName(event.target.value) }
                         />
                         <span>   </span>
 
@@ -648,12 +581,11 @@ import {
                         type="text"
                         label="นามสกุล" 
                         // id="nameSender" 
-                        // defaultValue="จนต้องต่อยคนข้างๆ"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ LastName }
-                                onChange={ LastNameChange }
+                                onChange={ event =>  setLastName(event.target.value) }
                         />
                         <br/><br/>
 
@@ -663,19 +595,18 @@ import {
                         type="number"
                         label="อายุ" 
                         // id="nameSender" 
-                        // defaultValue="23"
                         variant="outlined" 
                             inputProps={{min: 1, maxLength: 3, style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Age }
-                                onChange={ AgeChange }
+                                onChange={ event =>  setAge(event.target.value) }
                         />
                         <br/><br/>
 
                         <FormLabel component="legend" id='useFont'>เพศ</FormLabel>
                         <Radio
                             checked={Genderchecked === 'ชาย'}
-                            onChange={handleChangeGender}
+                            onChange={ event =>  setGenderchecked(event.target.value) }
                             value="ชาย"
                             color='primary'
                             name="radio-button-demo"
@@ -683,7 +614,7 @@ import {
                         /><span id='useFont'>ชาย</span>
                         <Radio
                             checked={Genderchecked === 'หญิง'}
-                            onChange={handleChangeGender}
+                            onChange={ event =>  setGenderchecked(event.target.value) }
                             value="หญิง"
                             color='secondary'
                             name="radio-button-demo"
@@ -697,13 +628,12 @@ import {
                             id="outlined-textarea"
                             label="ที่อยู่"
                             multiline
-                            // defaultValue="123/456 หมู่ 5 ต.อิอิ อ.อิอิ จ.อิอิ 12345"
                             rows={4}
                             variant="outlined"
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}}
                                 value={ AddressPerson }
-                                onChange={ AddressPersonChange }
+                                onChange={ event =>  setAddressPerson(event.target.value) }
                         />
                         <br/><br/>
 
@@ -713,12 +643,11 @@ import {
                         type="text"
                         label="อาชีพ" 
                         // id="nameSender" 
-                        // defaultValue="รับจ้าง"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Job }
-                                onChange={ JobChange }
+                                onChange={ event =>  setJob(event.target.value) }
                         />
                         <br/><br/>
 
@@ -735,7 +664,7 @@ import {
                                 inputProps={{style: {fontFamily:'Mitr'}}} 
                                 InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                     value={ Comefrom } 
-                                    onChange={ ComefromChange } 
+                                    onChange={ event =>  setComefrom(event.target.value) } 
                             >
                                 { ShowAddressxx } 
                             </Select>
@@ -746,6 +675,7 @@ import {
                             <DatePicker
                             required 
                             // autoOk
+                            id="JustPointer"
                             variant="inline"
                             label="วันที่เข้าหมุ่บ้าน (เดือน/วัน/ปี)"
                             className='col col-6' 
@@ -761,7 +691,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckA}
-                                onChange={handleChangeCheckA}
+                                onChange={ event =>  setStateCheckA(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckA"
                                 color="primary"
@@ -772,7 +702,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckB}
-                                onChange={handleChangeCheckB}
+                                onChange={ event =>  setStateCheckB(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckB"
                                 color="primary"
@@ -783,7 +713,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckC}
-                                onChange={handleChangeCheckC}
+                                onChange={ event =>  setStateCheckC(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckC"
                                 color="primary"
@@ -797,12 +727,11 @@ import {
                         label="อุณหภูมิ" 
                         className="col col-4"
                         // id="nameSender" 
-                        // defaultValue="รับจ้าง"
                         variant="outlined" 
                             inputProps={{min: 35, max: 45, maxLength: 3, step:"0.1", style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Temperature }
-                                onChange={ TemperatureChange }
+                                onChange={  event =>  setTemperature(event.target.value)  }
                         />
                         <br/><br/>
                         
@@ -811,7 +740,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckD}
-                                onChange={handleChangeCheckD}
+                                onChange={ event =>  setStateCheckD(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckD"
                                 color="primary"
@@ -821,7 +750,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckE}
-                                onChange={handleChangeCheckE}
+                                onChange={ event =>  setStateCheckE(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckE"
                                 color="primary"
@@ -831,7 +760,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckF}
-                                onChange={handleChangeCheckF}
+                                onChange={ event =>  setStateCheckF(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckF"
                                 color="primary"
@@ -841,7 +770,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckG}
-                                onChange={handleChangeCheckG}
+                                onChange={ event =>  setStateCheckG(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckG"
                                 color="primary"
@@ -851,7 +780,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckH}
-                                onChange={handleChangeCheckH}
+                                onChange={ event =>  setStateCheckH(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckH"
                                 color="primary"
@@ -861,7 +790,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckI}
-                                onChange={handleChangeCheckI}
+                                onChange={ event =>  setStateCheckI(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckI"
                                 color="primary"
@@ -871,7 +800,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckJ}
-                                onChange={handleChangeCheckJ}
+                                onChange={ event =>  setStateCheckJ(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckJ"
                                 color="primary"
@@ -881,7 +810,7 @@ import {
                             control={
                             <Checkbox
                                 checked={stateCheckK}
-                                onChange={handleChangeCheckK}
+                                onChange={ event =>  setStateCheckK(event.target.checked) }
                                 className="ml-5"
                                 name="stateCheckK"
                                 color="primary"
@@ -891,7 +820,7 @@ import {
                         <h5 id="useFont" className="ml-3">ระบุผล</h5>
                         <Radio
                             checked={checkedRisk === 'กักตัวเพื่อรอดูอาการ'}
-                            onChange={handleChangeRisk}
+                            onChange={ event =>  setCheckedRisk(event.target.value) }
                             className="ml-5"
                             value="กักตัวเพื่อรอดูอาการ"
                             color='primary'
@@ -900,7 +829,7 @@ import {
                         /><span id='useFont'>กักตัวเพื่อรอดูอาการ</span>
                         <Radio
                             checked={checkedRisk === 'มีความเสี่ยง'}
-                            onChange={handleChangeRisk}
+                            onChange={ event =>  setCheckedRisk(event.target.value) }
                             className="ml-1"
                             value="มีความเสี่ยง"
                             color='secondary'
@@ -915,12 +844,11 @@ import {
                         type="text"
                         label="ผู้รายงาน" 
                         // id="nameSender" 
-                        // defaultValue="น้องขุนทอง"
                         variant="outlined" 
                             inputProps={{style: {fontFamily:'Mitr'}}} 
                             InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                 value={ Recorder }
-                                onChange={ RecorderChange }
+                                onChange={  event =>  setRecorder(event.target.value)  }
                         />
                         <br/><br/>
                         </form>
@@ -995,7 +923,7 @@ import {
     {/* **************** TopBar Box ******************** */}
                         {/* Topbar */}
                         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                                {/* <div className="btn btn-danger" onClick={()=>Quarantine()} >vbvb</div> */}
         {/* **************** BigBoxGirl ******************** */}
                             {/* Topbar Navbar */}
                             {/* <ul className="navbar-nav ml-auto"> */}
@@ -1385,7 +1313,7 @@ import {
                                 <Dialog fullWidth 
                                 TransitionComponent={Transition2}
                                     open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
-                                    aria-labelledby="form-dialog-title" id='shitDialog2'>
+                                    aria-labelledby="form-dialog-title" id='Dialog2'>
                                         <h3 id='useFont' className='ml-4 mt-4 mb-3'>แก้ไขผล</h3>
                                         <DialogContent>
                                             <DialogContentText id='useFont'>
@@ -1401,8 +1329,8 @@ import {
                                                     inputProps={{style: {fontFamily:'Mitr'}}} 
                                                     InputLabelProps={{style: {fontFamily:'Mitr'}}} 
                                                     value={ RecorderWhoChangeState }
+                                                    onChange={ event =>  setRecorderWhoChangeState(event.target.value) }
                                                     type="text"
-                                                    onChange={ RecorderWhoChangeStateChange }
                                                     fullWidth
                                                 />
                                                     <br/><br/>
@@ -1415,16 +1343,16 @@ import {
                                                     <p id='useFont'>ต้องการเปลี่ยนสถานะเป็น</p>
                                                     <Radio
                                                     
-                                                        checked={checked === 'ไม่มีอาการ'}
-                                                        onChange={handleChange}
+                                                        checked={checkedAfterquarantine === 'ไม่มีอาการ'}
+                                                        onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
                                                         value="ไม่มีอาการ"
                                                         color='primary'
                                                         name="radio-button-demo"
                                                         inputProps={{ 'aria-label': 'A' }}
                                                     /><span id='useFont'>ไม่มีอาการ</span>
                                                     <Radio
-                                                        checked={checked === 'มีความเสี่ยง'}
-                                                        onChange={handleChange}
+                                                        checked={checkedAfterquarantine === 'มีความเสี่ยง'}
+                                                        onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
                                                         value="มีความเสี่ยง"
                                                         color='secondary'
                                                         name="radio-button-demo"

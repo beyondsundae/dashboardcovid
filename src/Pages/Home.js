@@ -427,7 +427,7 @@ export default function Home() {
                                             <div className="row">
                                                 
                                                 <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
-                                                <img style={{ width: "100%"}} src={male}/>
+                                                <img style={{ width: "70%"}} src={male}/>
                                                 <br/><br/>
                                                     <h3>Male: {Gender.Male}</h3>
                                                 </div>
@@ -436,7 +436,7 @@ export default function Home() {
 
                                                 
                                                 <div class='col col-5 col-md-5'>
-                                                <img style={{ width: "100%"}} src={female}/>
+                                                <img style={{ width: "70%"}} src={female}/>
                                                     <br/><br/>
                                                     <h3>Female: {Gender.Female}</h3>
                                                 </div>

@@ -24,11 +24,11 @@
   height:auto;
 }
 
-#shitDialog{
+#Dialog{
   margin: auto;
   height: auto;
 }
-#shitDialog2{
+#Dialog2{
   
   margin: auto;
   height: auto;
@@ -181,4 +181,8 @@
 
 #borderTest{
   border: 2px solid red;
+}
+
+#JustPointer{
+  cursor: pointer;
 }
