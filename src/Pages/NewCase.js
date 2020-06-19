@@ -530,7 +530,7 @@ import {
                 id='Dialog'
                 TransitionComponent={Transition}
                 className='p-5' 
-                onClose={handleClose} 
+                onClose={handleClose}
                 aria-labelledby="form-dialog-title" 
                 class='container col col-sm-4 col-md-12 col-xl-8'
                 >
