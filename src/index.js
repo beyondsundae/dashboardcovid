@@ -3,32 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import Home from './Pages/Home';
-import NewCase from './Pages/NewCase';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter  } from 'react-router-dom';
-import { BrowserRouter as  Router, Route, Switch , browserHistory} from 'react-router-dom';
-
-
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
-  
   <BrowserRouter basename={process.env.PUBLIC_URL}>
-    
-    <div id="wrapper">
-
-    
-    <Router>
-        {/* <Switch> */}
-          <Route exact path="/" component={Home} />
-          <Route  path="/NewCase" component={NewCase} />
-        {/* </Switch> */}
-       
-
-      </Router>
-    
-    </div>
-    
-    </BrowserRouter>,
+    <App />
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
