@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch , browserHistory} from 'react-router-dom';
+import { BrowserRouter as HashRouter, Router, Route, Switch , browserHistory} from 'react-router-dom';
 import Home from './Pages/Home';
 import NewCase from './Pages/NewCase';
 function App() {
@@ -8,10 +8,10 @@ function App() {
     <div id="wrapper">
       {/* <HashRouter > */}
     <Router>
-        <Switch>
+        {/* <Switch> */}
           <Route exact path="/" component={Home} />
           <Route  path="/NewCase" component={NewCase} />
-        </Switch>
+        {/* </Switch> */}
        
 
       </Router>
