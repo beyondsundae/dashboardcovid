@@ -6,14 +6,12 @@ import Home from './Pages/Home';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 
-const AppWithRouter = () => (
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
-    <App />
-  </BrowserRouter>
-)
+
 
 ReactDOM.render(
-    <AppWithRouter />,
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <App />
+    </BrowserRouter>,
   document.getElementById('root')
 );
 
