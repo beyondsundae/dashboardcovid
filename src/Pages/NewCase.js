@@ -27,7 +27,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import {DatePicker} from '@material-ui/pickers';
 import Divider from "@material-ui/core/Divider";
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom';
+import { Link , NavLink} from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import MenuItem from '@material-ui/core/MenuItem';
 import Collapse from "@material-ui/core/Collapse";
@@ -59,6 +59,7 @@ import {
   } from '@material-ui/pickers';
   import MomentUtils from '@date-io/moment';
   import DateFnsUtils from '@date-io/date-fns';
+  
 
 
     const useStyles = makeStyles({
@@ -906,8 +907,8 @@ import {
                         <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">Pages:</h6>
-                                <a className="collapse-item" href="/">Home</a>
-                                <a className="collapse-item" href="/NewCase">Add new case</a>
+                                <Link to ="/" className="collapse-item" href="/">Home</Link>
+                                <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
                             </div>
                         </div>
                     </li>

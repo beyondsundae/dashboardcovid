@@ -13,7 +13,7 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
     ComposedChart, LineChart, Line, AreaChart, 
     Area, CartesianGrid, BarChart, Bar, XAxis, 
     YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
-
+    import { Link , NavLink} from 'react-router-dom';
 
 export default function Home() {
     
@@ -199,8 +199,8 @@ export default function Home() {
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Pages:</h6>
-                            <a className="collapse-item" href="/">Home</a>
-                            <a className="collapse-item" href="/NewCase">Add new case</a>
+                            <Link to ="/" className="collapse-item" href="/">Home</Link>
+                            <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
                         </div>
                     </div>
                 </li>

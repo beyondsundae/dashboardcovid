@@ -1,18 +1,20 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as HashRouter, Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch , browserHistory, NavLink} from 'react-router-dom';
 import Home from './Pages/Home';
 import NewCase from './Pages/NewCase';
 function App() {
   return (
     <div id="wrapper">
       {/* <HashRouter > */}
-    {/* <Router> */}
+    <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/NewCase" component={NewCase} />
+          <Route  path="/NewCase" component={NewCase} />
         </Switch>
-      {/* </Router> */}
+       
+
+      </Router>
       {/* </HashRouter> */}
     </div>
   );
