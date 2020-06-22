@@ -13,7 +13,7 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
     ComposedChart, LineChart, Line, AreaChart, 
     Area, CartesianGrid, BarChart, Bar, XAxis, 
     YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
-    import { Link , NavLink} from 'react-router-dom';
+    import { Link } from 'react-router-dom';
 
 export default function Home() {
     

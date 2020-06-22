@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch , browserHistory, NavLink} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch , browserHistory} from 'react-router-dom';
 import Home from './Pages/Home';
 import NewCase from './Pages/NewCase';
 function App() {
