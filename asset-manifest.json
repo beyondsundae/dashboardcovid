@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/dashboardcovid/static/css/main.d678215b.chunk.css",
-    "main.js": "/dashboardcovid/static/js/main.ee0b6bcb.chunk.js",
-    "main.js.map": "/dashboardcovid/static/js/main.ee0b6bcb.chunk.js.map",
+    "main.js": "/dashboardcovid/static/js/main.64db48f2.chunk.js",
+    "main.js.map": "/dashboardcovid/static/js/main.64db48f2.chunk.js.map",
     "runtime-main.js": "/dashboardcovid/static/js/runtime-main.ad36ffc6.js",
     "runtime-main.js.map": "/dashboardcovid/static/js/runtime-main.ad36ffc6.js.map",
-    "static/css/2.3765edba.chunk.css": "/dashboardcovid/static/css/2.3765edba.chunk.css",
-    "static/js/2.8210883c.chunk.js": "/dashboardcovid/static/js/2.8210883c.chunk.js",
-    "static/js/2.8210883c.chunk.js.map": "/dashboardcovid/static/js/2.8210883c.chunk.js.map",
+    "static/css/2.90c21ba5.chunk.css": "/dashboardcovid/static/css/2.90c21ba5.chunk.css",
+    "static/js/2.a206a75c.chunk.js": "/dashboardcovid/static/js/2.a206a75c.chunk.js",
+    "static/js/2.a206a75c.chunk.js.map": "/dashboardcovid/static/js/2.a206a75c.chunk.js.map",
     "index.html": "/dashboardcovid/index.html",
-    "precache-manifest.a74aa23e09e7b28eb0a9a7ff1b472876.js": "/dashboardcovid/precache-manifest.a74aa23e09e7b28eb0a9a7ff1b472876.js",
+    "precache-manifest.a98e695c966833b2bdd9ccac3ffcc065.js": "/dashboardcovid/precache-manifest.a98e695c966833b2bdd9ccac3ffcc065.js",
     "service-worker.js": "/dashboardcovid/service-worker.js",
-    "static/css/2.3765edba.chunk.css.map": "/dashboardcovid/static/css/2.3765edba.chunk.css.map",
+    "static/css/2.90c21ba5.chunk.css.map": "/dashboardcovid/static/css/2.90c21ba5.chunk.css.map",
     "static/css/main.d678215b.chunk.css.map": "/dashboardcovid/static/css/main.d678215b.chunk.css.map",
-    "static/js/2.8210883c.chunk.js.LICENSE.txt": "/dashboardcovid/static/js/2.8210883c.chunk.js.LICENSE.txt",
+    "static/js/2.a206a75c.chunk.js.LICENSE.txt": "/dashboardcovid/static/js/2.a206a75c.chunk.js.LICENSE.txt",
     "static/media/App.css": "/dashboardcovid/static/media/MitrRegular.1f6d643f.ttf",
     "static/media/exercise.svg": "/dashboardcovid/static/media/exercise.ed9f707b.svg",
     "static/media/female.svg": "/dashboardcovid/static/media/female.35f48a8a.svg",
@@ -25,9 +25,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.ad36ffc6.js",
-    "static/css/2.3765edba.chunk.css",
-    "static/js/2.8210883c.chunk.js",
+    "static/css/2.90c21ba5.chunk.css",
+    "static/js/2.a206a75c.chunk.js",
     "static/css/main.d678215b.chunk.css",
-    "static/js/main.ee0b6bcb.chunk.js"
+    "static/js/main.64db48f2.chunk.js"
   ]
 }
