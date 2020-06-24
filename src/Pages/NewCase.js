@@ -27,7 +27,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import {DatePicker} from '@material-ui/pickers';
 import Divider from "@material-ui/core/Divider";
 import Toolbar from '@material-ui/core/Toolbar';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import MenuItem from '@material-ui/core/MenuItem';
 import Collapse from "@material-ui/core/Collapse";
@@ -59,7 +59,7 @@ import {
   } from '@material-ui/pickers';
   import MomentUtils from '@date-io/moment';
   import DateFnsUtils from '@date-io/date-fns';
-  
+  import {Nav} from 'react-bootstrap';
 
 
     const useStyles = makeStyles({
@@ -406,6 +406,15 @@ import {
             NoCovid ()
         }
 
+        const Onloadxx =()=>{
+            MenuAddress();
+            updateValue ()
+            TimeRanger();
+        handleClickxxB3();
+        handleClickxxB2();
+        handleClickxxB1();
+        }
+
         const MenuAddress =()=>{
             axios.get('http://localhost:4000/address')
             .then(function(response){
@@ -490,10 +499,9 @@ import {
         /*
             !Open-Close-Submit Accept Dialog
         */
+
     
         useEffect(() => {
-            
-
             // setTimeout(() => {
             //     console.log('Hello, World!')
             //   }, 3000);
@@ -908,7 +916,7 @@ import {
                             <div className="bg-white py-2 collapse-inner rounded">
                                 <h6 className="collapse-header">Pages:</h6>
                                 <Link to ="/" className="collapse-item" href="/">Home</Link>
-                                <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
+                            <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
                             </div>
                         </div>
                     </li>
@@ -925,6 +933,7 @@ import {
     {/* **************** TopBar Box ******************** */}
                         {/* Topbar */}
                         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <button onClick={() =>Onloadxx()}>wow</button>
                                 {/* <div className="btn btn-danger" onClick={()=>Quarantine()} >vbvb</div> */}
         {/* **************** BigBoxGirl ******************** */}
                             {/* Topbar Navbar */}

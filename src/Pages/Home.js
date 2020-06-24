@@ -13,7 +13,9 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
     ComposedChart, LineChart, Line, AreaChart, 
     Area, CartesianGrid, BarChart, Bar, XAxis, 
     YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
-    import { Link } from 'react-router-dom';
+
+import { Link ,Redirect} from 'react-router-dom';
+import {Nav} from 'react-bootstrap';
 
 export default function Home() {
     
@@ -155,6 +157,13 @@ export default function Home() {
         )
     }
 
+    const Onloadxx =()=>{
+        Get7Days();
+            GetDataCovid();
+            GetProvinceAndGender();
+            TimeRanger ()
+    }
+
     useEffect(() => {
         // console.log("UseEffect")
         // console.log(xxxx)
@@ -164,6 +173,7 @@ export default function Home() {
         // console.table("State Date",Date)
         // console.log(SevenDays)
         // console.log(...DailyData)
+        
         })
 
     
@@ -218,7 +228,7 @@ export default function Home() {
     {/* **************** TopBar Box ******************** */}
                     {/* Topbar */}
                     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
+                    <button onClick={() =>Onloadxx()}>wow</button>
         {/* **************** BigBoxGirl ******************** */}
                         {/* Topbar Navbar */}
                         {/* <ul className="navbar-nav ml-auto "> */}

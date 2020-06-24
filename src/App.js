@@ -8,10 +8,12 @@ function App() {
     <div id="wrapper">
       {/* <HashRouter > */}
     {/* <Router> */}
+     
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/NewCase" component={NewCase} />
         </Switch>
+       
       {/* </Router> */}
       {/* </HashRouter> */}
     </div>
