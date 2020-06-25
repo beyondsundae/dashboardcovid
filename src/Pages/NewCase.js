@@ -82,14 +82,14 @@ import {
 
     const NewCase =()=>{
         
-        window.onload = function() {
-            MenuAddress();
-                updateValue ()
-                TimeRanger();
-            handleClickxxB3();
-            handleClickxxB2();
-            handleClickxxB1();
-        }
+        // window.onload = function() {
+        //     MenuAddress();
+        //         updateValue ()
+        //         TimeRanger();
+        //     handleClickxxB3();
+        //     handleClickxxB2();
+        //     handleClickxxB1();
+        // }
 
         const [open, setOpen] = useState(false);
         const [OpenconfirmAccept, setOpenconfirmAccept] = useState(false);
@@ -502,6 +502,7 @@ import {
 
     
         useEffect(() => {
+            Onloadxx()
             // setTimeout(() => {
             //     console.log('Hello, World!')
             //   }, 3000);
@@ -526,7 +527,8 @@ import {
             // console.log("อุณหภูมิ :" + Temperature)
             // console.table("ระบุผล :" + checkedRisk)
             // console.table("ผู้รายงาน :" + Recorder)
-        })
+
+        }, [])
 
     return (
 
@@ -933,7 +935,7 @@ import {
     {/* **************** TopBar Box ******************** */}
                         {/* Topbar */}
                         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                        <button onClick={() =>Onloadxx()}>wow</button>
+                        {/* <button onClick={() =>Onloadxx()}>wow</button> */}
                                 {/* <div className="btn btn-danger" onClick={()=>Quarantine()} >vbvb</div> */}
         {/* **************** BigBoxGirl ******************** */}
                             {/* Topbar Navbar */}

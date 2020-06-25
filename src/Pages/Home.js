@@ -19,12 +19,12 @@ import {Nav} from 'react-bootstrap';
 
 export default function Home() {
     
-    window.onload = function() {
-            Get7Days();
-            GetDataCovid();
-            GetProvinceAndGender();
-            TimeRanger ()
-    }
+    // window.onload = function() {
+    //         Get7Days();
+    //         GetDataCovid();
+    //         GetProvinceAndGender();
+    //         TimeRanger ()
+    // }
     
     const [TableCovid, setTableCovid] = useState();
     const [Confirmed, setConfirmed] = useState();
@@ -165,6 +165,7 @@ export default function Home() {
     }
 
     useEffect(() => {
+        Onloadxx()
         // console.log("UseEffect")
         // console.log(xxxx)
         // console.log(TableCovid)
@@ -174,7 +175,8 @@ export default function Home() {
         // console.log(SevenDays)
         // console.log(...DailyData)
         
-        })
+        
+        }, [])
 
     
     return (
@@ -228,7 +230,7 @@ export default function Home() {
     {/* **************** TopBar Box ******************** */}
                     {/* Topbar */}
                     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    <button onClick={() =>Onloadxx()}>wow</button>
+                    {/* <button onClick={() =>Onloadxx()}>wow</button> */}
         {/* **************** BigBoxGirl ******************** */}
                         {/* Topbar Navbar */}
                         {/* <ul className="navbar-nav ml-auto "> */}
