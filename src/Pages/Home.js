@@ -16,7 +16,9 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
     YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
 
 import { Link ,Redirect} from 'react-router-dom';
-import {Nav} from 'react-bootstrap';
+import Header from './Parts/Header';
+import SideBar from './Parts/SideBar';
+import Footer from './Parts/Footer';
 
 
 export default function Home() {
@@ -172,95 +174,21 @@ export default function Home() {
         
 {/* **************** Sidebar ******************** */}
             {/* Sidebar */}
-            <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    {/* **************** Big Home ******************** */}
-                {/* Sidebar - Brand */}
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                    <div class="sidebar-brand-icon rotate-n-15">
-                        <i className="fas fa-fw fa-tachometer-alt" />
-                    </div>
-                    <div class="sidebar-brand-text mx-3">Home</div>
-                </a>
-
-    {/* **************** Menu Begin ******************** */}
-                <div className="sidebar-heading" >
-                    <h4 id='useFont'>Menu</h4>
-                </div>
-
-                {/* Nav Item - Pages Collapse Menu */}
-                <li className="nav-item">
-                    <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <i className="fas fa-fw fa-cog" />
-                        <span>Route:</span>
-                    </a>
-                    <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                        <div className="bg-white py-2 collapse-inner rounded">
-                            <h6 className="collapse-header">Pages:</h6>
-                            <Link to ="/" className="collapse-item" href="/" >Home</Link>
-                            <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
-                            <Link to ="*" className="collapse-item" href="/NewCase">404</Link>
-                        </div>
-                    </div>
-                </li>
-
-                {/* Divider */}
-                <hr className="sidebar-divider" />
-   
-            </ul>
+            <SideBar/>
 
 {/* **************** Content ******************** */}
             {/* Content Wrapper */}
-            <div id="content-wrapper" className="d-flex flex-column border border-danger">
-                {/* Main Content */}
-                <div id="content" className=' border border-info'>
+            <div id="content-wrapper" className="d-flex flex-column">
 
-    {/* **************** TopBar Box ******************** */}
+{/* **************** TopBar ******************** */}
                     {/* Topbar */}
-                    <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                    {/* <button onClick={() =>Onloadxx()}>wow</button> */}
-        {/* **************** BigBoxGirl ******************** */}
-                        {/* Topbar Navbar */}
-                        {/* <ul className="navbar-nav ml-auto "> */}
-                            {/* Nav Item - Messages */}
-                            {/* <div className="topbar-divider d-none d-sm-block " /> */}
-
-        {/* **************** BoxGirl ******************** */}
-                            {/* Nav Item - User Information */}
-                            {/* <li className="nav-item dropdown no-arrow ">
-                                <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">Name Shit</span>
-                                    <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
-                                </a> */}
-
-        {/* **************** DropdownGirl ******************** */}
-                                {/* Dropdown - User Information */}
-                                {/* <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in " aria-labelledby="userDropdown">
-                                    <a className="dropdown-item" href="#">
-                                        <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
-                                            Profile
-                                        </a>
-                                    <a className="dropdown-item" href="#">
-                                        <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
-                                            Settings
-                                        </a>
-                                    <a className="dropdown-item" href="#">
-                                        <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-                                            Activity Log
-                                        </a>
-                                    <div className="dropdown-divider" />
-                                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                        <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
-                                            Logout
-                                        </a>
-                                </div>
-                            </li>
-                        </ul> */}
-                    </nav>
-                    {/* End of Topbar */}
+                    <Header/>
+    
+{/* **************** Main ******************** */}
+            {/* Main Content */}
+            <div id="content">
 
     {/* **************** ContentBox ******************** */}
-        {/* **************** ContentBoxTop ******************** */}
                     {/* Begin Page Content */}
                     <div className="container-fluid">
                         {/* Page Heading */}
@@ -452,14 +380,9 @@ export default function Home() {
 
 {/* **************** Footer ******************** */}
                 {/* Footer */}
-                <footer className="sticky-footer bg-white">
-                    <div className="container my-auto">
-                        <div className="copyright text-center my-auto">
-                            <h5>Made with ❤️  by @beyondsundae </h5>
-                        </div>
-                    </div>
-                </footer>
+                <Footer/>
             </div>
+
         </Fragment>
 
     )

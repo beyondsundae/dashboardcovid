@@ -1,5 +1,8 @@
 import React, { Fragment,useState, useEffect } from 'react'
 import './Components/App.css';
+import Header from './Parts/Header';
+import SideBar from './Parts/SideBar';
+import Footer from './Parts/Footer';
 import axios from 'axios';
 import moment from 'moment'
 import Box from "@material-ui/core/Box";
@@ -534,450 +537,24 @@ import {
        <Fragment>
             {/* Page Wrapper */}
 
-{/* **************** Dialog ******************** */}            
-            <Dialog 
-                fullWidth 
-                open={open} 
-                id='Dialog'
-                TransitionComponent={Transition}
-                className='p-5' 
-                onClose={handleClose}
-                aria-labelledby="form-dialog-title" 
-                class='container col col-sm-4 col-md-12 col-xl-8'
-                >
-                    <DialogTitle 
-                    id="form-dialog-title" 
-                    className='text-center mt-3'>
-                        <h1 id='useFont'>แบบสำรวจผู้มีความเสี่ยงในพื้นที่ </h1>
-                        <img style={{ width: "20%"}} src={survey}/>
-                    </DialogTitle><hr/>
-                    <DialogContent>
-                    
-                    <form
-                    id="SEND"
-                    name="SEND"
-                    onSubmit={ PrePost }>
-                        <TextField 
-                        required 
-                        autoFocus
-                        fullWidth
-                        type="text"
-                        label="เลขบัตรประชาชน" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{minLength: 13  ,maxLength: 13, style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ PersoID }
-                                onChange={ event =>  setPersoID(event.target.value) }
-                        />
-                        <br/><br/>
-
-                        <TextField 
-                        required 
-                        // fullWidth
-                        type="text"
-                        label="ชื่อ" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Name }
-                                onChange={ event =>  setName(event.target.value) }
-                        />
-                        <span>   </span>
-
-                        <TextField 
-                        required 
-                        // fullWidth
-                        type="text"
-                        label="นามสกุล" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ LastName }
-                                onChange={ event =>  setLastName(event.target.value) }
-                        />
-                        <br/><br/>
-
-                        <TextField 
-                        required 
-                        // fullWidth
-                        type="number"
-                        label="อายุ" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{min: 1, maxLength: 3, style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Age }
-                                onChange={ event =>  setAge(event.target.value) }
-                        />
-                        <br/><br/>
-
-                        <FormLabel component="legend" id='useFont'>เพศ</FormLabel>
-                        <Radio
-                            checked={Genderchecked === 'ชาย'}
-                            onChange={ event =>  setGenderchecked(event.target.value) }
-                            value="ชาย"
-                            color='primary'
-                            name="radio-button-demo"
-                            inputProps={{ 'aria-label': 'A' }}
-                        /><span id='useFont'>ชาย</span>
-                        <Radio
-                            checked={Genderchecked === 'หญิง'}
-                            onChange={ event =>  setGenderchecked(event.target.value) }
-                            value="หญิง"
-                            color='secondary'
-                            name="radio-button-demo"
-                            inputProps={{ 'aria-label': 'B' }}
-                        /><span id='useFont'>หญิง</span>
-                        <br/><br/>
-
-                        <TextField
-                            required
-                            fullWidth
-                            id="outlined-textarea"
-                            label="ที่อยู่"
-                            multiline
-                            rows={4}
-                            variant="outlined"
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}}
-                                value={ AddressPerson }
-                                onChange={ event =>  setAddressPerson(event.target.value) }
-                        />
-                        <br/><br/>
-
-                        <TextField 
-                        required 
-                        // fullWidth
-                        type="text"
-                        label="อาชีพ" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Job }
-                                onChange={ event =>  setJob(event.target.value) }
-                        />
-                        <br/><br/>
-
-                        <FormControl required id='formControl'>
-                        <InputLabel htmlFor="age-native-simple" id='useFont'>เดินทางมาจาก</InputLabel>
-                            <Select 
-                            native
-                            required 
-                            // fullwidth
-                            id="addressdropdown" 
-                            className='col col-11' 
-                            select 
-                            label="เดินทางมาจาก" 
-                                inputProps={{style: {fontFamily:'Mitr'}}} 
-                                InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                    value={ Comefrom } 
-                                    onChange={ event =>  setComefrom(event.target.value) } 
-                            >
-                                { ShowAddressxx } 
-                            </Select>
-                        </FormControl>
-                        <br/><br/>
-                        
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <DatePicker
-                            required 
-                            // autoOk
-                            id="JustPointer"
-                            variant="inline"
-                            label="วันที่เข้าหมุ่บ้าน (เดือน/วัน/ปี)"
-                            className='col col-6' 
-                            value={DateArrivedVillage}
-                            format="MM/dd/yyyy"
-                            onChange={date => onDateChange(date)}
-                            />
-                        </MuiPickersUtilsProvider>
-                        <br/><br/>
-
-                        <h5 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h5>
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckA}
-                                onChange={ event =>  setStateCheckA(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckA"
-                                color="primary"
-                        />}label="ไปสถานที่เสี่ยง"/>
-                        <br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckB}
-                                onChange={ event =>  setStateCheckB(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckB"
-                                color="primary"
-                        />}label="ไปสถานที่ที่มีคนมาก"/>
-                        <br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckC}
-                                onChange={ event =>  setStateCheckC(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckC"
-                                color="primary"
-                        />}label="ใกล้ชิดผู้ป่วย"/>
-                        <br/><br/>
-
-                        <TextField 
-                        required 
-                        // fullWidth
-                        type="number"
-                        label="อุณหภูมิ" 
-                        className="col col-4"
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{min: 35, max: 45, maxLength: 3, step:"0.1", style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Temperature }
-                                onChange={  event =>  setTemperature(event.target.value)  }
-                        />
-                        <br/><br/>
-                        
-                        <h5 id="useFont" className="ml-3">อาการ</h5>
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckD}
-                                onChange={ event =>  setStateCheckD(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckD"
-                                color="primary"
-                        />}label="ปวดศีรษะ"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckE}
-                                onChange={ event =>  setStateCheckE(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckE"
-                                color="primary"
-                        />}label="ไอ"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckF}
-                                onChange={ event =>  setStateCheckF(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckF"
-                                color="primary"
-                        />}label="มีเสมหะ"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckG}
-                                onChange={ event =>  setStateCheckG(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckG"
-                                color="primary"
-                        />}label="เจ็บคอ"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckH}
-                                onChange={ event =>  setStateCheckH(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckH"
-                                color="primary"
-                        />}label="ปวดกล้ามเนื้อ"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckI}
-                                onChange={ event =>  setStateCheckI(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckI"
-                                color="primary"
-                        />}label="หายใจลำบาก"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckJ}
-                                onChange={ event =>  setStateCheckJ(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckJ"
-                                color="primary"
-                        />}label="ท้องเสีย"/><br/>
-
-                        <FormControlLabel
-                            control={
-                            <Checkbox
-                                checked={stateCheckK}
-                                onChange={ event =>  setStateCheckK(event.target.checked) }
-                                className="ml-5"
-                                name="stateCheckK"
-                                color="primary"
-                        />}label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/>
-                        <br/><br/>
-
-                        <h5 id="useFont" className="ml-3">ระบุผล</h5>
-                        <Radio
-                            checked={checkedRisk === 'กักตัวเพื่อรอดูอาการ'}
-                            onChange={ event =>  setCheckedRisk(event.target.value) }
-                            className="ml-5"
-                            value="กักตัวเพื่อรอดูอาการ"
-                            color='primary'
-                            name="radio-button-demo"
-                            inputProps={{ 'aria-label': 'A' }}
-                        /><span id='useFont'>กักตัวเพื่อรอดูอาการ</span>
-                        <Radio
-                            checked={checkedRisk === 'มีความเสี่ยง'}
-                            onChange={ event =>  setCheckedRisk(event.target.value) }
-                            className="ml-1"
-                            value="มีความเสี่ยง"
-                            color='secondary'
-                            name="radio-button-demo"
-                            inputProps={{ 'aria-label': 'B' }}
-                        /><span id='useFont'>มีความเสี่ยง</span>
-                        <br/><br/>
-
-                        <TextField 
-                        required 
-                        fullWidth
-                        type="text"
-                        label="ผู้รายงาน" 
-                        // id="nameSender" 
-                        variant="outlined" 
-                            inputProps={{style: {fontFamily:'Mitr'}}} 
-                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                value={ Recorder }
-                                onChange={  event =>  setRecorder(event.target.value)  }
-                        />
-                        <br/><br/>
-                        </form>
-                    </DialogContent>
-                    
-                    <DialogActions>
-                    <br/><br/><br/><br/>
-                    <Button 
-                    id='useFont'
-                    size="large" 
-                    color="secondary"
-                    variant="contained" 
-                    onClick={ handleClose }  
-                    >
-                        ยกเลิก
-                    </Button>
-
-                    <Button 
-                    form="SEND"
-                    id='useFont'
-                    size="large" 
-                    type="submit"
-                    color="primary"
-                    variant="contained" 
-                     >
-                        เพิ่ม
-                    </Button>
-                    </DialogActions>
-                </Dialog>
-
 {/* **************** Sidebar ******************** */}
                 {/* Sidebar */}
-                <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    {/* **************** Big Home ******************** */}
-                    {/* Sidebar - Brand */}
-                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-                        <div class="sidebar-brand-icon rotate-n-15">
-                            <i className="fas fa-fw fa-tachometer-alt" />
-                        </div>
-                        <div class="sidebar-brand-text mx-3">Home</div>
-                    </a>
-
-    {/* **************** Menu Begin ******************** */}
-                    <div className="sidebar-heading">
-                        <h4 id='useFont'>Menu</h4>
-                    </div>
-                    {/* Nav Item - Pages Collapse Menu */}
-                    <li className="nav-item">
-                        <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                            <i className="fas fa-fw fa-cog" />
-                            <span>Route:</span>
-                        </a>
-                        <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                            <div className="bg-white py-2 collapse-inner rounded">
-                                <h6 className="collapse-header">Pages:</h6>
-                                <Link to ="/" className="collapse-item" href="/">Home</Link>
-                            <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
-                            </div>
-                        </div>
-                    </li>
-                    {/* Divider */}
-                    <hr className="sidebar-divider" />
-                </ul>
+                <SideBar/>
 
 {/* **************** Content ******************** */}
                 {/* Content Wrapper */}
                 <div id="content-wrapper" className="d-flex flex-column">
+
+{/* **************** TopBar ******************** */}
+                    {/* Topbar */}
+                    <Header/>
+
+{/* **************** Main ******************** */}
                     {/* Main Content */}
                     <div id="content">
-
-    {/* **************** TopBar Box ******************** */}
-                        {/* Topbar */}
-                        <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-                        {/* <button onClick={() =>Onloadxx()}>wow</button> */}
-                                {/* <div className="btn btn-danger" onClick={()=>Quarantine()} >vbvb</div> */}
-        {/* **************** BigBoxGirl ******************** */}
-                            {/* Topbar Navbar */}
-                            {/* <ul className="navbar-nav ml-auto"> */}
-                                {/* Nav Item - Messages */}
-                                {/* <div className="topbar-divider d-none d-sm-block" /> */}
-        
-        {/* **************** BoxGirl ******************** */}
-                                {/* Nav Item - User Information */}
-                                {/* <li className="nav-item dropdown no-arrow">
-                                    <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                                        <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
-                                    </a> */}
-
-        {/* **************** DropdownGirl ******************** */}
-                                    {/* Dropdown - User Information */}
-                                    {/* <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                        <a className="dropdown-item" href="#">
-                                            <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400" />
-                                            Profile
-                                        </a>
-                                        <a className="dropdown-item" href="#">
-                                            <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400" />
-                                            Settings
-                                        </a>
-                                        <a className="dropdown-item" href="#">
-                                            <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400" />
-                                            Activity Log
-                                        </a>
-                                        <div className="dropdown-divider" />
-                                        <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                            <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
-                                            Logout
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul> */}
-                        </nav>
-                        {/* End of Topbar */}
-
+   
     {/* **************** ContentBox ******************** */}
-        {/* **************** ContentBoxTop ******************** */}
+
                         {/* Begin Page Content */}
                         <div className="container-fluid">
                             {/* Page Heading */}
@@ -1309,97 +886,446 @@ import {
 
 {/* **************** Footer ******************** */}
                     {/* Footer */}
-                    <footer className="sticky-footer bg-white">
-                        <div className="container my-auto">
-                            <div className="copyright text-center my-auto">
-                                <h5>Made with ❤️  by @beyondsundae </h5>
-                            </div>
-                        </div>
-                    </footer>
+                    <Footer/>
                 </div>
 
+{/* ******************************** End Return ************************************ */}      
+            
+{/* **************** Dialog ******************** */}            
+            <Dialog 
+            fullWidth 
+            open={open} 
+            id='Dialog'
+            TransitionComponent={Transition}
+            className='p-5' 
+            onClose={handleClose}
+            aria-labelledby="form-dialog-title" 
+            class='container col col-sm-4 col-md-12 col-xl-8'
+            >
+                <DialogTitle 
+                id="form-dialog-title" 
+                className='text-center mt-3'>
+                    <h1 id='useFont'>แบบสำรวจผู้มีความเสี่ยงในพื้นที่ </h1>
+                    <img style={{ width: "20%"}} src={survey}/>
+                </DialogTitle><hr/>
+                <DialogContent>
+                
+                <form
+                id="SEND"
+                name="SEND"
+                onSubmit={ PrePost }>
+                    <TextField 
+                    required 
+                    autoFocus
+                    fullWidth
+                    type="text"
+                    label="เลขบัตรประชาชน" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{minLength: 13  ,maxLength: 13, style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ PersoID }
+                            onChange={ event =>  setPersoID(event.target.value) }
+                    />
+                    <br/><br/>
+
+                    <TextField 
+                    required 
+                    // fullWidth
+                    type="text"
+                    label="ชื่อ" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ Name }
+                            onChange={ event =>  setName(event.target.value) }
+                    />
+                    <span>   </span>
+
+                    <TextField 
+                    required 
+                    // fullWidth
+                    type="text"
+                    label="นามสกุล" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ LastName }
+                            onChange={ event =>  setLastName(event.target.value) }
+                    />
+                    <br/><br/>
+
+                    <TextField 
+                    required 
+                    // fullWidth
+                    type="number"
+                    label="อายุ" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{min: 1, maxLength: 3, style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ Age }
+                            onChange={ event =>  setAge(event.target.value) }
+                    />
+                    <br/><br/>
+
+                    <FormLabel component="legend" id='useFont'>เพศ</FormLabel>
+                    <Radio
+                        checked={Genderchecked === 'ชาย'}
+                        onChange={ event =>  setGenderchecked(event.target.value) }
+                        value="ชาย"
+                        color='primary'
+                        name="radio-button-demo"
+                        inputProps={{ 'aria-label': 'A' }}
+                    /><span id='useFont'>ชาย</span>
+                    <Radio
+                        checked={Genderchecked === 'หญิง'}
+                        onChange={ event =>  setGenderchecked(event.target.value) }
+                        value="หญิง"
+                        color='secondary'
+                        name="radio-button-demo"
+                        inputProps={{ 'aria-label': 'B' }}
+                    /><span id='useFont'>หญิง</span>
+                    <br/><br/>
+
+                    <TextField
+                        required
+                        fullWidth
+                        id="outlined-textarea"
+                        label="ที่อยู่"
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}}
+                            value={ AddressPerson }
+                            onChange={ event =>  setAddressPerson(event.target.value) }
+                    />
+                    <br/><br/>
+
+                    <TextField 
+                    required 
+                    // fullWidth
+                    type="text"
+                    label="อาชีพ" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ Job }
+                            onChange={ event =>  setJob(event.target.value) }
+                    />
+                    <br/><br/>
+
+                    <FormControl required id='formControl'>
+                    <InputLabel htmlFor="age-native-simple" id='useFont'>เดินทางมาจาก</InputLabel>
+                        <Select 
+                        native
+                        required 
+                        // fullwidth
+                        id="addressdropdown" 
+                        className='col col-11' 
+                        select 
+                        label="เดินทางมาจาก" 
+                            inputProps={{style: {fontFamily:'Mitr'}}} 
+                            InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                value={ Comefrom } 
+                                onChange={ event =>  setComefrom(event.target.value) } 
+                        >
+                            { ShowAddressxx } 
+                        </Select>
+                    </FormControl>
+                    <br/><br/>
+                    
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <DatePicker
+                        required 
+                        // autoOk
+                        id="JustPointer"
+                        variant="inline"
+                        label="วันที่เข้าหมุ่บ้าน (เดือน/วัน/ปี)"
+                        className='col col-6' 
+                        value={DateArrivedVillage}
+                        format="MM/dd/yyyy"
+                        onChange={date => onDateChange(date)}
+                        />
+                    </MuiPickersUtilsProvider>
+                    <br/><br/>
+
+                    <h5 id="useFont" className="ml-3">ประเมินความเสี่ยงเบื้องต้น ในรอบ 14 วัน</h5>
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckA}
+                            onChange={ event =>  setStateCheckA(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckA"
+                            color="primary"
+                    />}label="ไปสถานที่เสี่ยง"/>
+                    <br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckB}
+                            onChange={ event =>  setStateCheckB(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckB"
+                            color="primary"
+                    />}label="ไปสถานที่ที่มีคนมาก"/>
+                    <br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckC}
+                            onChange={ event =>  setStateCheckC(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckC"
+                            color="primary"
+                    />}label="ใกล้ชิดผู้ป่วย"/>
+                    <br/><br/>
+
+                    <TextField 
+                    required 
+                    // fullWidth
+                    type="number"
+                    label="อุณหภูมิ" 
+                    className="col col-4"
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{min: 35, max: 45, maxLength: 3, step:"0.1", style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ Temperature }
+                            onChange={  event =>  setTemperature(event.target.value)  }
+                    />
+                    <br/><br/>
+                    
+                    <h5 id="useFont" className="ml-3">อาการ</h5>
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckD}
+                            onChange={ event =>  setStateCheckD(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckD"
+                            color="primary"
+                    />}label="ปวดศีรษะ"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckE}
+                            onChange={ event =>  setStateCheckE(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckE"
+                            color="primary"
+                    />}label="ไอ"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckF}
+                            onChange={ event =>  setStateCheckF(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckF"
+                            color="primary"
+                    />}label="มีเสมหะ"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckG}
+                            onChange={ event =>  setStateCheckG(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckG"
+                            color="primary"
+                    />}label="เจ็บคอ"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckH}
+                            onChange={ event =>  setStateCheckH(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckH"
+                            color="primary"
+                    />}label="ปวดกล้ามเนื้อ"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckI}
+                            onChange={ event =>  setStateCheckI(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckI"
+                            color="primary"
+                    />}label="หายใจลำบาก"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckJ}
+                            onChange={ event =>  setStateCheckJ(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckJ"
+                            color="primary"
+                    />}label="ท้องเสีย"/><br/>
+
+                    <FormControlLabel
+                        control={
+                        <Checkbox
+                            checked={stateCheckK}
+                            onChange={ event =>  setStateCheckK(event.target.checked) }
+                            className="ml-5"
+                            name="stateCheckK"
+                            color="primary"
+                    />}label="ไม่สามารถรับรู้กลิ่น/รสชาติ"/>
+                    <br/><br/>
+
+                    <h5 id="useFont" className="ml-3">ระบุผล</h5>
+                    <Radio
+                        checked={checkedRisk === 'กักตัวเพื่อรอดูอาการ'}
+                        onChange={ event =>  setCheckedRisk(event.target.value) }
+                        className="ml-5"
+                        value="กักตัวเพื่อรอดูอาการ"
+                        color='primary'
+                        name="radio-button-demo"
+                        inputProps={{ 'aria-label': 'A' }}
+                    /><span id='useFont'>กักตัวเพื่อรอดูอาการ</span>
+                    <Radio
+                        checked={checkedRisk === 'มีความเสี่ยง'}
+                        onChange={ event =>  setCheckedRisk(event.target.value) }
+                        className="ml-1"
+                        value="มีความเสี่ยง"
+                        color='secondary'
+                        name="radio-button-demo"
+                        inputProps={{ 'aria-label': 'B' }}
+                    /><span id='useFont'>มีความเสี่ยง</span>
+                    <br/><br/>
+
+                    <TextField 
+                    required 
+                    fullWidth
+                    type="text"
+                    label="ผู้รายงาน" 
+                    // id="nameSender" 
+                    variant="outlined" 
+                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                            value={ Recorder }
+                            onChange={  event =>  setRecorder(event.target.value)  }
+                    />
+                    <br/><br/>
+                    </form>
+                </DialogContent>
+                
+                <DialogActions>
+                <br/><br/><br/><br/>
+                <Button 
+                id='useFont'
+                size="large" 
+                color="secondary"
+                variant="contained" 
+                onClick={ handleClose }  
+                >
+                    ยกเลิก
+                </Button>
+
+                <Button 
+                form="SEND"
+                id='useFont'
+                size="large" 
+                type="submit"
+                color="primary"
+                variant="contained" 
+                >
+                    เพิ่ม
+                </Button>
+                </DialogActions>
+            </Dialog>
 
 {/* **************** AcceptDialog ******************** */}  
-                <div className='containter row pl-2'>       
-                    <div >
-                                <Dialog fullWidth 
-                                TransitionComponent={Transition2}
-                                    open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
-                                    aria-labelledby="form-dialog-title" id='Dialog2'>
-                                        <h3 id='useFont' className='ml-4 mt-4 mb-3'>แก้ไขผล</h3>
-                                        <DialogContent>
-                                            <DialogContentText id='useFont'>
-                                                ต้องการเปลี่ยนสถานะของ <strong >{AcceptPeople}</strong>  โปรดกรอกชื่อและกดปุ่ม <strong>"ยืนยัน"</strong>.
-                                            </DialogContentText>
-                                            <form id="SENDACC" name="SENDACC" onSubmit={ handleClickCloseConfirmAcceptWihtAccept }>
-                                                <TextField
-                                                    required
-                                                    autoFocus
-                                                    margin="dense"
-                                                    id="name"
-                                                    label="ผู้แก้ไขผล"
-                                                    inputProps={{style: {fontFamily:'Mitr'}}} 
-                                                    InputLabelProps={{style: {fontFamily:'Mitr'}}} 
-                                                    value={ RecorderWhoChangeState }
-                                                    onChange={ event =>  setRecorderWhoChangeState(event.target.value) }
-                                                    type="text"
-                                                    fullWidth
-                                                />
-                                                    <br/><br/>
-                                                    {/* <Checkbox
-                                                        checked={checked}
-                                                        onChange={handleChange}
-                                                        value="primary"
-                                                        inputProps={{ 'aria-label': 'primary checkbox' }}
-                                                    /> */}
-                                                    <p id='useFont'>ต้องการเปลี่ยนสถานะเป็น</p>
-                                                    <Radio
-                                                    
-                                                        checked={checkedAfterquarantine === 'ไม่มีอาการ'}
-                                                        onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
-                                                        value="ไม่มีอาการ"
-                                                        color='primary'
-                                                        name="radio-button-demo"
-                                                        inputProps={{ 'aria-label': 'A' }}
-                                                    /><span id='useFont'>ไม่มีอาการ</span>
-                                                    <Radio
-                                                        checked={checkedAfterquarantine === 'มีความเสี่ยง'}
-                                                        onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
-                                                        value="มีความเสี่ยง"
-                                                        color='secondary'
-                                                        name="radio-button-demo"
-                                                        inputProps={{ 'aria-label': 'B' }}
-                                                    /><span id='useFont'>มีความเสี่ยง</span>
-                                                    
-                                            </form>
-                                        </DialogContent>
+    <div className='containter row pl-2'>       
+            <div >
+                    <Dialog fullWidth 
+                    TransitionComponent={Transition2}
+                        open={OpenconfirmAccept} onClose={handleClickCloseConfirmAccept} 
+                        aria-labelledby="form-dialog-title" id='Dialog2'>
+                            <h3 id='useFont' className='ml-4 mt-4 mb-3'>แก้ไขผล</h3>
+                            <DialogContent>
+                                <DialogContentText id='useFont'>
+                                    ต้องการเปลี่ยนสถานะของ <strong >{AcceptPeople}</strong>  โปรดกรอกชื่อและกดปุ่ม <strong>"ยืนยัน"</strong>.
+                                </DialogContentText>
+                                <form id="SENDACC" name="SENDACC" onSubmit={ handleClickCloseConfirmAcceptWihtAccept }>
+                                    <TextField
+                                        required
+                                        autoFocus
+                                        margin="dense"
+                                        id="name"
+                                        label="ผู้แก้ไขผล"
+                                        inputProps={{style: {fontFamily:'Mitr'}}} 
+                                        InputLabelProps={{style: {fontFamily:'Mitr'}}} 
+                                        value={ RecorderWhoChangeState }
+                                        onChange={ event =>  setRecorderWhoChangeState(event.target.value) }
+                                        type="text"
+                                        fullWidth
+                                    />
+                                        <br/><br/>
+                                        {/* <Checkbox
+                                            checked={checked}
+                                            onChange={handleChange}
+                                            value="primary"
+                                            inputProps={{ 'aria-label': 'primary checkbox' }}
+                                        /> */}
+                                        <p id='useFont'>ต้องการเปลี่ยนสถานะเป็น</p>
+                                        <Radio
                                         
-                                        <DialogActions>
-                                        <Button 
-                                            id='AlertButton2' 
-                                            variant="contained" 
-                                            color="secondary"
-                                            size="large"
-                                            onClick={handleClickCloseConfirmAccept}><AlertTitle id='useFont'>ยกเลิก</AlertTitle>
-                                        </Button>
-                                        <Button 
-                                            form="SENDACC"
-                                            type="submit"
-                                            id='AlertButton' 
-                                            variant="contained" 
-                                            color="primary"
-                                            size="large"
-                                            // onClick={handleClickCloseConfirmAcceptWihtAccept}
-                                            >
-                                                <AlertTitle id='useFont'>ยืนยัน</AlertTitle>
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
+                                            checked={checkedAfterquarantine === 'ไม่มีอาการ'}
+                                            onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
+                                            value="ไม่มีอาการ"
+                                            color='primary'
+                                            name="radio-button-demo"
+                                            inputProps={{ 'aria-label': 'A' }}
+                                        /><span id='useFont'>ไม่มีอาการ</span>
+                                        <Radio
+                                            checked={checkedAfterquarantine === 'มีความเสี่ยง'}
+                                            onChange={ event =>  setCheckedAfterquarantine(event.target.value) }
+                                            value="มีความเสี่ยง"
+                                            color='secondary'
+                                            name="radio-button-demo"
+                                            inputProps={{ 'aria-label': 'B' }}
+                                        /><span id='useFont'>มีความเสี่ยง</span>
+                                        
+                                </form>
+                            </DialogContent>
+                            
+                            <DialogActions>
+                            <Button 
+                                id='AlertButton2' 
+                                variant="contained" 
+                                color="secondary"
+                                size="large"
+                                onClick={handleClickCloseConfirmAccept}><AlertTitle id='useFont'>ยกเลิก</AlertTitle>
+                            </Button>
+                            <Button 
+                                form="SENDACC"
+                                type="submit"
+                                id='AlertButton' 
+                                variant="contained" 
+                                color="primary"
+                                size="large"
+                                // onClick={handleClickCloseConfirmAcceptWihtAccept}
+                                >
+                                    <AlertTitle id='useFont'>ยืนยัน</AlertTitle>
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </div>  
-            </Fragment>
-
-
+</Fragment>
 
        
     )

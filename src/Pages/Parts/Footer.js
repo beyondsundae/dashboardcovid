@@ -5,7 +5,7 @@ function Footer() {
         <>
 {/* **************** Footer ******************** */}
             {/* Footer */}
-            <footer className="sticky-footer bg-white">
+            <footer className="sticky-footer bg-white mt-4">
                 <div className="container my-auto">
                     <div className="copyright text-center my-auto">
                         <h5>Made with ❤️  by @beyondsundae </h5>
