@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/dashboardcovid/static/css/main.d678215b.chunk.css",
-    "main.js": "/dashboardcovid/static/js/main.2d8c339f.chunk.js",
-    "main.js.map": "/dashboardcovid/static/js/main.2d8c339f.chunk.js.map",
+    "main.js": "/dashboardcovid/static/js/main.b267c306.chunk.js",
+    "main.js.map": "/dashboardcovid/static/js/main.b267c306.chunk.js.map",
     "runtime-main.js": "/dashboardcovid/static/js/runtime-main.ad36ffc6.js",
     "runtime-main.js.map": "/dashboardcovid/static/js/runtime-main.ad36ffc6.js.map",
     "static/css/2.90c21ba5.chunk.css": "/dashboardcovid/static/css/2.90c21ba5.chunk.css",
-    "static/js/2.f47d148b.chunk.js": "/dashboardcovid/static/js/2.f47d148b.chunk.js",
-    "static/js/2.f47d148b.chunk.js.map": "/dashboardcovid/static/js/2.f47d148b.chunk.js.map",
+    "static/js/2.904df1a4.chunk.js": "/dashboardcovid/static/js/2.904df1a4.chunk.js",
+    "static/js/2.904df1a4.chunk.js.map": "/dashboardcovid/static/js/2.904df1a4.chunk.js.map",
     "index.html": "/dashboardcovid/index.html",
-    "precache-manifest.048ce07a77dc80c02a24ec94717f1cbb.js": "/dashboardcovid/precache-manifest.048ce07a77dc80c02a24ec94717f1cbb.js",
+    "precache-manifest.ee84c1b53f24e7661360b20b1ca842a3.js": "/dashboardcovid/precache-manifest.ee84c1b53f24e7661360b20b1ca842a3.js",
     "service-worker.js": "/dashboardcovid/service-worker.js",
     "static/css/2.90c21ba5.chunk.css.map": "/dashboardcovid/static/css/2.90c21ba5.chunk.css.map",
     "static/css/main.d678215b.chunk.css.map": "/dashboardcovid/static/css/main.d678215b.chunk.css.map",
-    "static/js/2.f47d148b.chunk.js.LICENSE.txt": "/dashboardcovid/static/js/2.f47d148b.chunk.js.LICENSE.txt",
+    "static/js/2.904df1a4.chunk.js.LICENSE.txt": "/dashboardcovid/static/js/2.904df1a4.chunk.js.LICENSE.txt",
     "static/media/App.css": "/dashboardcovid/static/media/MitrRegular.1f6d643f.ttf",
     "static/media/exercise.svg": "/dashboardcovid/static/media/exercise.ed9f707b.svg",
     "static/media/female.svg": "/dashboardcovid/static/media/female.35f48a8a.svg",
@@ -26,8 +26,8 @@
   "entrypoints": [
     "static/js/runtime-main.ad36ffc6.js",
     "static/css/2.90c21ba5.chunk.css",
-    "static/js/2.f47d148b.chunk.js",
+    "static/js/2.904df1a4.chunk.js",
     "static/css/main.d678215b.chunk.css",
-    "static/js/main.2d8c339f.chunk.js"
+    "static/js/main.b267c306.chunk.js"
   ]
 }
