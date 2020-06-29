@@ -59,7 +59,6 @@ import {
   } from '@material-ui/pickers';
   import MomentUtils from '@date-io/moment';
   import DateFnsUtils from '@date-io/date-fns';
-  import {Nav} from 'react-bootstrap';
 
 
     const useStyles = makeStyles({
@@ -893,7 +892,7 @@ import {
 
 {/* **************** Sidebar ******************** */}
                 {/* Sidebar */}
-                <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
     {/* **************** Big Home ******************** */}
                     {/* Sidebar - Brand */}
@@ -906,7 +905,7 @@ import {
 
     {/* **************** Menu Begin ******************** */}
                     <div className="sidebar-heading">
-                        Menu
+                        <h4 id='useFont'>Menu</h4>
                     </div>
                     {/* Nav Item - Pages Collapse Menu */}
                     <li className="nav-item">
@@ -1313,7 +1312,7 @@ import {
                     <footer className="sticky-footer bg-white">
                         <div className="container my-auto">
                             <div className="copyright text-center my-auto">
-                                <span>Copyright © Shit Website 2077</span>
+                                <h5>Made with ❤️  by @beyondsundae </h5>
                             </div>
                         </div>
                     </footer>

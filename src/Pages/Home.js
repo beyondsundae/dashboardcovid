@@ -1,4 +1,5 @@
 import React, { Fragment,useState, useEffect } from 'react'
+import './Components/App.css';
 import axios from 'axios';
 import AnimatedNumber from "animated-number-react";
 import anime from 'animejs/lib/anime.es.js'
@@ -16,6 +17,7 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
 
 import { Link ,Redirect} from 'react-router-dom';
 import {Nav} from 'react-bootstrap';
+
 
 export default function Home() {
     
@@ -87,22 +89,6 @@ export default function Home() {
             const Original = response.data;
             const QueryData = Original.Data 
             setDailyData(QueryData)
-        //    const result7Days = QueryDate.map((item) => {
-        //         return(
-        //             item.Date > moment().subtract(7, 'days').calendar()
-        //             ?
-        //                 <p key={item.Date}>
-        //                     {console.log(item.Date, item.NewConfirmed)}
-        //                     {item.Date}{" "}{item.NewConfirmed}
-                            
-        //                 </p>
-                    
-        //             :null
-        //             )    
-        //         })
-            // console.log(result7Days)
-            
-            // setSevenDays(result7Days)
         })}
 
     function GetProvinceAndGender (){
@@ -186,7 +172,7 @@ export default function Home() {
         
 {/* **************** Sidebar ******************** */}
             {/* Sidebar */}
-            <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion " id="accordionSidebar">
+            <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
     {/* **************** Big Home ******************** */}
                 {/* Sidebar - Brand */}
@@ -198,8 +184,8 @@ export default function Home() {
                 </a>
 
     {/* **************** Menu Begin ******************** */}
-                <div className="sidebar-heading">
-                    Menu
+                <div className="sidebar-heading" >
+                    <h4 id='useFont'>Menu</h4>
                 </div>
 
                 {/* Nav Item - Pages Collapse Menu */}
@@ -211,21 +197,23 @@ export default function Home() {
                     <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div className="bg-white py-2 collapse-inner rounded">
                             <h6 className="collapse-header">Pages:</h6>
-                            <Link to ="/" className="collapse-item" href="/">Home</Link>
+                            <Link to ="/" className="collapse-item" href="/" >Home</Link>
                             <Link to ="/NewCase" className="collapse-item" href="/NewCase">Add new case</Link>
+                            <Link to ="*" className="collapse-item" href="/NewCase">404</Link>
                         </div>
                     </div>
                 </li>
 
                 {/* Divider */}
                 <hr className="sidebar-divider" />
+   
             </ul>
 
 {/* **************** Content ******************** */}
             {/* Content Wrapper */}
-            <div id="content-wrapper" className="d-flex flex-column">
+            <div id="content-wrapper" className="d-flex flex-column border border-danger">
                 {/* Main Content */}
-                <div id="content">
+                <div id="content" className=' border border-info'>
 
     {/* **************** TopBar Box ******************** */}
                     {/* Topbar */}
@@ -281,7 +269,7 @@ export default function Home() {
                             {/* <h1 className='wow'></h1> */}
                             
                         </div>
-                            <p class='mb-4' id='runnn'>updated: {UpdateDate}</p><br/>
+                            <p class='mb-4' id='runnn'><p >updated: {UpdateDate}</p></p><br/>
 
         {/* **************** Cards ******************** */}
                         {/* Content Row */}
@@ -447,7 +435,7 @@ export default function Home() {
                                                 <div class='col '/>
 
                                                 
-                                                <div class='col col-5 col-md-5'>
+                                                <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
                                                 <img style={{ width: "70%"}} src={female}/>
                                                     <br/><br/>
                                                     <h3>Female: {Gender.Female}</h3>
@@ -467,7 +455,7 @@ export default function Home() {
                 <footer className="sticky-footer bg-white">
                     <div className="container my-auto">
                         <div className="copyright text-center my-auto">
-                            <span>Copyright © Shit Website 2077</span>
+                            <h5>Made with ❤️  by @beyondsundae </h5>
                         </div>
                     </div>
                 </footer>
