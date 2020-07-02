@@ -15,7 +15,17 @@ import { Treemap, PieChart, Pie,ResponsiveContainer,
     Area, CartesianGrid, BarChart, Bar, XAxis, 
     YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
 
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+
 import { Link ,Redirect} from 'react-router-dom';
+import { MDBDataTable } from 'mdbreact';
 import Header from './Parts/Header';
 import SideBar from './Parts/SideBar';
 import Footer from './Parts/Footer';
@@ -43,11 +53,54 @@ export default function Home() {
     const [Province, setProvince] = useState([]);
     const [Gender, setGender] = useState([]);
     const [DailyData, setDailyData] = useState([]);
-    const [xxxx2, setxxxx2] = useState();
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = event => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
+    const dataProvince = {
+        columns : [
+            {label: 'name', field: 'Name', width: 10 },
+            {label: 'amount', field: 'Amount', width: 15 }
+        ],
+
+        rows : [
+            {name: 'Bangkok', amount: Province.Bangkok}, {name: 'Phuket', amount: Province.Phuket},{name: 'Nonthaburi', amount: Province.Nonthaburi},
+            {name: 'Samut Prakan', amount: Province["Samut Prakan"]}, {name: 'Yala', amount: Province.Yala},{name: 'Songkhla', amount: Province.Songkhla},
+            {name: 'Chonburi', amount: Province["Chonburi"]}, {name: 'Pattani', amount: Province.Pattani},{name: 'Narathiwat', amount: Province.Narathiwat},
+            {name: 'Chiang Mai', amount: Province["Chiang Mai"]}, {name: 'Pathum Thani', amount: Province["Pathum Thani"]},{name: 'Nakhon Pathom', amount: Province["Nakhon Pathom"]},
+            {name: 'Chumphon', amount: Province.Chumphon}, {name: 'Chachoengsao', amount: Province.Chachoengsao},{name: 'Krabi', amount: Province.Krabi},
+            {name: 'Nakhon Ratchasima', amount: Province["Nakhon Ratchasima"]}, {name: 'Satun', amount: Province.Satun},{name: 'Surat Thani', amount: Province["Surat Thani"]},
+            {name: 'Prachuap Khiri Khan', amount: Province["Prachuap Khiri Khan"]}, {name: 'Ubon Ratchathani', amount: Province["Ubon Ratchathani"]},{name: 'Phatthalung', amount: Province.Phatthalung},
+            {name: 'Samut Sakhon', amount: Province["Samut Sakhon"]}, {name: 'Buriram', amount: Province.Buriram},{name: 'Nakhon Si Thammarat', amount: Province["Nakhon Si Thammarat"]},
+            {name: 'Udon Thani', amount: Province["Udon Thani"]}, {name: 'Sa Kaeo', amount: Province["Sa Kaeo"]},{name: 'Surin', amount: Province.Surin},
+            {name: 'Kanchanaburi', amount: Province.Kanchanaburi}, {name: 'Nakhon Sawan', amount: Province["Nakhon Sawan"]},{name: 'Prachinburi', amount: Province.Prachinburi},
+            {name: 'Chiang Rai', amount: Province["Chiang Rai"]}, {name: 'Sisaket', amount: Province.Sisaket},{name: 'Trang', amount: Province.Trang},
+            {name: 'Ratchaburi', amount: Province.Ratchaburi}, {name: 'Suphan Buri', amount: Province["Suphan Buri"]},{name: 'Rayong', amount: Province.Rayong},
+            {name: 'Phitsanulok', amount: Province.Phitsanulok}, {name: 'Khon Kaen', amount: Province["Khon Kaen"]},{name: 'Mae Hong Son', amount: Province["Mae Hong Son"]},
+            {name: 'Saraburi', amount: Province.Saraburi}, {name: 'Loei', amount: Province.Loei},{name: 'Phra Nakhon Si Ayutthaya', amount: Province["Phra Nakhon Si Ayutthaya"]},
+            {name: 'Lampang', amount: Province.Lampang}, {name: 'Lamphun', amount: Province.Lamphun},{name: 'Mukdahan', amount: Province.Mukdahan},
+            {name: 'Phetchabun', amount: Province.Phetchabun}, {name: 'Phayao', amount: Province.Phayao},{name: 'Sukhothai', amount: Province.Sukhothai},
+            {name: 'Tak', amount: Province.Tak}, {name: 'Nong Bua Lamphu', amount: Province["Nong Bua Lamphu"]},{name: 'Chanthaburi', amount: Province.Chanthaburi},
+            {name: 'Roi Et', amount: Province["Roi Et"]}, {name: 'Uttaradit', amount: Province.Uttaradit},{name: 'Kalasin', amount: Province.Kalasin},
+            {name: 'Chaiyaphum', amount: Province.Chaiyaphum}, {name: 'Nong Khai', amount: Province["Nong Khai"]},{name: 'Phetchaburi', amount: Province.Phetchaburi},
+            {name: 'Nakhon Phanom', amount: Province["Nakhon Phanom"]}, {name: 'Phang Nga', amount: Province["Phang Nga"]},{name: 'Lopburi', amount: Province.Lopburi},
+            {name: 'Amnat Charoen', amount: Province["Amnat Charoen"]}, {name: 'Nakhon Nayok', amount: Province["Nakhon Nayok"]},{name: 'Phrae', amount: Province.Phrae},
+            {name: 'Uthai Thani', amount: Province["Uthai Thani"]}, {name: 'Yasothon', amount: Province.Yasothon},{name: 'Sakon Nakhon', amount: Province["Sakon Nakhon"]},   
+            {name: 'Samut Songkhram', amount: Province["Samut Songkhram"]}, {name: 'Maha Sarakham', amount: Province["Maha Sarakham"]}
+        ]
+    }
+
 
     const formatValue = value => value.toFixed(0);
-    
-    
 
     const Animated = anime({
         targets: '.xxxx',
@@ -91,7 +144,7 @@ export default function Home() {
             const Original = response.data;
             const QueryData = Original.Data 
             setDailyData(QueryData)
-        })}
+        })} 
 
     function GetProvinceAndGender (){
         return axios.get('https://covid19.th-stat.com/api/open/cases/sum') 
@@ -100,8 +153,7 @@ export default function Home() {
             setProvince(data.Province)
             setGender(data.Gender)
             
-            
-        },[])}
+        })}
 
     function TimeRanger (){
         const CurrentTime = moment().format('L'); 
@@ -110,8 +162,7 @@ export default function Home() {
         // console.table(PassedTime)
     }
 
-
-    function ChartNCandNR (){
+    function ChartNConfirmedandNRecoverd (){
         const Selected7Days = DailyData.slice(-7)
         return(
             // old 600 350
@@ -162,11 +213,12 @@ export default function Home() {
         // console.table("State Date",Date)
         // console.log(SevenDays)
         // console.log(...DailyData)
-        
-        
         }, [])
-
     
+        useEffect(()=>{
+            console.log(Province)
+        })
+        
     return (
 
         <Fragment>
@@ -321,7 +373,7 @@ export default function Home() {
                                     <div className="card-body">
                                         <div className="chart-area pb-2">
                                             {/* {Monitor()} */}
-                                            {ChartNCandNR()}
+                                            {ChartNConfirmedandNRecoverd()}
                                         </div>
                                     </div>
                                 </div>
@@ -344,8 +396,9 @@ export default function Home() {
                             </div>
 
                             {/* Pie Chart */}
-                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6">
-                                <div className="card shadow pb-5 mb-4">
+                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 border border-info">
+
+                                <div className="card shadow pb-5 mb-4 ">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 className="m-0 font-weight-bold text-primary">Infecter's gender </h6>
@@ -360,7 +413,7 @@ export default function Home() {
                                                     <h3>Male: {Gender.Male}</h3>
                                                 </div>
 
-                                                <div class='col '/>
+                                                    <div class='col '/>
 
                                                 
                                                 <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
@@ -372,6 +425,77 @@ export default function Home() {
                                     </div>
                                 </div>
                             </div>
+
+                            <div className="col-xl-1 col-lg-12 col-md-12 col-sm-6 border border-warning"/>
+
+                            <div className="col-xl-6 col-lg-12 col-md-12 col-sm-6 border border-info">
+                                <div className="card shadow pb-5 mb-4 border border-success">
+                                        {/* Card Header - Dropdown */}
+                                        <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 className="m-0 font-weight-bold text-primary">Infecter in each provinces </h6>
+                                        </div>
+                                        {/* Card Body */}
+                                        <div className="card-body ">
+                                                <div className="row">
+                                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-6">
+                                                        {/* <MDBDataTable
+                                                        striped
+                                                        bordered
+                                                        small
+                                                        data={dataProvince}
+                                                        /> */}
+
+                                                    <Paper>
+                                                        <TableContainer style={{maxHeight: 440}}>
+                                                            <Table stickyHeader >
+                                                            <TableHead >
+                                                                <TableRow >
+                                                                {dataProvince.columns.map(column => (
+                                                                    <TableCell
+                                                                    
+                                                                    key={column.label}
+                                                                    style={{ minWidth: column.width,backgroundColor: "gray", color:"white", fontSize: 20 }}
+                                                                    >
+                                                                    {column.field}
+                                                                    </TableCell>
+                                                                ))}
+                                                                </TableRow>
+                                                            </TableHead>
+
+                                                            <TableBody >
+                                                                {dataProvince.rows
+                                                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                                                .map(row => {
+                                                                    return (
+                                                                    <TableRow hover key={row.name} >
+                                                                        {dataProvince.columns.map(column => {
+                                                                        const value = row[column.label];
+                                                                        return <TableCell key={column.label}>{value}</TableCell>;
+                                                                        })}
+                                                                    </TableRow>
+                                                                    );
+                                                                })}
+                                                            </TableBody>
+                                                            </Table>
+                                                        </TableContainer>
+
+                                                        <TablePagination
+                                                            rowsPerPageOptions={[10, 25, 100]}
+                                                            component="div"
+                                                            count={dataProvince.rows.length}
+                                                            rowsPerPage={rowsPerPage}
+                                                            page={page}
+                                                            onChangePage={handleChangePage}
+                                                            onChangeRowsPerPage={handleChangeRowsPerPage}
+                                                        />
+                                                    </Paper>
+                                                    </div> 
+                                                </div>    
+                                        </div>
+                                    </div>
+                            </div>
+
+
                         </div>
                         {/* Content Row */}
                     </div>

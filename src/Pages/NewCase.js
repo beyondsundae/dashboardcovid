@@ -532,6 +532,10 @@ import {
 
         }, [])
 
+        useEffect(()=>{
+            // console.log(...DataBoxMid)
+        })
+
     return (
 
        <Fragment>
@@ -560,7 +564,9 @@ import {
                             {/* Page Heading */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h1 mb-0 text-gray-800">New Case</h1>
+                               
                             </div>
+                            <div className="btn btn-lg btn-info" onClick={()=> window.location.reload(false)} id='useFont'>Refresh ข้อมูล</div>
 
         {/* **************** Cards ******************** */}
                             {/* Content Row */}
