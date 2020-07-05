@@ -1,4 +1,4 @@
-import React, { Fragment,useState, useEffect } from 'react'
+import React, { Fragment,useState, useEffect,forwardRef } from 'react'
 import './Components/App.css';
 import axios from 'axios';
 import AnimatedNumber from "animated-number-react";
@@ -10,10 +10,9 @@ import fever from './Components/fever.svg'
 import exercise from './Components/exercise.svg'
 import patient from './Components/patient.svg'
 import funeral from './Components/funeral.svg'
-import { Treemap, PieChart, Pie,ResponsiveContainer, 
-    ComposedChart, LineChart, Line, AreaChart, 
-    Area, CartesianGrid, BarChart, Bar, XAxis, 
-    YAxis, Tooltip, Legend, Sector, Cell } from 'recharts';
+import { PieChart, Pie,ResponsiveContainer, 
+    ComposedChart, Area, CartesianGrid, Bar, XAxis, 
+    YAxis, Tooltip, Legend, Cell } from 'recharts';
 
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -23,6 +22,9 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
+import MaterialTable from "material-table";
+
+import TableIcons from './Parts/TableIcons'
 
 import { Link ,Redirect} from 'react-router-dom';
 import { MDBDataTable } from 'mdbreact';
@@ -39,7 +41,7 @@ export default function Home() {
     //         GetProvinceAndGender();
     //         TimeRanger ()
     // }
-    
+
     const [TableCovid, setTableCovid] = useState();
     const [Confirmed, setConfirmed] = useState();
     const [NewConfirmed, setNewConfirmed] = useState();
@@ -194,6 +196,33 @@ export default function Home() {
                 </ComposedChart>
             </ResponsiveContainer>
         )
+    }
+
+    function PieGender (){
+        const data = [{name: 'Male', value: Gender.Male}, {name: 'Female', value: Gender.Female}]
+        const COLORS = ['#0088FE', '#FFB6C1'];
+
+        return(
+            <ResponsiveContainer minHeight={400}>
+            <PieChart >
+                <Pie
+                    data={data} 
+                    innerRadius="0%"
+                    outerRadius="80%"
+                    fill="#8884d8"
+                    paddingAngle={0}
+                    label ={(entry) => entry.name + ": " + entry.value }
+                >
+                    {
+                        data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+                    }
+                </Pie>
+                <Legend/>
+                <Tooltip/>
+            </PieChart>
+            </ResponsiveContainer>
+        )
+
     }
 
     const Onloadxx =()=>{
@@ -407,20 +436,17 @@ export default function Home() {
                                     <div className="card-body">
                                             <div className="row">
                                                 
-                                                <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
-                                                <img style={{ width: "70%"}} src={male}/>
-                                                <br/><br/>
-                                                    <h3>Male: {Gender.Male}</h3>
-                                                </div>
-
-                                                    <div class='col '/>
-
-                                                
-                                                <div class='col col-5 col-md-5 col-sm-12 col-xs-12'>
-                                                <img style={{ width: "70%"}} src={female}/>
+                                                <div class='col col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center' >
+                                                    <img style={{ width: "40%"}} src={male}/>
                                                     <br/><br/>
-                                                    <h3>Female: {Gender.Female}</h3>
                                                 </div>
+                                                <div class='col col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center'>
+                                                    <img style={{ width: "40%"}} src={female}/>
+                                                    <br/><br/>
+                                                </div>
+                                                    <div class='col' >
+                                                        {PieGender()}
+                                                    </div>
                                             </div>    
                                     </div>
                                 </div>
@@ -495,6 +521,34 @@ export default function Home() {
                                     </div>
                             </div>
 
+                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 border border-info">
+                                <div className="card shadow pb-5 mb-4 border border-success">
+                                        {/* Card Header - Dropdown */}
+                                        <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                            <h6 className="m-0 font-weight-bold text-primary">Infecter in each provinces </h6>
+                                        </div>
+                                        {/* Card Body */}
+                                        <div className="card-body ">
+                                                <div className="row">
+                                                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-6">
+                                                    <div style={{ maxWidth: "100%" }}>
+                                                        <MaterialTable
+                                                        icons={TableIcons}
+                                                        columns={[
+                                                            {title: 'Name', field: 'name'},
+                                                            {title: 'Amount', field: 'amount'}
+                                                        ]}
+                                                        data={
+                                                            dataProvince.rows
+                                                        }
+                                                        title="Amount of infecters"
+                                                        />
+                                                    </div>
+                                                    </div> 
+                                                </div>    
+                                        </div>
+                                    </div>
+                            </div>
 
                         </div>
                         {/* Content Row */}
