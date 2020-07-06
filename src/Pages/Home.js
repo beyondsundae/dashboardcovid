@@ -245,7 +245,7 @@ export default function Home() {
         }, [])
     
         useEffect(()=>{
-            console.log(Province)
+            // console.log(Province)
         })
         
     return (
@@ -425,7 +425,7 @@ export default function Home() {
                             </div>
 
                             {/* Pie Chart */}
-                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 border border-info">
+                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 ">
 
                                 <div className="card shadow pb-5 mb-4 ">
                                     {/* Card Header - Dropdown */}
@@ -436,26 +436,26 @@ export default function Home() {
                                     <div className="card-body">
                                             <div className="row">
                                                 
-                                                <div class='col col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center' >
-                                                    <img style={{ width: "40%"}} src={male}/>
+                                                <div class='col-xl-6 col-lg-6 col-md-6 d-none d-sm-block text-center' >
+                                                    <img style={{ width: "50%"}} src={male}/>
                                                     <br/><br/>
                                                 </div>
-                                                <div class='col col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-center'>
-                                                    <img style={{ width: "40%"}} src={female}/>
+                                                <div class='col-xl-6 col-lg-6 col-md-6 d-none d-sm-block text-center'>
+                                                    <img style={{ width: "50%"}} src={female}/>
                                                     <br/><br/>
                                                 </div>
-                                                    <div class='col' >
-                                                        {PieGender()}
-                                                    </div>
+                                                <div class='col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center' >
+                                                    {PieGender()}
+                                                </div>
                                             </div>    
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="col-xl-1 col-lg-12 col-md-12 col-sm-6 border border-warning"/>
+                            <div className="col-xl-1 col-lg-12 col-md-12 col-sm-6 d-none"/>
 
-                            <div className="col-xl-6 col-lg-12 col-md-12 col-sm-6 border border-info">
-                                <div className="card shadow pb-5 mb-4 border border-success">
+                            <div className="col-xl-6 col-lg-12 col-md-12 col-sm-6  d-none">
+                                <div className="card shadow pb-5 mb-4 ">
                                         {/* Card Header - Dropdown */}
                                         <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             <h6 className="m-0 font-weight-bold text-primary">Infecter in each provinces </h6>
@@ -521,8 +521,8 @@ export default function Home() {
                                     </div>
                             </div>
 
-                            <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 border border-info">
-                                <div className="card shadow pb-5 mb-4 border border-success">
+                            <div className="col-xl-7 col-lg-12 col-md-12 col-sm-6 ">
+                                <div className="card shadow pb-5 mb-4 ">
                                         {/* Card Header - Dropdown */}
                                         <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                             <h6 className="m-0 font-weight-bold text-primary">Infecter in each provinces </h6>
