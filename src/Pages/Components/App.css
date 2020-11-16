@@ -186,3 +186,62 @@
 #JustPointer{
   cursor: pointer;
 }
+
+#introduction{
+  height: 100vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 25%;
+  font-size: 4rem;
+  width:100%
+  
+}
+
+#structure{
+  height: 100vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 25%;
+  font-size: 4rem;
+  width:100%
+}
+
+#initialization{
+  height: 100vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-top: 25%;
+  font-size: 4rem;
+  width:100%
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar ul {
+  list-style: none;
+  text-align: right;
+}
+
+.navbar ul li {
+  color: white;
+  font-size: 2em;
+  padding-right: 20px;
+  display: inline;
+}
+
+.main {
+  height: 100vh;
+  background-color: aquamarine;
+}
+
+.content {
+  height: 100vh;
+  background-color: coral;
+}

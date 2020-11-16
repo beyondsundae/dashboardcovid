@@ -6,7 +6,7 @@ function SideBar() {
         <>
 {/* **************** Sidebar ******************** */}
         {/* Sidebar */}
-        <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul className="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion " id="accordionSidebar" >
 
 {/* **************** Big Home ******************** */}
             {/* Sidebar - Brand */}

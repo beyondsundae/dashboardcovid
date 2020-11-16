@@ -1,68 +1,124 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Introduction
+ **dashboardcovid.** A project that reports Covid-19 situation in Thailand and surveys people who have risk in Covid-19 in the local area.  Including
+ 
+ ## 1. Webpage that reports Covid-19 situation in Thailand
 
-In the project directory, you can run:
+Amount of
 
-### `npm start`
+-   Infected
+-   Recovered
+-   Hospitalised
+-   Deaths
+-   Infected in male and female
+-   Infected in the past 7 days
+-   Infected since 1 Jan 2020
+-   Infected in each province
+ 
+ ## 2. Webpage that for survey people who have risk Covid-19 in the local area
+ 
+ **This webpage for my dad who is a surveyor the people who have risk Covid-19 in the each local area in my province . In this survey including** 
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+ - Personal ID
+ - Name-Lastname
+ - Age
+ - Gender
+ - Address
+ - Job
+ - The location that they came from
+ - Date of arrival in the village
+ - Initial risk assessment
+ - Temperature
+ - Symptom
+ - Indicate result
+ - Reporter's name
+ 
+**dashboardcovid** เป็นโปรเจคในช่วงเวลาฝึกงานกับทางมหาวิทยาลัย โดยตัวเว็บจะแบ่งเป็น 2 ส่วน 
+คือ 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 1. หน้าเว็บที่รายงานสถานการณ์โควิด-19 ในประเทศไทย 
+**โดยจะรายงาน**
+ - จำนวนผู้ติดเชื้อ
+ - ผู้ที่กำลังเข้ารับการรักษา
+ - ผู้ที่รักษาหายแล้ว
+ - ผู้ที่เสียชีวิต
+ - จำนวนวผู้ติดเชื้อโดยแบ่งเป็นชายและหญิง
+ - จำนวนผู้ติดเชื้อใน 7 วัน
+ - จำนวนผู้ติดเชื้อตั้งแต่ 1 มกราคม พ.ศ. 2563
+ - ผู้ติดเชื้อในแต่ละจังหวัด
+ 
+ ## 2. หน้าเว็บที่จะเก็บข้อมูลที่สำรวจในชุมชน 
+ **เป็นหน้าเว็บที่จะเก็บข้อมูลผู้ที่ลงพื้นที่สำรวจชุมชน หน้าเว็บนี้ จัดทำเพื่อเพิ่มความสะดวกให้กับพ่อของผม ที่ทำหน้าที่ในการลงพื้นที่สำรวจผู้คนในหมู่บ้านต่างๆ ที่มีความเสี่ยงในการเป็น โควิด-19 โดยหน้าเว็บนี้จะเป็นฟอร์มกรอกข้อมูล ประกอบด้วย** 
 
-### `npm test`
+ - เลขบัตรประชาชน
+ -  ชื่อ-ที่อยู่
+ - อายุ
+ - เพศ
+ - ที่อยู่
+ - อาชีพ
+ - สถานที่เดินทางมา
+ - วันที่เข้าหมู่บ้าน
+ - ประเมินความเสี่ยงเบื้องต้น
+ - อุณหภูมิ
+ - อาการ
+ - ระบุผล
+ - ชื้อผู้รายงาน
+ 
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Technology
 
-### `npm run build`
+โปรเจคนี้เป็นการศึกษาเทคโนโลยีที่สนใจ ได้แก่
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ - **React Hook**
+ - **React Router**
+ - **NodeJS**
+ - **mySQL**
+ - **Nodemon**
+ - **Github Pages**
+ ___
+ - **Admin LTE**
+ - **Material-UI**
+ - **Date Picker**
+ - **Moment.js**
+ - **Axios**
+ - **Chart.js**
+ - **Material-table**
+ - **Axios**
+ - **Chart.js**
+ - **Dateformat**
+ - **Material-Table**
+ - **Dateformat**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Overview
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![enter image description here](https://media.giphy.com/media/POyeGSS17VAtYFpuvu/giphy.gif)
+**Figure 1.1** Home Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![enter image description here](https://media.giphy.com/media/BlSyWXyv5AtJwiUhOf/giphy.gif)
+**Figure 1.2** Form modal
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![enter image description here](https://media.giphy.com/media/wB805my6VwY0h4HJw6/giphy.gif)
+**Figure 1.3** Add case
 
-## Learn More
+![enter image description here](https://media.giphy.com/media/yWl1xv9q1lRvWU0CEk/giphy.gif)
+**Figure 1.3** Change status to not risk
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![enter image description here](https://media.giphy.com/media/mhyxRoMCefsjbZY62P/giphy.gif)
+**Figure 1.3** Change status to risk
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# How to use
+**Terminal 1**
 
-### Code Splitting
+    cd src
+    cd Parts
+    npx nodemon server.js
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**Terminal 2**
 
-### Analyzing the Bundle Size
+    npm start
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+# About
+Everything by me and Thanks API from Kidkarnmai.

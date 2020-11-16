@@ -34,13 +34,6 @@ import Footer from './Parts/Footer';
 
 
 export default function Home() {
-    
-    // window.onload = function() {
-    //         Get7Days();
-    //         GetDataCovid();
-    //         GetProvinceAndGender();
-    //         TimeRanger ()
-    // }
 
     const [TableCovid, setTableCovid] = useState();
     const [Confirmed, setConfirmed] = useState();
@@ -211,6 +204,7 @@ export default function Home() {
                     outerRadius="80%"
                     fill="#8884d8"
                     paddingAngle={0}
+                    isAnimationActive={false}
                     label ={(entry) => entry.name + ": " + entry.value }
                 >
                     {
@@ -256,11 +250,11 @@ export default function Home() {
 {/* **************** Sidebar ******************** */}
             {/* Sidebar */}
             <SideBar/>
-
+            {/* <div className="col col-xl-1 col-lg-3 col-md-4" /> */}
 {/* **************** Content ******************** */}
             {/* Content Wrapper */}
-            <div id="content-wrapper" className="d-flex flex-column">
-
+            <div className="d-flex flex-column " >
+          
 {/* **************** TopBar ******************** */}
                     {/* Topbar */}
                     <Header/>
@@ -273,8 +267,9 @@ export default function Home() {
                     {/* Begin Page Content */}
                     <div className="container-fluid">
                         {/* Page Heading */}
+                        
                         <div className="d-sm-flex align-items-center justify-content-between mb-1 ">
-                            <h1 className="h1 mb-0 text-gray-800">Thailand Situation</h1>
+                            <h1 className="h1 mb-0 text-gray-800">Covid-19 Thailand Situation Reports</h1>
                             {/* <h1 className='wow'></h1> */}
                             
                         </div>
@@ -286,7 +281,7 @@ export default function Home() {
 
             {/* **************** Cards1 ******************** */}
                             <div className="col-xl-3 col-md-6 mb-4 ">
-                                <div className="card border-left-primary shadow h-100 py-2">
+                                <div className="card border-bottom-primary shadow h-100 py-2">
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
@@ -311,7 +306,7 @@ export default function Home() {
 
             {/* **************** Cards2 ******************** */}
                             <div className="col-xl-3 col-md-6 mb-4">
-                                <div className="card border-left-success shadow h-100 py-2">
+                                <div className="card border-bottom-success shadow h-100 py-2">
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
@@ -336,7 +331,7 @@ export default function Home() {
 
             {/* **************** Cards3 ******************** */}
                             <div className="col-xl-3 col-md-6 mb-4">
-                                <div className="card border-left-warning shadow h-100 py-2">
+                                <div className="card border-bottom-warning shadow h-100 py-2">
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
@@ -363,7 +358,7 @@ export default function Home() {
                             
             {/* **************** Cards4 ******************** */}
                             <div className="col-xl-3 col-md-6 mb-4">
-                                <div className="card border-left-danger shadow h-100 py-2">
+                                <div className="card border-bottom-danger shadow h-100 py-2">
                                     <div className="card-body">
                                         <div className="row no-gutters align-items-center">
                                             <div className="col mr-2">
@@ -426,7 +421,6 @@ export default function Home() {
 
                             {/* Pie Chart */}
                             <div className="col-xl-5 col-lg-12 col-md-12 col-sm-6 ">
-
                                 <div className="card shadow pb-5 mb-4 ">
                                     {/* Card Header - Dropdown */}
                                     <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -461,7 +455,7 @@ export default function Home() {
                                             <h6 className="m-0 font-weight-bold text-primary">Infecter in each provinces </h6>
                                         </div>
                                         {/* Card Body */}
-                                        <div className="card-body ">
+                                        <div className="card-body border border-danger">
                                                 <div className="row">
                                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-6">
                                                         {/* <MDBDataTable
@@ -472,7 +466,7 @@ export default function Home() {
                                                         /> */}
 
                                                     <Paper>
-                                                        <TableContainer style={{maxHeight: 440}}>
+                                                        <TableContainer style={{maxHeight: 240}}>
                                                             <Table stickyHeader >
                                                             <TableHead >
                                                                 <TableRow >
@@ -533,6 +527,7 @@ export default function Home() {
                                                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-6">
                                                     <div style={{ maxWidth: "100%" }}>
                                                         <MaterialTable
+                                                        title="Amount of infecters"
                                                         icons={TableIcons}
                                                         columns={[
                                                             {title: 'Name', field: 'name'},
@@ -541,7 +536,17 @@ export default function Home() {
                                                         data={
                                                             dataProvince.rows
                                                         }
-                                                        title="Amount of infecters"
+                                                        options={{
+                                                            exportButton: true,
+
+                                                            headerStyle: {
+                                                                backgroundColor: 'gray',
+                                                                fontSize: 20,
+                                                                borderRadius: '2%',
+                                                                color: '#FFF'
+                                                              },
+                                                            
+                                                          }}
                                                         />
                                                     </div>
                                                     </div> 
