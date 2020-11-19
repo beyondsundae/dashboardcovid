@@ -94,20 +94,25 @@ Amount of
 
 # Overview
 
-![enter image description here](https://media.giphy.com/media/POyeGSS17VAtYFpuvu/giphy.gif)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/59742129/99691652-0b7ea700-2abc-11eb-8890-d3bf30330708.gif)
+
 **Figure 1.1** Home Page
 
-![enter image description here](https://media.giphy.com/media/BlSyWXyv5AtJwiUhOf/giphy.gif)
+![ezgif com-gif-maker (8)](https://user-images.githubusercontent.com/59742129/99696404-3dded300-2ac1-11eb-934e-29cb32d04c18.gif)
+
 **Figure 1.2** Form modal
 
-![enter image description here](https://media.giphy.com/media/wB805my6VwY0h4HJw6/giphy.gif)
+![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/59742129/99691692-13d6e200-2abc-11eb-9fcc-698d4efdf3f8.gif)
+
 **Figure 1.3** Add case
 
-![enter image description here](https://media.giphy.com/media/yWl1xv9q1lRvWU0CEk/giphy.gif)
-**Figure 1.3** Change status to not risk
+![ezgif com-gif-maker (4)](https://user-images.githubusercontent.com/59742129/99691688-133e4b80-2abc-11eb-8adb-39edc399ba83.gif)
 
-![enter image description here](https://media.giphy.com/media/mhyxRoMCefsjbZY62P/giphy.gif)
-**Figure 1.3** Change status to risk
+**Figure 1.4** Change status to not risk
+
+![ezgif com-gif-maker (6)](https://user-images.githubusercontent.com/59742129/99691680-120d1e80-2abc-11eb-967d-881726bd28a9.gif)
+
+**Figure 1.5** Change status to risk
 
 # How to use
 **Terminal 1**
