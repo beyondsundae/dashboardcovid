@@ -69,9 +69,10 @@ Amount of
 
 โปรเจคนี้เป็นการศึกษาเทคโนโลยีที่สนใจ ได้แก่
 
- - **React Hook**
+ - **React Hooks**
  - **React Router**
  - **NodeJS**
+ - **ExpressJS**
  - **mySQL**
  - **Nodemon**
  - **Github Pages**
